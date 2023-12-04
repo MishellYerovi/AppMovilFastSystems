@@ -4,14 +4,14 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import '../constantes/const.dart';
 
-class c_listarAdministradores extends StatefulWidget {
-  const c_listarAdministradores({super.key});
+class cListarAdministradores extends StatefulWidget {
+  const cListarAdministradores({super.key});
 
   @override
-  State<c_listarAdministradores> createState() => _c_listarAdministradoresState();
+  State<cListarAdministradores> createState() => _cListarAdministradoresState();
 }
 
-class _c_listarAdministradoresState extends State<c_listarAdministradores> {
+class _cListarAdministradoresState extends State<cListarAdministradores> {
 
   late Future <List<Administrador>> futureAdmin;
   //Formulario para agregar un administrador
@@ -41,7 +41,7 @@ class _c_listarAdministradoresState extends State<c_listarAdministradores> {
         backgroundColor: Colors.white,
         appBar: AppBar(
           title: const Text("Administradores"),
-          shape: RoundedRectangleBorder(
+          shape: const RoundedRectangleBorder(
               borderRadius: BorderRadius.vertical(
                 bottom: Radius.circular(30),
               )),
@@ -50,10 +50,10 @@ class _c_listarAdministradoresState extends State<c_listarAdministradores> {
           backgroundColor: Colors.lightBlueAccent,
         ),body:
     Scrollbar(
-      radius: Radius.circular(50),
+      radius: const Radius.circular(50),
       trackVisibility: true,
     child: SingleChildScrollView(
-    padding: EdgeInsets.fromLTRB(5, 5,5, 80),
+    padding: const EdgeInsets.fromLTRB(5, 5,5, 80),
     child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
@@ -61,8 +61,8 @@ class _c_listarAdministradoresState extends State<c_listarAdministradores> {
               Align(
                 alignment: Alignment.center,
                 child: Container(
-                  margin: EdgeInsets.fromLTRB(30, 30, 30, 10),
-                  child: Text("Agregar Administrador", style: TextStyle(
+                  margin: const EdgeInsets.fromLTRB(30, 30, 30, 10),
+                  child: const Text("Agregar Administrador", style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 16,
                       fontStyle: FontStyle.normal,
@@ -70,15 +70,15 @@ class _c_listarAdministradoresState extends State<c_listarAdministradores> {
                 ), ),
 
                 Container(
-                  padding: EdgeInsets.fromLTRB(30, 0, 30, 10),
+                  padding: const EdgeInsets.fromLTRB(30, 0, 30, 10),
 
                     child:  mostrarFormDatosAdmin(),
                 ),
                   Align(
                     alignment: Alignment.center,
                     child: Container(
-                      padding: EdgeInsets.fromLTRB(30, 30, 30, 10),
-                      child: Text("Administradores", style: TextStyle(
+                      padding: const EdgeInsets.fromLTRB(30, 30, 30, 10),
+                      child: const Text("Administradores", style: TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 16,
                           fontStyle: FontStyle.normal,
@@ -90,7 +90,7 @@ class _c_listarAdministradoresState extends State<c_listarAdministradores> {
                     decoration: BoxDecoration(
                         color: Colors.blue,
                         borderRadius: BorderRadius.circular(12) ),
-                    padding: EdgeInsets.all(5),
+                    padding: const EdgeInsets.all(5),
                 child: FutureBuilder(
                   future:  fetchAdministrador(),
                   builder: (BuildContext context,snapshot) {
@@ -118,19 +118,19 @@ class _c_listarAdministradoresState extends State<c_listarAdministradores> {
                           Container(
                             //height: 240,
                               child:Scrollbar(
-                                  radius: Radius.circular(50),
+                                  radius: const Radius.circular(50),
                                   //thumbVisibility: true,
                                   trackVisibility: true,
                             //scrollbarOrientation: ScrollbarOrientation.top,
                               child:ListView(
-                                padding: EdgeInsets.all(10),
+                                padding: const EdgeInsets.all(10),
                             shrinkWrap: true,
                             children:
                             //  Padding(padding:EdgeInsets.all(8.0)), //Espacio
                             _listAdministradores(data!),
 
                           )))
-                              : Container( alignment: Alignment.center, child:Text("No existen administradores"));
+                              : Container( alignment: Alignment.center, child:const Text("No existen administradores"));
                       }
                     }
                     return const Center(
@@ -159,7 +159,7 @@ class _c_listarAdministradoresState extends State<c_listarAdministradores> {
       administradores.add(
 
         Card(
-          margin: EdgeInsets.fromLTRB(5, 5, 5, 5),
+          margin: const EdgeInsets.fromLTRB(5, 5, 5, 5),
           elevation: 15,
           color: Colors.white,
           child:
@@ -181,10 +181,10 @@ class _c_listarAdministradoresState extends State<c_listarAdministradores> {
                     IconButton(onPressed: () {
 
                       editarFormAdmin(admin.id, admin.nombreAdmin, admin.emailAdmin);
-                    }, icon: Icon(Icons.edit, color:Colors.deepPurpleAccent)),
+                    }, icon: const Icon(Icons.edit, color:Colors.deepPurpleAccent)),
                     IconButton(onPressed: () {
                       alertDeseaEliminar(admin.id, admin.nombreAdmin, admin.emailAdmin);
-                    }, icon: Icon(Icons.delete, color: Colors.red,)),
+                    }, icon: const Icon(Icons.delete, color: Colors.red,)),
                   ],
                 ),
               ),
@@ -232,14 +232,14 @@ class _c_listarAdministradoresState extends State<c_listarAdministradores> {
 
         var jsondata = json.decode(response.body);
         if(jsondata["error"]){
-          print(jsondata["msg"]);
+          //print(jsondata["msg"]);
         }else{
-          print("Se ha eliminado exitosamente");
+          //print("Se ha eliminado exitosamente");
 
         }
 
       }else{
-        print("Error durante la conexión al servidor");
+        //print("Error durante la conexión al servidor");
       }
     }catch(e){
       print("");
@@ -338,7 +338,7 @@ class _c_listarAdministradoresState extends State<c_listarAdministradores> {
               autofocus: false,
               obscureText: true,//!_passwordVisible,
               controller: passwordAdmin,
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 errorMaxLines: 4,
                 hintText: 'Contraseña',
                 labelText: 'Contraseña',
@@ -455,7 +455,7 @@ class _c_listarAdministradoresState extends State<c_listarAdministradores> {
         builder: (context){
           return  AlertDialog(
             title:const Text("Administrador ya existe") ,
-            icon: Icon(Icons.dangerous_sharp,color: Colors.red,size:50,),
+            icon: const Icon(Icons.dangerous_sharp,color: Colors.red,size:50,),
             actions: [
               TextButton(
                   onPressed: (){
@@ -475,7 +475,7 @@ class _c_listarAdministradoresState extends State<c_listarAdministradores> {
         builder: (context){
           return  AlertDialog(
             title:const Text("¿Desea eliminar este administrador?") ,
-            icon: Icon(Icons.info_sharp,color: Colors.orange,size:50,),
+            icon: const Icon(Icons.info_sharp,color: Colors.orange,size:50,),
             actions: [
               TextButton(
                   onPressed: (){
@@ -501,7 +501,7 @@ class _c_listarAdministradoresState extends State<c_listarAdministradores> {
         builder: (context){
           return  AlertDialog(
             title:const Text("Eliminado exitosamente") ,
-            icon: Icon(Icons.check_circle,color: Colors.green,size:50,),
+            icon: const Icon(Icons.check_circle,color: Colors.green,size:50,),
             actions: [
 
               TextButton(
@@ -524,7 +524,7 @@ class _c_listarAdministradoresState extends State<c_listarAdministradores> {
         builder: (context){
           return  AlertDialog(
             title:const Text("Eliminado exitosamente") ,
-            icon: Icon(Icons.dangerous,color: Colors.red,size:50,),
+            icon: const Icon(Icons.dangerous,color: Colors.red,size:50,),
             actions: [
               TextButton(
                   onPressed: (){
@@ -544,7 +544,7 @@ class _c_listarAdministradoresState extends State<c_listarAdministradores> {
         builder: (context){
           return  AlertDialog(
             title:const Text("Se ha registrado exitosamente") ,
-            icon: Icon(Icons.check_circle,color: Colors.green,size:50,),
+            icon: const Icon(Icons.check_circle,color: Colors.green,size:50,),
             actions: [
               TextButton(
                   onPressed: (){
@@ -563,7 +563,7 @@ class _c_listarAdministradoresState extends State<c_listarAdministradores> {
         builder: (context){
           return  AlertDialog(
             title:const Text("Nombre cambiado correctamente") ,
-            icon: Icon(Icons.check_circle,color: Colors.green,size:50,),
+            icon: const Icon(Icons.check_circle,color: Colors.green,size:50,),
             actions: [
               TextButton(
                   onPressed: (){
@@ -583,7 +583,7 @@ class _c_listarAdministradoresState extends State<c_listarAdministradores> {
         builder: (context){
           return  AlertDialog(
             title:const Text("Email cambiado correctamente") ,
-            icon: Icon(Icons.check_circle,color: Colors.green,size:50,),
+            icon: const Icon(Icons.check_circle,color: Colors.green,size:50,),
             actions: [
               TextButton(
                   onPressed: (){
@@ -603,7 +603,7 @@ class _c_listarAdministradoresState extends State<c_listarAdministradores> {
         builder: (context){
           return  AlertDialog(
             title:const Text("Datos cambiados correctamente") ,
-            icon: Icon(Icons.check_circle,color: Colors.green,size:50,),
+            icon: const Icon(Icons.check_circle,color: Colors.green,size:50,),
             actions: [
               TextButton(
                   onPressed: (){
@@ -623,7 +623,7 @@ class _c_listarAdministradoresState extends State<c_listarAdministradores> {
         builder: (context){
           return  AlertDialog(
             title:const Text("Ningún cambio aplicado") ,
-            icon: Icon(Icons.check_circle,color: Colors.green,size:50,),
+            icon: const Icon(Icons.check_circle,color: Colors.green,size:50,),
             actions: [
               TextButton(
                   onPressed: (){
@@ -708,13 +708,13 @@ class _c_listarAdministradoresState extends State<c_listarAdministradores> {
         var jsondata = json.decode(response.body);
         if(jsondata["Eliminado"]){
           alertEliminadoExitosamente();
-          print("Eliminado exitosamente");
+          //print("Eliminado exitosamente");
           setState(() {
           });
         }else
         {
           if(jsondata["NoEliminado"]){
-            print("Error, no se ha eliminado");
+           // print("Error, no se ha eliminado");
             alertNoEliminado();
           }else {
             print("Error");
@@ -831,17 +831,11 @@ class _c_listarAdministradoresState extends State<c_listarAdministradores> {
               TextButton(
                   onPressed: (){
                     Navigator.of(context).pop();
-                    editarNombreAdmin.clear();
-                    editarEmailAdmin.clear();
                   }, child: const Text("Cancelar")),
 
               TextButton(
                   onPressed: (){
-                    //em.nombre=nombre.text.trim();
-
                     guardarCambiosAdmin(context,id,nombreTemporal,emailTemporal);
-                    //nombre.clear();
-                    //Navigator.of(context).pop();
                   }, child: const Text("Guardar")),
             ],
 
@@ -877,12 +871,12 @@ class _c_listarAdministradoresState extends State<c_listarAdministradores> {
             }
           );
           if(response.statusCode == 200){
-            print("Entra");
-            var jsondata1 = json.decode(response.body);
-            print("nombre"+jsondata1);
+            //print("Entra");
+            var jsondata = json.decode(response.body);
+           // print("nombre"+jsondata1);
 
-            if(jsondata1["Correcto"]){
-              print("hola"+jsondata1["CorrectoEditarN"].toString());
+            if(jsondata["Correcto"]){
+              //print("hola"+jsondata["Correcto"].toString());
               Navigator.of(context).pop();
               alertCambioNombre();
               editarNombreAdmin.clear();
@@ -911,7 +905,7 @@ class _c_listarAdministradoresState extends State<c_listarAdministradores> {
             );
             if(response.statusCode == 200){
               var jsondata = json.decode(response.body);
-              print("info"+jsondata);
+              //print("info"+jsondata);
               if(jsondata["Correcto"]){
                 Navigator.of(context).pop();
                 alertCambioInformacionAdmin();
@@ -919,7 +913,7 @@ class _c_listarAdministradoresState extends State<c_listarAdministradores> {
                 editarEmailAdmin.clear();
                 setState(() {});
               }else{
-                print("Error al editar el Nombre del administrador");
+                print("Error al editar la información");
               }
             }
           }catch(e){
@@ -946,18 +940,18 @@ class _c_listarAdministradoresState extends State<c_listarAdministradores> {
           );
           if(response.statusCode == 200){
             var jsondata = json.decode(response.body);
-            print("email"+jsondata);
-            /*if(jsondata.toString()){
-              //Navigator.of(context).pop();
+           // print("email"+jsondata);
+
+            if(jsondata["Correcto"]){
+              Navigator.of(context).pop();
               alertCambioEmail();
-              //editarNombreAdmin.clear();
-              //editarEmailAdmin.clear();
-              setState(() {});
               editarNombreAdmin.clear();
               editarEmailAdmin.clear();
+              setState(() {});
             }else{
               print("Error al editar el Email del administrador");
-            }*/
+            }
+
           }
         }catch(e){
           print("Error en el Servidor email"+e.toString());

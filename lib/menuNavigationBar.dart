@@ -438,7 +438,7 @@ class AppNavigation {
                                              maintainState: false,
                                              // return webViewContainerRouter(router)
                                              //router= state.extra! as String;
-                                             child: const c_listarAdministradores(),
+                                             child: const cListarAdministradores(),
                                              //const subirNoticias(),
                                              transitionsBuilder:
                                                  (context, animation, secondaryAnimation, child) =>
