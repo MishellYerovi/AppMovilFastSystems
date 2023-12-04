@@ -1,0 +1,12 @@
+flutter_native_splash:
+  android: true
+  ios: true
+  color: "#731010"
+  #background_image: "assets/icon/iconNatSplash.png"
+  image: "assets/icon/iconNatSplash.png"
+  #icon_background_color: "#42a5f5"
+  #video: "assets/iconVideo.png"
+  fill: true;
+  android_12:
+    image: "assets/icon/iconNatSplash.png"
+

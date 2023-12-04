@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1085500547740",
+    "project_id": "fastsystems-532fd",
+    "storage_bucket": "fastsystems-532fd.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1085500547740:android:33d31b13e1adfb1aa40359",
+        "android_client_info": {
+          "package_name": "com.fastsystems_.fastsystems_app2"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDWpooImbSdK3Y3p5xTOb8I7gIU7eFIuzs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
