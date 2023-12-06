@@ -85,7 +85,11 @@ class _playLinkEntretenimientoState extends State<playLinkEntretenimiento> {
           // 'https://dsqqu7oxq6o1v.cloudfront.net/preview-9650dW8x3YLoZ8.webm',
           // "https://flutter.github.io/assets-for-api-docs/assets/videos/bee.mp4",
          // "https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8",
-        "https://vivo.canaloncelive.tv/alivepkgr3/ngrp:cepro_all/playlist.m3u8",//canal 11 Mexico
+       // "https://vivo.canaloncelive.tv/alivepkgr3/ngrp:cepro_all/playlist.m3u8",//canal 11 Mexico
+          "https://redirector.rudo.video/hls-video/c54ac2799874375c81c1672abb700870537c5223/ecuavisa/ecuavisa.smil/playlist.m3u8?PlaylistM3UCL", //ecuavisa
+
+          //"http://sansat.net:88/02024036717143/mS34FIbmhBXJjsp/191099",
+
           //"https://playout.cdn.cartoonnetwork.com.br/playout_04/playlist.m3u8", //cartoon
 
           //"https://sfux-ext.sfux.info/hls/chapter/105/1588724110/1588724110.m3u8",

@@ -2,9 +2,11 @@
 
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:go_router/go_router.dart';
 import 'package:network_info_plus/network_info_plus.dart';
+import 'package:wifi_info_plugin_plus/wifi_info_plugin_plus.dart';
 
 
 
@@ -20,7 +22,9 @@ class menu_configuraciones extends StatefulWidget {
 class _menu_configuracionesState extends State<menu_configuraciones> {
 
   String? router;
+  String? routerName;
   String? routerB;
+  WifiInfoWrapper? _wifiObject;  //example
   Future<String?>getData() async {
     final info = NetworkInfo();
     var wifiBSSID = await info.getWifiBSSID(); // 11:22:33:44:55:66
@@ -29,6 +33,12 @@ class _menu_configuracionesState extends State<menu_configuraciones> {
     var wifiName = await info.getWifiName();
     return wifiIP2;
   }
+  Future<String?>getDataName() async {
+    final info = NetworkInfo();
+
+    var wifiName = await info.getWifiName();//Obtiene el nombre de la red
+    return wifiName;
+  }
   @override
   void initState() {
     super.initState();
@@ -36,14 +46,41 @@ class _menu_configuracionesState extends State<menu_configuraciones> {
       setState(() {
         router = value;
       });
+
+    });
+    getDataName().then((value) {
+      setState(() {
+        routerName = value;
+      });
+
     });
 
+    initPlatformState();  //EXAMPLE
 
   }
+  ///example
+  Future<void> initPlatformState() async {
+    WifiInfoWrapper? wifiObject;
+    // Platform messages may fail, so we use a try/catch PlatformException.
+    try {
+      wifiObject = await WifiInfoPlugin.wifiDetails;
+    } on PlatformException {}
+    if (!mounted) return;
 
+    setState(() {
+      _wifiObject= wifiObject;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
+
+    String ipAddress = _wifiObject != null ? _wifiObject!.ipAddress.toString() : "no";
+
+    String macAddress = _wifiObject != null ? _wifiObject!.macAddress.toString() : 'no';
+    String connectionType = _wifiObject != null ? _wifiObject!.connectionType.toString() : 'unknown';
+
+    String name = _wifiObject != null ? _wifiObject!.ssid.toString() : 'unknown';
 
     return Scaffold(
       appBar: AppBar(
@@ -185,7 +222,7 @@ class _menu_configuracionesState extends State<menu_configuraciones> {
                                           width:10,
                                           // height: 50,
                                         ),
-                                        Text("Cambiar Contraseña", style:TextStyle(fontSize:20, color:Colors.white), textAlign: TextAlign.center, ),
+                                        Text("Cambiar Contraseña"+routerName.toString(), style:TextStyle(fontSize:20, color:Colors.white), textAlign: TextAlign.center, ),
                                       ],
                                     ),
                                   )

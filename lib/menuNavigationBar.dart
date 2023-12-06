@@ -23,6 +23,7 @@ import 'package:go_router/go_router.dart';
 import 'Administrador/listarAdministradores.dart';
 import 'about.dart';
 
+import 'infoCuentaBanco.dart';
 import 'mainwrapper.dart';
 import 'menuServicios.dart';
 late final bool focusedMarkerHighlight;
@@ -240,6 +241,23 @@ class AppNavigation {
                            child: child,
                          ),*/
                    ),
+                     routes: [
+                       GoRoute(
+                         parentNavigatorKey:_shellNavigatorInicio,
+                         path: 'homeServiciosInfoPagos',
+                         name: 'HomeServiciosInfoPagos',
+                         pageBuilder: (context, state) => CustomTransitionPage<void>(
+                           // key: state.pageKey,
+                           maintainState: false,
+                           child: cInfoCuentaBanco(),
+                           // child: const MenuOtrosServicios(),
+                           transitionsBuilder:
+                               (context, animation, secondaryAnimation, child) =>
+                               FadeTransition(opacity: animation, child: child),
+
+                         ),
+                       ),
+                     ]
                  ),
                  //Subruta Otros servicios
                  GoRoute(

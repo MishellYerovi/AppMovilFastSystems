@@ -1,6 +1,7 @@
 
 //Url  Raíz de WebServices
-const raizUrl = 'https://fastsystems24.000webhostapp.com';
+//const raizUrl = 'https://fastsystems24.000webhostapp.com';
+const raizUrl =  "https://www.fastsystems.ec/aplicacion";
 //Datos Generales de la empresa
 const obtenerDatosEmpresa = '/datosEmpresa.php';
 //Modificar datos de la empresa
@@ -28,3 +29,7 @@ const obtenerListaAdministradores="/obtenerAdministradores.php";
 const agregarAdministradores="/agregarAdministradores.php";
 const eliminarAdmin="/eliminarAdmin.php";
 const editarAdminFromAdmin="/editAdminFromAdmin.php";
+
+//Información del Banco para pagos
+const obtenerInfoBancos="/obtenerInfoBancoPagos.php";
+const celular="0992562727";

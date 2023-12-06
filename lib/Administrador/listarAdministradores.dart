@@ -147,17 +147,14 @@ class _cListarAdministradoresState extends State<cListarAdministradores> {
 
     );
     // ),
-
   }
 
   List<Widget> _listAdministradores(data) {
-
     List<Widget> administradores=[];
     //print("tamaño"+data.length.toString());
     for(var admin in data)
     {
       administradores.add(
-
         Card(
           margin: const EdgeInsets.fromLTRB(5, 5, 5, 5),
           elevation: 15,
@@ -921,10 +918,6 @@ class _cListarAdministradoresState extends State<cListarAdministradores> {
           }
         }
         else{
-          /*a!=b && c=c
-          a!=b && c!=c
-          a==b && c!=c
-          a==b && c==c*/
 
           if(nombreTemporal == nombre && emailTemporal != email)
         {
