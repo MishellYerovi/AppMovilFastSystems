@@ -50,6 +50,7 @@ class _editarInformacionEmpresaState extends State<editarInformacionEmpresa> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
         title: const Text("Datos de la Empresa"),
         shape: RoundedRectangleBorder(
@@ -94,6 +95,7 @@ class _editarInformacionEmpresaState extends State<editarInformacionEmpresa> {
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children:  [
                                   ListTile(
+
                                     contentPadding: const EdgeInsets.fromLTRB(15, 10, 25, 0),
                                     leading: const Icon(Icons.business_rounded, color:Colors.black45),
                                     title: const Text("Nombre de la empresa"),
@@ -167,7 +169,13 @@ class _editarInformacionEmpresaState extends State<editarInformacionEmpresa> {
                                     ),
                                     ListTile(
                                       contentPadding: const EdgeInsets.fromLTRB(15, 10, 25, 0),
-                                      leading: const Icon(Icons.chat_bubble_outlined, color:Colors.black45),
+                                      leading: Image(
+                                        //image: AssetImage('assets/redesSociales/whatsapp2.png'),
+                                        image: AssetImage('assets/whatsapp2.png'),
+                                        fit: BoxFit.fitHeight,
+                                        height: 30,
+                                      ),
+                                      //const Icon(Icons.chat_bubble_outlined, color:Colors.black45),
                                       title: const Text("WhatsApp"),
                                       subtitle: Text(data.whatsapp.toString()),
                                       trailing:  IconButton(onPressed: ()
@@ -180,8 +188,15 @@ class _editarInformacionEmpresaState extends State<editarInformacionEmpresa> {
                                     ),
                                     ListTile(
                                       contentPadding: const EdgeInsets.fromLTRB(15, 10, 25, 0),
-                                      leading: const Icon(Icons.web, color:Colors.black45),
-                                      title: const Text("Página Web"),
+                                      leading: Image(
+                                        //image: AssetImage('assets/redesSociales/whatsapp2.png'),
+                                        image: AssetImage('assets/paginaWeb.png'),
+                                        fit: BoxFit.fitHeight,
+                                        height: 30,
+                                      ),
+                                      //const Icon(Icons.web, color:Colors.black45),
+                                      title:
+                                      const Text("Página Web"),
                                       subtitle: Text(data.paginaWeb.toString()),
                                       trailing:  IconButton(onPressed: ()
                                       {
@@ -193,20 +208,27 @@ class _editarInformacionEmpresaState extends State<editarInformacionEmpresa> {
                                     ),
                                     ListTile(
                                       contentPadding: const EdgeInsets.fromLTRB(15, 10, 25, 0),
-                                      leading: const Icon(Icons.facebook, color:Colors.black45),
+                                      leading: const Icon(Icons.facebook, color:Colors.blue),
                                       title: const Text("Facebook"),
                                       subtitle: Text(data.facebook.toString()),
                                       trailing: IconButton(onPressed: ()
                                       {
                                         mostrarFormFacebook();
                                       },
-                                        icon: const Icon(Icons.edit),
+                                        icon:
+                                        const Icon(Icons.edit),
                                         color: Colors.lightBlueAccent,
                                       ),
                                     ),
                                     ListTile(
                                       contentPadding: const EdgeInsets.fromLTRB(15, 10, 25, 0),
-                                      leading: const Icon(Icons.chat, color:Colors.black45),
+                                      leading: Image(
+                                        //image: AssetImage('assets/redesSociales/whatsapp2.png'),
+                                        image: AssetImage('assets/instagram.png'),
+                                        fit: BoxFit.fitHeight,
+                                        height: 30,
+                                      ),
+                                      //const Icon(Icons.chat, color:Colors.black45),
                                       title: const Text("Instagram"),
                                       subtitle: Text(data.instagram.toString()),
                                       trailing:  IconButton(onPressed: ()

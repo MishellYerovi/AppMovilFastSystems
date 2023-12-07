@@ -90,7 +90,7 @@ class _webViewContainerState extends State<webViewContainer> {
                             gestureRecognizers: Set()..add(Factory<VerticalDragGestureRecognizer>(() => VerticalDragGestureRecognizer())),
                        // initialUrlRequest:URLRequest( url: Uri.parse('https://bibliaenpdf.com/')),
 
-                          initialUrlRequest:URLRequest( url: Uri.parse('http://pagos.fastsystems.ec:8090/cliente/login')),
+                          initialUrlRequest:URLRequest( url: Uri.parse('http://www.pdf995.com/samples/pdf.pdf')),///http://pagos.fastsystems.ec:8090/cliente/login'
                             //initialUrlRequest:URLRequest( url: Uri.parse('https://canales.online/embed/eventos/?r=aHR0cHM6Ly9ibGFja2ZhY2Uud29ybGQvc3Rhcl9qd3AuaHRtbD9nZXQ9aHR0cHM6Ly9saXZlLWZ0Yy1uYS1zb3V0aC0yLm1lZGlhLnN0YXJvdHQuY29tL2NsdDIvdmEwMS9zdGFycGx1cy9ldmVudC8yMDIzLzExLzI4L05hdmJhaG9yX1VaQl92c19BbF9IaWxhbF9fMjAyMzExMjhfMTcwMTE4MTIwNTAzMi9jdHItYWxsLWNvbXBsZXRlLm0zdTgmaW1nPWh0dHBzOi8vcHJvZC1yaXBjdXQtZGVsaXZlcnkuZGlzbmV5LXBsdXMubmV0L3YxL3ZhcmlhbnQvc3Rhci9DRjdBMzMxOTIyRDQ4RUU2MEY1OEFGQ0ZBMkUxOTM1QTlCRjY1NDNBNTY1NkYyQTYzRkI1ODY2ODk1Q0JCRDlEL3NjYWxlP3dpZHRoPTE5MjAmYXNwZWN0UmF0aW89MS43OCZmb3JtYXQ9anBlZyZrZXk9YjkyNzZkOTUxODE5NDJmOTllZmMyZmY4M2M5NWY1OTgma2V5Mj1mNDJlY2IzMjFiZTI2MmU4YjAyY2E2YjNkYTE1NzRhMw')),
                           initialOptions: InAppWebViewGroupOptions(
 

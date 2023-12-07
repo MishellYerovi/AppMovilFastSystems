@@ -3,6 +3,11 @@ class Assets {
   Assets._();
 
   static const String assetsIcon = 'assets/icon.png';
+  static const String assetsInstagram = 'assets/instagram.png';
+
+  static const String assetsMANUAL = 'assets/MANUAL.pdf';
+  static const String assetsMANUALEQUIPOS = 'assets/MANUALEQUIPOS.pdf';
+  static const String assetsPaginaWeb = 'assets/paginaWeb.png';
   static const String assetsRedesSocialesWhatsapp = 'assets/redesSociales/whatsapp.png';
   static const String assetsWhatsapp2 = 'assets/whatsapp2.png';
   static const String iconIconLauncher = 'assets/icon/iconLauncher.png';

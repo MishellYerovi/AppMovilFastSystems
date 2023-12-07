@@ -1,9 +1,9 @@
-import 'dart:math';
+
 
 import 'package:fastsystems_app2/Modelo/infoCuentaBanco.dart';
 import 'package:fastsystems_app2/constantes/const.dart';
 import 'package:flutter/material.dart';
-import 'package:url_launcher/url_launcher.dart';
+
 import 'package:url_launcher/url_launcher_string.dart';
 import 'package:whatsapp_unilink/whatsapp_unilink.dart';
 
@@ -35,7 +35,7 @@ class _cInfoCuentaBancoState extends State<cInfoCuentaBanco> {
               bottom: Radius.circular(30),
             )),
         centerTitle: true,
-        title: Text("Medios de Pagos",
+        title: Text("Medios de Pago",
           style: TextStyle(
             fontWeight: FontWeight.bold,
           ),  textAlign: TextAlign.center,),
@@ -60,13 +60,13 @@ class _cInfoCuentaBancoState extends State<cInfoCuentaBanco> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            SizedBox(height: 20.0),
-            Image(
+            SizedBox(height: 15.0),
+            /*Image(
 
               image: AssetImage('assets/icon.png'),
               fit: BoxFit.fitHeight,
-              height: 80,
-            ),
+              height: 50,
+            ),*/
            // SizedBox(height: 8.0),
             //Text("Medios de Pago",style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18, color: Colors.indigo),),
             //SizedBox(height: 10.0),
@@ -174,7 +174,7 @@ class _cInfoCuentaBancoState extends State<cInfoCuentaBanco> {
               const Padding(padding:EdgeInsets.all(8.0)), //Espacio
               ListTile(
 
-                title: Text(admin.nombreBanco,style: TextStyle(fontWeight: FontWeight.bold),),
+                title: Text(admin.nombreBanco,style: TextStyle(fontWeight: FontWeight.bold, color: Colors.blueAccent),),
                 subtitle:
                 /*Align(
                   alignment: Alignment.topLeft,
@@ -184,12 +184,50 @@ class _cInfoCuentaBancoState extends State<cInfoCuentaBanco> {
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(admin.tipoCuenta,style: TextStyle(fontStyle: FontStyle.italic),),
-                      Text(admin.numCuenta),
-                      Text(admin.nombrePropietario),
-                      Text(admin.cedula),
-                      Text(admin.emailPropietario),
-                      Text(admin.descripcion),
+                      Text(admin.tipoCuenta,style: TextStyle(fontStyle: FontStyle.italic,fontSize: 15),),
+                      RichText(  text: TextSpan (
+                        style: DefaultTextStyle.of(context).style,
+                        children: <TextSpan>[
+                          const TextSpan(text: "Num. de cuenta: ",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18), ),
+                          TextSpan(text: admin.numCuenta, style: TextStyle(fontStyle: FontStyle.italic,fontSize: 18),),
+                        ],),
+                       ),
+
+                      RichText(  text: TextSpan (
+                        style: DefaultTextStyle.of(context).style,
+                        children: <TextSpan>[
+                          const TextSpan(text: "Nombre: ",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18), ),
+                          TextSpan(text: admin.nombrePropietario, style: TextStyle(fontSize: 18),),
+                        ],),
+                      ),
+                      RichText(  text: TextSpan (
+                        style: DefaultTextStyle.of(context).style,
+                        children: <TextSpan>[
+                          const TextSpan(text: "C.I.: ",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18), ),
+                          TextSpan(text: admin.cedula, style: TextStyle(fontSize: 18),),
+                        ],),
+                      ),
+                      RichText(  text: TextSpan (
+                        style: DefaultTextStyle.of(context).style,
+                        children: <TextSpan>[
+                          const TextSpan(text: "Correo electrónico: ",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18), ),
+                          TextSpan(text: admin.emailPropietario, style: TextStyle(fontSize: 18),),
+                        ],),
+                      ),
+
+                      //Text("# de cuenta"+admin.tipoCuenta,style: TextStyle(fontStyle: FontStyle.italic),),
+                     // Text(admin.numCuenta),
+                     // Text(admin.nombrePropietario),
+                     // Text(admin.cedula),
+                     // Text(admin.emailPropietario),
+                      //Text(admin.descripcion),
+                      RichText(  text: TextSpan (
+                        style: DefaultTextStyle.of(context).style,
+                        children: <TextSpan>[
+                          const TextSpan(text: "Nota: ",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18), ),
+                          TextSpan(text: admin.descripcion, style: TextStyle(fontSize: 18),),
+                        ],),
+                      ),
                       Row( children:[
                         Image(
                           //image: AssetImage('assets/redesSociales/whatsapp2.png'),
@@ -197,7 +235,7 @@ class _cInfoCuentaBancoState extends State<cInfoCuentaBanco> {
                           fit: BoxFit.fitHeight,
                           height: 30,
                         ),
-                        InkWell(child: Text("$celular", style: TextStyle(decoration: TextDecoration.underline,decorationColor: Colors.blue,)),
+                        InkWell(child: Text("$celular", style: TextStyle(decoration: TextDecoration.underline,decorationColor: Colors.green,color: Colors.black)),
                           onTap:() {
                             enviarComprobante();
                           }, ),

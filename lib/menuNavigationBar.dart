@@ -5,11 +5,13 @@ import 'package:fastsystems_app2/Administrador/logInAdmin.dart';
 import 'package:fastsystems_app2/Administrador/menuAdministrador.dart';
 import 'package:fastsystems_app2/Administrador/listarImagenesCarrusel.dart';
 import 'package:fastsystems_app2/Administrador/subirNoticias.dart';
+import 'package:fastsystems_app2/Modelo/leerPDF.dart';
 
 import 'package:fastsystems_app2/home.dart';
 import 'package:fastsystems_app2/menuConfiguraciones.dart';
 import 'package:fastsystems_app2/menuOtrosServicios.dart';
 import 'package:fastsystems_app2/playEntretenimiento.dart';
+import 'package:fastsystems_app2/recomendaciones.dart';
 
 import 'package:fastsystems_app2/ubicacion.dart';
 
@@ -249,8 +251,10 @@ class AppNavigation {
                          pageBuilder: (context, state) => CustomTransitionPage<void>(
                            // key: state.pageKey,
                            maintainState: false,
-                           child: cInfoCuentaBanco(),
-                           // child: const MenuOtrosServicios(),
+                          //child: cInfoCuentaBanco(),
+                          // child:cLeerPdf(),
+                           child: cRecomendaciones(),
+                        // child: const MenuOtrosServicios(),
                            transitionsBuilder:
                                (context, animation, secondaryAnimation, child) =>
                                FadeTransition(opacity: animation, child: child),
