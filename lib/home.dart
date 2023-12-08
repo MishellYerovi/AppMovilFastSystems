@@ -1,4 +1,6 @@
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:fastsystems_app2/main.dart';
+import 'package:fastsystems_app2/playEntretenimiento.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -23,7 +25,10 @@ class _HomeState extends State<Home> {
   var refreshKey = GlobalKey<RefreshIndicatorState>();
   @override
   void initState() {
+
     setState(() {
+      //Main("si");
+      //print("home si");
     });
     super.initState();
     futureNoticias = fetchNoticias();
@@ -422,8 +427,8 @@ class _HomeState extends State<Home> {
                                 ),
                                 child: ElevatedButton(
                                   onPressed: () {
-                                    context.goNamed("HomeOtrosServicios");
-                                    //Navigator.push( context, MaterialPageRoute(builder: (context) => webViewContainer()),);
+                                   //context.goNamed("HomeOtrosServicios");
+                                    Navigator.push( context, MaterialPageRoute(builder: (context) => playLinkEntretenimiento()),);
                                     },
                                   style: ElevatedButton.styleFrom(fixedSize: const Size(160, 160), backgroundColor: Colors.lightGreenAccent,
                                       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15))

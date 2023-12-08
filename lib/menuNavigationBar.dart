@@ -48,6 +48,15 @@ class AppNavigation {
 
   int banderaAdm=0;
   // GoRouter configuration
+  static final GoRouter router2 = GoRouter(
+
+      initialLocation: initial,
+      debugLogDiagnostics: true,
+      routes: [
+
+
+  ]);
+
   static final GoRouter router = GoRouter(
 
 
@@ -251,10 +260,27 @@ class AppNavigation {
                          pageBuilder: (context, state) => CustomTransitionPage<void>(
                            // key: state.pageKey,
                            maintainState: false,
-                          //child: cInfoCuentaBanco(),
+                          child: cInfoCuentaBanco(),
                           // child:cLeerPdf(),
-                           child: cRecomendaciones(),
+                         //  child: cRecomendaciones(),
                         // child: const MenuOtrosServicios(),
+                           transitionsBuilder:
+                               (context, animation, secondaryAnimation, child) =>
+                               FadeTransition(opacity: animation, child: child),
+
+                         ),
+                       ),
+                       GoRoute(
+                         parentNavigatorKey:_shellNavigatorInicio,
+                         path: 'homeServiciosRecomendaciones',
+                         name: 'HomeServiciosRecomendaciones',
+                         pageBuilder: (context, state) => CustomTransitionPage<void>(
+                           // key: state.pageKey,
+                           maintainState: false,
+                           //child: cInfoCuentaBanco(),
+                           // child:cLeerPdf(),
+                           child: cRecomendaciones(),
+                           // child: const MenuOtrosServicios(),
                            transitionsBuilder:
                                (context, animation, secondaryAnimation, child) =>
                                FadeTransition(opacity: animation, child: child),
@@ -264,21 +290,21 @@ class AppNavigation {
                      ]
                  ),
                  //Subruta Otros servicios
-                 GoRoute(
+                /*GoRoute(
                    parentNavigatorKey:_shellNavigatorInicio,
                    path: 'homeOtrosServicios',
                    name: 'HomeOtrosServicios',
                    pageBuilder: (context, state) => CustomTransitionPage<void>(
                      // key: state.pageKey,
                      maintainState: false,
-                    child: playLinkEntretenimiento(),
+                   child: playLinkEntretenimiento(),
                     // child: const MenuOtrosServicios(),
                      transitionsBuilder:
                          (context, animation, secondaryAnimation, child) =>
                          FadeTransition(opacity: animation, child: child),
 
                    ),
-                 ),
+                 ),*/
 
                  GoRoute(
                    parentNavigatorKey:_shellNavigatorInicio,
@@ -410,10 +436,21 @@ class AppNavigation {
                                              transitionsBuilder:
                                                 /* (context, animation, secondaryAnimation, child) =>
                                                  FadeTransition(opacity: animation, child: child),*/
-                                                 (BuildContext context, Animation<double> animation, Animation<double> secondaryAnimation, Widget child) {
+                                                /* (BuildContext context, Animation<double> animation, Animation<double> secondaryAnimation, Widget child) {
                                                return SlideTransition(
                                                  position: Tween<Offset>(
                                                    begin: const Offset(0.0, 1.0),
+                                                   end: const Offset(0.0, 0.0),
+                                                   //begin: const Offset(0.0, -1.0),
+                                                   //end: const Offset(0.0, -1.0),
+                                                 ).animate(animation),
+                                                 child: child,
+                                               );
+                                             }*/
+                                                 (BuildContext context, Animation<double> animation, Animation<double> secondaryAnimation, Widget child) {
+                                               return SlideTransition(
+                                                 position: Tween<Offset>(
+                                                   begin: const Offset(1.0, 0.0),
                                                    end: const Offset(0.0, 0.0),
                                                    //begin: const Offset(0.0, -1.0),
                                                    //end: const Offset(0.0, -1.0),
@@ -441,8 +478,19 @@ class AppNavigation {
                                              child: const listarNoticias(),
                                              //const subirNoticias(),
                                              transitionsBuilder:
-                                                 (context, animation, secondaryAnimation, child) =>
-                                                 FadeTransition(opacity: animation, child: child),
+                                                 (BuildContext context, Animation<double> animation, Animation<double> secondaryAnimation, Widget child) {
+                                               return SlideTransition(
+                                                 position: Tween<Offset>(
+                                                   begin: const Offset(1.0, 0.0),
+                                                   end: const Offset(0.0, 0.0),
+                                                   //begin: const Offset(0.0, -1.0),
+                                                   //end: const Offset(0.0, -1.0),
+                                                 ).animate(animation),
+                                                 child: child,
+                                               );
+                                             }
+                                                 /*(context, animation, secondaryAnimation, child) =>
+                                                 FadeTransition(opacity: animation, child: child),*/
                                            ),
                                      ),
                                      //Obtener Administradores
@@ -463,8 +511,19 @@ class AppNavigation {
                                              child: const cListarAdministradores(),
                                              //const subirNoticias(),
                                              transitionsBuilder:
-                                                 (context, animation, secondaryAnimation, child) =>
-                                                 FadeTransition(opacity: animation, child: child),
+                                                 (BuildContext context, Animation<double> animation, Animation<double> secondaryAnimation, Widget child) {
+                                               return SlideTransition(
+                                                 position: Tween<Offset>(
+                                                   begin: const Offset(1.0, 0.0),
+                                                   end: const Offset(0.0, 0.0),
+                                                   //begin: const Offset(0.0, -1.0),
+                                                   //end: const Offset(0.0, -1.0),
+                                                 ).animate(animation),
+                                                 child: child,
+                                               );
+                                             }
+                                               /* (context, animation, secondaryAnimation, child) =>
+                                                 FadeTransition(opacity: animation, child: child),*/
                                            ),
                                      ),
                               ]

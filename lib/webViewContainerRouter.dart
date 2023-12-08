@@ -1,5 +1,7 @@
 
 
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
@@ -96,12 +98,16 @@ class _webViewContainerRouterState extends State<webViewContainerRouter> {
                         url: "$url" ,
                         fileName: "DOC",
                         savedDir: (await getExternalStorageDirectory())!.path,
+                      timeout: 1000,
                         showNotification: true, // show download progress in status bar (for Android)
                         openFileFromNotification: true, // click on notification to open downloaded file (for Android)
                     // );
                         saveInPublicStorage: true,
+                      allowCellular: true,
 
-                    ); }),
+                    );
+
+                 }),
             ),
     ),
                   Container(

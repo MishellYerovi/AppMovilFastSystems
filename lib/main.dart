@@ -1,4 +1,5 @@
 import 'package:fastsystems_app2/menuConfiguraciones.dart';
+import 'package:fastsystems_app2/playEntretenimiento.dart';
 
 import 'package:fastsystems_app2/webViewContainerUser.dart';
 import 'package:fastsystems_app2/webViewContainerRouter.dart';
@@ -7,7 +8,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_downloader/flutter_downloader.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
+import 'package:go_router/go_router.dart';
 
+import 'home.dart';
 import 'menuNavigationBar.dart';
 
 
@@ -28,7 +31,7 @@ void main()async{
         //home:AppNavigation();
 
         routes:{
-          '/':(context)=>const Home(),
+          '/':(context)=>Main(""),
           //'/ubicacionEmpresa':(context)=>ubicacionPage(),
           //'/informacionEmpresa':(context)=>homePage(),
           '/webViewContainer':(context)=>webViewContainer(),
@@ -61,21 +64,24 @@ void main()async{
 
 }
 
-class Home extends StatefulWidget{
-  const Home({super.key});
+class Main extends StatefulWidget{
+  String menuNavigation;
+  Main(this.menuNavigation );
+ // const Main({super.key});
   @override
-  State<Home> createState() => _HomeState();
+  State<Main> createState() => _MainState();
 
   int? identifica(idMedia)
   {
     int id=idMedia;
     return id;
   }
+
 }
-class _HomeState  extends State <Home>{
+class _MainState  extends State <Main>{
 @override
   void initState() {
-
+    //Main("si");
     super.initState();
   }
 
@@ -94,19 +100,35 @@ class _HomeState  extends State <Home>{
         shadowColor: Colors.lightBlue,
         backgroundColor: Colors.white,
       ),*/
-     body:content(),
+     body:
+        //Nocontent(),
+
+      widget.menuNavigation=="si"? Nocontent():content(),
+     //Navigator.popAndPushNamed(context, '/screen4')
+
 
     );
 }
 
+
   Widget content()
   {
+
     return MaterialApp.router (
       routerConfig: AppNavigation.router,
       debugShowCheckedModeBanner: false,
+
+    );
+
+  }
+  Widget Nocontent()
+  {
+    return Scaffold (
+      body:
+      playLinkEntretenimiento(),
+      // Navigator.push( context, MaterialPageRoute(builder: (context) =>"/webViewContainerRouter" ),);
     );
   }
-
 }
 
 

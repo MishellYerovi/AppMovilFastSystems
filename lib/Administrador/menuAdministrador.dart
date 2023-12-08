@@ -111,7 +111,7 @@ late String email="";
       Card(
         child: ListTile(
           contentPadding: const EdgeInsets.fromLTRB(20, 20, 20,20 ),
-          leading: const Icon(Icons.business_rounded, color:Colors.black45),
+          leading: const Icon(Icons.view_carousel_outlined, color:Colors.black45),
           title: const Text("Noticias/Carousel"),
           subtitle: Text("Agregar noticias"),
           trailing: IconButton(onPressed: ()
@@ -134,7 +134,7 @@ late String email="";
       Card(
         child: ListTile(
           contentPadding: const EdgeInsets.fromLTRB(20, 20, 20,20 ),
-          leading: const Icon(Icons.business_rounded, color:Colors.black45),
+          leading: const Icon(Icons.image_outlined, color:Colors.black45),
           title: const Text("Imágenes del Carousel"),
           subtitle: Text("Eliminar"),
           trailing: IconButton(onPressed: ()
@@ -157,9 +157,32 @@ late String email="";
       Card(
         child: ListTile(
           contentPadding: const EdgeInsets.fromLTRB(20, 20, 20,20 ),
-          leading: const Icon(Icons.business_rounded, color:Colors.black45),
+          leading: const Icon(Icons.people_outline_rounded, color:Colors.black45),
           title: const Text("Administradores"),
-          subtitle: Text("Editar/Eliminar"),
+          subtitle: Text("Agregar/Editar/Eliminar"),
+          trailing: IconButton(onPressed: ()
+          {
+            context.pushNamed("HomeListarAdministradores");
+            //mostrarFormNombreEmpresa();
+
+          },
+            icon: const Icon(Icons.arrow_forward_ios_outlined ),
+            color: Colors.lightBlueAccent,
+            disabledColor: Colors.indigoAccent,
+            focusColor: Colors.indigoAccent,
+            highlightColor: Colors.indigoAccent,
+            hoverColor: Colors.indigoAccent,
+            splashColor: Colors.indigoAccent,
+
+          ),
+        ),
+      ),
+      Card(
+        child: ListTile(
+          contentPadding: const EdgeInsets.fromLTRB(20, 20, 20,20 ),
+          leading: const Icon(Icons.people_outline_rounded, color:Colors.black45),
+          title: const Text("Enlaces Entretenimiento"),
+          subtitle: Text("Agregar/Editar/Eliminar"),
           trailing: IconButton(onPressed: ()
           {
             context.pushNamed("HomeListarAdministradores");

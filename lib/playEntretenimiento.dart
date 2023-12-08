@@ -2,7 +2,12 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:go_router/go_router.dart';
 import 'package:lecle_yoyo_player/lecle_yoyo_player.dart';
+import 'package:flutter/material.dart' hide Router;
+import 'home.dart';
+import 'main.dart';
+import 'menuNavigationBar.dart';
 
 
 class playLinkEntretenimiento extends StatefulWidget {
@@ -15,6 +20,14 @@ class playLinkEntretenimiento extends StatefulWidget {
 class _playLinkEntretenimientoState extends State<playLinkEntretenimiento> {
 
   bool fullscreen = false;
+  //Main verificar=new Main("");
+  Future verif() async{
+    Main("si");
+    //Navigator.pushReplacement(context, playLinkEntretenimiento() as Route<Object?> );
+    //Navigator.pushAndRemoveUntil(context, newRoute, (route) => false)
+    //context.pushReplacementNamed("HomeAdminMenu");
+    print("verificar asincrono");
+  }
 
   /*Future hide() async{
     //FullScreen
@@ -46,6 +59,15 @@ class _playLinkEntretenimientoState extends State<playLinkEntretenimiento> {
   //flutter pub add better_player_hls
 @override
   void initState() {
+    setState(() {
+     // print("verificar set state");
+      verif();
+     /* MaterialApp.router (
+        routerConfig:AppNavigation.router2 ,
+        debugShowCheckedModeBanner: false,
+      );*/
+    });
+   // GoRouter.of(.)
 
     super.initState();
    // idM.identifica(idMedia);
@@ -57,6 +79,7 @@ class _playLinkEntretenimientoState extends State<playLinkEntretenimiento> {
   Widget build(BuildContext context) {
     //SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: SystemUiOverlay.values);
     return Scaffold(
+      extendBody: true,
       backgroundColor: Colors.white,
       appBar: fullscreen == false
           ? AppBar(
@@ -70,7 +93,6 @@ class _playLinkEntretenimientoState extends State<playLinkEntretenimiento> {
             leading: IconButton(
               icon: const Icon(Icons.arrow_back, color:Colors.blue),
               onPressed: () {
-
                 Navigator.pop(context);
               },
             ),
@@ -82,17 +104,9 @@ class _playLinkEntretenimientoState extends State<playLinkEntretenimiento> {
         child: YoYoPlayer(
           aspectRatio: 16 / 9,
           url:
-          // 'https://dsqqu7oxq6o1v.cloudfront.net/preview-9650dW8x3YLoZ8.webm',
-          // "https://flutter.github.io/assets-for-api-docs/assets/videos/bee.mp4",
-         // "https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8",
        // "https://vivo.canaloncelive.tv/alivepkgr3/ngrp:cepro_all/playlist.m3u8",//canal 11 Mexico
           "https://redirector.rudo.video/hls-video/c54ac2799874375c81c1672abb700870537c5223/ecuavisa/ecuavisa.smil/playlist.m3u8?PlaylistM3UCL", //ecuavisa
-
-          //"http://sansat.net:88/02024036717143/mS34FIbmhBXJjsp/191099",
-
           //"https://playout.cdn.cartoonnetwork.com.br/playout_04/playlist.m3u8", //cartoon
-
-          //"https://sfux-ext.sfux.info/hls/chapter/105/1588724110/1588724110.m3u8",
           allowCacheFile: true,
           onCacheFileCompleted: (files) {
             print('Cached file length ::: ${files?.length}');
@@ -150,6 +164,7 @@ class _playLinkEntretenimientoState extends State<playLinkEntretenimiento> {
               if (fullscreen != value) {
                 fullscreen = value;
               }
+
             });
           },
         ),
