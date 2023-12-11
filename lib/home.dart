@@ -1,5 +1,5 @@
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:fastsystems_app2/main.dart';
+
 import 'package:fastsystems_app2/playEntretenimiento.dart';
 
 import 'package:flutter/material.dart';
@@ -152,9 +152,9 @@ class _HomeState extends State<Home> {
                           ListView(
                               shrinkWrap: true,
                               children:[
-                                _listImagenes(data!).length != 0?
+                                _listImagenes(data).length != 0?
                                 CarouselSlider.builder(
-                                  itemCount:_listImagenes(data!).length ,
+                                  itemCount:_listImagenes(data).length ,
                                   itemBuilder:(BuildContext context, int itemIndex, int pageViewIndex) =>
                                       Container(
                                         margin: EdgeInsets.all(6.0),
@@ -163,7 +163,7 @@ class _HomeState extends State<Home> {
                                           borderRadius: BorderRadius.circular(8.0),
                                             image: DecorationImage(
                                               fit: BoxFit.fill,
-                                              image: NetworkImage(_listImagenes(data!)[itemIndex]),
+                                              image: NetworkImage(_listImagenes(data)[itemIndex]),
 
                                             ),
 
@@ -428,7 +428,9 @@ class _HomeState extends State<Home> {
                                 child: ElevatedButton(
                                   onPressed: () {
                                    //context.goNamed("HomeOtrosServicios");
-                                    Navigator.push( context, MaterialPageRoute(builder: (context) => playLinkEntretenimiento()),);
+                                   // Navigator.push( context, MaterialPageRoute(builder: (context) => playLinkEntretenimiento()),);
+                                    Navigator.of(context, rootNavigator: true).push(MaterialPageRoute(
+                                      builder: (context) =>  playLinkEntretenimiento(),));
                                     },
                                   style: ElevatedButton.styleFrom(fixedSize: const Size(160, 160), backgroundColor: Colors.lightGreenAccent,
                                       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15))

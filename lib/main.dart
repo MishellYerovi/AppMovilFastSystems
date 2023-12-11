@@ -8,9 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_downloader/flutter_downloader.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
-import 'package:go_router/go_router.dart';
 
-import 'home.dart';
 import 'menuNavigationBar.dart';
 
 
@@ -125,6 +123,10 @@ class _MainState  extends State <Main>{
   {
     return Scaffold (
       body:
+     /*Navigator.of(context, rootNavigator: true).push(MaterialPageRoute(
+        builder: (_) =>  playLinkEntretenimiento(),
+      ),
+      );*/
       playLinkEntretenimiento(),
       // Navigator.push( context, MaterialPageRoute(builder: (context) =>"/webViewContainerRouter" ),);
     );
