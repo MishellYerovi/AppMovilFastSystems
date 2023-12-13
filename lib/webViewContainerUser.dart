@@ -1,3 +1,8 @@
+import 'dart:convert';
+import 'dart:io';
+import 'dart:isolate';
+import 'dart:ui';
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -5,6 +10,10 @@ import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:flutter_downloader/flutter_downloader.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:permission_handler/permission_handler.dart';
+
+import 'Modelo/download.dart';
+import 'constantes/const.dart';
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await FlutterDownloader.initialize(
@@ -22,10 +31,44 @@ class webViewContainer extends StatefulWidget {
   @override
   State<webViewContainer> createState() => _webViewContainerState();
 }
+List<String> split(Pattern pattern) {
 
+  throw UnimplementedError();
+}
 
 class _webViewContainerState extends State<webViewContainer> {
 
+  ReceivePort _port = ReceivePort();
+
+@override
+  void initState() {
+
+  IsolateNameServer.registerPortWithName(_port.sendPort, 'downloader_send_port');
+  _port.listen((dynamic data) {
+    String id = data[0];
+    DownloadTaskStatus status = DownloadTaskStatus.fromInt((data[1]));
+    int progress = data[2];
+    setState((){ });
+  }
+  );
+
+ // FlutterDownloader.registerCallback( downloadCallback as DownloadCallback);
+    super.initState();
+  }
+/*@override
+void dispose() {
+  IsolateNameServer.removePortNameMapping('downloader_send_port');
+  super.dispose();
+}
+  /*static void downloadCallback(String id, DownloadTaskStatus status, int progress) {
+    final SendPort send = IsolateNameServer.lookupPortByName('downloader_send_port')!;
+    send.send([id, status, progress]);
+  }*/
+//@pragma('vm:entry-point')
+static voiddownloadCallback(String id, DownloadTaskStatus status, int progress) {
+  final SendPort? send = IsolateNameServer.lookupPortByName('downloader_send_port');
+  send!.send([id, status , progress]);
+}*/
 
   late InAppWebViewController _webViewController;
   //final controller=WebViewController()..setJavaScriptMode(JavaScriptMode.unrestricted)
@@ -49,8 +92,8 @@ class _webViewContainerState extends State<webViewContainer> {
      // extendBodyBehindAppBar: true,
       //extendBody: false,
       //extendBodyBehindAppBar: true,
-
-      extendBody: true,
+      // extendBody: true,
+      extendBody: false,
       //  backgroundColor: Colors.blueAccent,
         appBar: AppBar(
           /*shape: RoundedRectangleBorder(
@@ -88,10 +131,10 @@ class _webViewContainerState extends State<webViewContainer> {
 
                         child: InAppWebView(
                             gestureRecognizers: Set()..add(Factory<VerticalDragGestureRecognizer>(() => VerticalDragGestureRecognizer())),
-                        initialUrlRequest:URLRequest( url: Uri.parse('https://bibliaenpdf.com/')),
+                       // initialUrlRequest:URLRequest( url: Uri.parse('https://www.librocristiano.com.ar/amar-es-para-valientes-itiel-arroyo')),
 
                           //initialUrlRequest:URLRequest( url: Uri.parse('http://www.pdf995.com/samples/pdf.pdf')),///'
-                           // initialUrlRequest:URLRequest( url: Uri.parse('https://pagos.fastsystems.ec:8090/cliente/login')),
+                           initialUrlRequest:URLRequest( url: Uri.parse('$portalCliente')),
                           initialOptions: InAppWebViewGroupOptions(
 
                             crossPlatform: InAppWebViewOptions(
@@ -99,26 +142,52 @@ class _webViewContainerState extends State<webViewContainer> {
                               allowFileAccessFromFileURLs: true,
                               allowUniversalAccessFromFileURLs: true,
                               useShouldOverrideUrlLoading: true,
-                              disableVerticalScroll: false,
-                              transparentBackground: false,
+                              useOnLoadResource: true,
+                              disableVerticalScroll: true,
+                              transparentBackground: true,
                           //    useOnLoadResource: true,
                             //  useShouldOverrideUrlLoading: true,
-                              //javaScriptEnabled: true,
+                             // javaScriptEnabled: true,
                             ),), onWebViewCreated: (InAppWebViewController controller) {
                         _webViewController = controller;
                       },
+                           // onLoadStart: ,
                           onDownloadStartRequest: (controller, url) async {
+                            //onLoadStart: (controller, url) async {
+                              //FlutterDownloader.initialize();
+                            //  FlutterDownloader.registerCallback(downloadCallback as DownloadCallback);
+                            //sleep(3000 as Duration);
                            // final String u=url.toString();
                            // final newValue = u.replaceAll("&d=.pdf", "");
-                            final taskId = await FlutterDownloader.enqueue(
-                                url: "$url" ,
-                                fileName: "DOC",
+                              
+                              var urlParametros=url.toString().split(",");
+                           // print("link:hola2"+url.toString());
+                          //  print(urlParametros);
+                           //=arr[0].split("{url:");
+                             // print(arr2[0]);
+                            var urlModificada= urlParametros[0].replaceAll("{url:", "");
+                                //.replaceAll("-", "");
+                             // print(urlModificada);
+                          //  print("link:hola2"+ url!.host.toString());
+                            var datos=
+                           // var arr = string.split('-');
+                            //final taskId =
+                            await FlutterDownloader.enqueue(
+                              //url: url.data.uri,
 
+                              url: "$urlModificada",
+                              //url: url.path,
+                                 //url:"http://pagos.fastsystems.ec:8090/cliente/ajax/viewdoc?token=WUhQQUlqdEVEc1IvYjdmb2piMkgzUT09&id=9273&action=invoice&d=.pdf" ,
+                                fileName: "DOC_fastsystems4",
+                                allowCellular: true,
+                                saveInPublicStorage: true,
                                 savedDir: (await getExternalStorageDirectory())!.path,
+                                timeout:10000,
                                 showNotification: true, // show download progress in status bar (for Android)
                                 openFileFromNotification: true, // click on notification to open downloaded file (for Android)
                             // );
-                              saveInPublicStorage: true,
+
+
 
                              // print("ondownloadstart $url");
 
@@ -173,9 +242,21 @@ class _webViewContainerState extends State<webViewContainer> {
     //]),
     );
 
-
-
   }
+  /*downloadCallback(
+      String id,
+      DownloadTaskStatus status ,
+      int progress,
+  //int st=DownloadTaskStatus status as int,
+      ) {
+    print(
+      'Callback on background isolate: '
+          'task ($id) is in status ($status) and process ($progress)',
+    );
+
+    IsolateNameServer.lookupPortByName('downloader_send_port')
+        ?.send([id, status as int , progress]);
+  }*/
 }
 /* Directory? tempDir =
         await getExternalStorageDirectory();

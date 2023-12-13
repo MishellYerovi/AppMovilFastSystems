@@ -439,15 +439,15 @@ class _HomeState extends State<Home> {
                                     alignment: WrapAlignment.center,
                                     children: <Widget>[
                                       Icon(
-                                        Icons.menu,
+                                        Icons.live_tv,
                                         color: Colors.white,
-                                        size: 80.0,
+                                        size: 90.0,
                                       ),
                                       SizedBox(
                                         width:10,
                                         // height: 50,
                                       ),
-                                      Text("Otros", style:TextStyle(fontSize:20, color:Colors.white), textAlign: TextAlign.center, ),
+                                      Text("Tv", style:TextStyle(fontSize:30, color:Colors.white), textAlign: TextAlign.center, ),
                                     ],
                                   ),
                                 )

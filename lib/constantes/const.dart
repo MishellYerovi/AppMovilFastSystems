@@ -33,3 +33,11 @@ const editarAdminFromAdmin="/editAdminFromAdmin.php";
 //Información del Banco para pagos
 const obtenerInfoBancos="/obtenerInfoBancoPagos.php";
 const celular="0992562727";
+//Nombre perfil Admin
+const obtenerNombrePerfilAdmin="/obtenerPerfilAdmin.php";
+//Editar Información del Administrador
+const editNombrePerfilAdmin="/editNombreAdminPerfil.php";
+const editEmailPerfilAdmin="/editEmailAdminPerfil.php";
+const editContraseniaPerfilAdmin="/editContraseniaAdminPerfil.php";
+//urlPortalCliente
+const portalCliente="http://pagos.fastsystems.ec:8090/cliente";

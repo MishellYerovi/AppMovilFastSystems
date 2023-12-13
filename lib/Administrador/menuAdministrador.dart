@@ -1,6 +1,10 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:http/http.dart' as http;
+import '../constantes/const.dart';
 
 class menuAdministrador extends StatefulWidget {
   const menuAdministrador({super.key});
@@ -11,11 +15,15 @@ class menuAdministrador extends StatefulWidget {
 
 class _menuAdministradorState extends State<menuAdministrador> {
 late String email="";
+late String name="";
+late String contrasenia="";
   @override
   void initState() {
-
+    setState(() {
+    });
+      getCredenciales();
     super.initState();
-    getCredenciales();
+
   }
 
   void getCredenciales( ) async
@@ -23,7 +31,9 @@ late String email="";
     SharedPreferences pref = await SharedPreferences.getInstance();
     setState(() {
       email=pref.getString("email")!;
+      contrasenia=pref.getString("contrasenia")!;
     });
+    nombreAdmin();
   }
 
   @override
@@ -47,13 +57,8 @@ late String email="";
                 return [
                   PopupMenuItem<int>(
                     value: 0,
-                    child: Text("My Account"),
+                    child: Text("Perfil"),
                   ),
-
-                  /* PopupMenuItem<int>(
-                      value: 1,
-                      child: Text("Settings"),
-                    ),*/
                   PopupMenuItem<int>(
                     value: 1,
                     child: Text("Cerrar sesión"),
@@ -62,7 +67,8 @@ late String email="";
               },
               onSelected:(value){
                 if(value == 0){
-                  print("Mi cuenta");
+                  //print("Mi cuenta");
+                  perfil();
                 }else if(value == 1){
                   cerrarSesion();
                  // print("Cerrar sesión");
@@ -213,4 +219,45 @@ late String email="";
         context.pushReplacementNamed("HomeLogInAdministrador");
       //});
     }
+    void perfil () async
+    {
+      //setState(() async {
+      SharedPreferences pref= await SharedPreferences.getInstance();
+      //await pref.clear();
+      context.pushNamed("HomePerfil");
+      //});
+    }
+Future<void> nombreAdmin() async {
+
+  final response = await http
+      .post(Uri.parse("$raizUrl""$obtenerNombrePerfilAdmin"),
+    body: {
+      'email': email,
+      'password': contrasenia,
+    },
+  );
+  if (response.statusCode == 200) {
+
+    print (response.body);
+    final data = jsonDecode(response.body) ;
+   // print ("INFORMACION"+data[0]["nombre"]);
+    String nombre =data[0]["nombre"];
+    String id =data[0]["id"];
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.setString('nombreA', nombre);
+    prefs.setString('id', id);
+    //print("id"+id);
+      //nombre=data[0]["nombre"].toString().trim();
+
+
+  } else {
+    // If the server did not return a 200 OK response,
+    // then throw an exception.
+    throw Exception('Falló al cargar');
+  }
+ // return nombre;
+}
+
+
+
 }

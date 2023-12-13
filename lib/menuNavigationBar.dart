@@ -23,6 +23,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 import 'Administrador/listarAdministradores.dart';
+import 'Administrador/modificarPerfil.dart';
 import 'about.dart';
 
 import 'infoCuentaBanco.dart';
@@ -526,6 +527,52 @@ class AppNavigation {
                                                  FadeTransition(opacity: animation, child: child),*/
                                            ),
                                      ),
+
+                                       //Perfil
+                                       GoRoute(
+                                         parentNavigatorKey:_shellNavigatorInicio,
+                                         path: 'homePerfil',
+                                         name: 'HomePerfil',
+
+                                         /* builder: (BuildContext context, GoRouterState state) {
+                                                                                                            final router= state.extra! as String;
+                                                                                                            return webViewContainerRouter(router); }*/
+                                         pageBuilder: (context, state) =>
+                                             CustomTransitionPage<void>(
+                                               //key: state.pageKey,
+                                                 maintainState: false,
+                                                 // return webViewContainerRouter(router)
+                                                 //router= state.extra! as String;
+                                                 child: const cModificarPefil(),
+                                                 //const subirNoticias(),
+                                                 transitionsBuilder:
+                                                 /* (context, animation, secondaryAnimation, child) =>
+                                                                                       FadeTransition(opacity: animation, child: child),*/
+                                                 /* (BuildContext context, Animation<double> animation, Animation<double> secondaryAnimation, Widget child) {
+                                                                                     return SlideTransition(
+                                                                                       position: Tween<Offset>(
+                                                                                         begin: const Offset(0.0, 1.0),
+                                                                                         end: const Offset(0.0, 0.0),
+                                                                                         //begin: const Offset(0.0, -1.0),
+                                                                                         //end: const Offset(0.0, -1.0),
+                                                                                       ).animate(animation),
+                                                                                       child: child,
+                                                                                     );
+                                                                                   }*/
+                                                     (BuildContext context, Animation<double> animation, Animation<double> secondaryAnimation, Widget child) {
+                                                   return SlideTransition(
+                                                     position: Tween<Offset>(
+                                                       begin: const Offset(1.0, 0.0),
+                                                       end: const Offset(0.0, 0.0),
+                                                       //begin: const Offset(0.0, -1.0),
+                                                       //end: const Offset(0.0, -1.0),
+                                                     ).animate(animation),
+                                                     child: child,
+                                                   );
+                                                 }
+                                             ),
+                                       ),
+
                               ]
                        ,
 

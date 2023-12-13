@@ -420,6 +420,7 @@ class _logInAdminState extends State<logInAdmin> {
             prefs.setBool("isloggedin", true);*/
             SharedPreferences prefs = await SharedPreferences.getInstance();
             prefs.setString('email', email);
+            prefs.setString('contrasenia', password);
             //-----------------
 
             context.pushReplacementNamed("HomeAdminMenu");
