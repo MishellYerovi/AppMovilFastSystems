@@ -44,6 +44,9 @@ void main()async{
       ignoreSsl: true
     );
 
+  /*FlutterDownloader.registerCallback((id, status, progress) {
+    //Down.callback(id, status as DownloadTaskStatus, progress);
+  });*/
   FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
 
   /*runApp(

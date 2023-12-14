@@ -1,8 +1,10 @@
+import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
 import 'dart:isolate';
 import 'dart:ui';
 
+import 'package:device_info_plus/device_info_plus.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -13,16 +15,15 @@ import 'package:permission_handler/permission_handler.dart';
 
 import 'Modelo/download.dart';
 import 'constantes/const.dart';
-
 void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  await FlutterDownloader.initialize(
+  //WidgetsFlutterBinding.ensureInitialized();
+  /*await FlutterDownloader.initialize(
       debug: true, // optional: set false to disable printing logs to console
-      ignoreSsl: false
-  );
+      ignoreSsl: true,
+  );*/
   FlutterDownloader.registerCallback((id, status, progress) { });
-  await Permission.storage.request();
-  runApp(webViewContainer());
+  //await Permission.storage.request();
+  runApp(const webViewContainer());
 }
 
 class webViewContainer extends StatefulWidget {
@@ -36,13 +37,31 @@ List<String> split(Pattern pattern) {
   throw UnimplementedError();
 }
 
-class _webViewContainerState extends State<webViewContainer> {
 
+class _webViewContainerState extends State<webViewContainer> {
   ReceivePort _port = ReceivePort();
+  Future<void> main() async {
+    /*await FlutterDownloader.initialize(
+        debug: true, // optional: set false to disable printing logs to console
+        ignoreSsl: true
+    );*/
+    //ReceivePort _port = ReceivePort();
+    /*IsolateNameServer.registerPortWithName(_port.sendPort, 'downloader_send_port');
+    _port.listen((dynamic data) {
+      String id = data[0];
+      DownloadTaskStatus status = DownloadTaskStatus.fromInt((data[1]));
+      int progress = data[2];
+      setState((){ });
+    }
+    );
+   // FlutterDownloader.registerCallback(downloadCallback);
+    FlutterDownloader.registerCallback(downloadCallback);*/
+  }
+
 
 @override
   void initState() {
-
+  super.initState();
   IsolateNameServer.registerPortWithName(_port.sendPort, 'downloader_send_port');
   _port.listen((dynamic data) {
     String id = data[0];
@@ -51,25 +70,25 @@ class _webViewContainerState extends State<webViewContainer> {
     setState((){ });
   }
   );
+  // FlutterDownloader.registerCallback(downloadCallback);
+  FlutterDownloader.registerCallback(downloadCallback);
+   // main();
 
- // FlutterDownloader.registerCallback( downloadCallback as DownloadCallback);
-    super.initState();
   }
-/*@override
+@override
 void dispose() {
   IsolateNameServer.removePortNameMapping('downloader_send_port');
   super.dispose();
 }
-  /*static void downloadCallback(String id, DownloadTaskStatus status, int progress) {
-    final SendPort send = IsolateNameServer.lookupPortByName('downloader_send_port')!;
-    send.send([id, status, progress]);
-  }*/
-//@pragma('vm:entry-point')
-static voiddownloadCallback(String id, DownloadTaskStatus status, int progress) {
+@pragma('vm:entry-point')
+static downloadCallback(String id, int status, int progress) {
   final SendPort? send = IsolateNameServer.lookupPortByName('downloader_send_port');
-  send!.send([id, status , progress]);
-}*/
-
+  print("id=$id");
+  print("status=$status");
+  print("progress=$progress");
+  //sleep(500000 as Duration);
+  send!.send([id, status, progress]);
+}
   late InAppWebViewController _webViewController;
   //final controller=WebViewController()..setJavaScriptMode(JavaScriptMode.unrestricted)
   //..loadRequest(Uri.parse('http://pagos.fastsystems.ec:8090/cliente/login'));
@@ -80,6 +99,7 @@ static voiddownloadCallback(String id, DownloadTaskStatus status, int progress) 
         mediaPlaybackRequiresUserGesture: false,
       ),
       android: AndroidInAppWebViewOptions(
+
         useHybridComposition: true,
         supportMultipleWindows: true,
       ),
@@ -145,85 +165,78 @@ static voiddownloadCallback(String id, DownloadTaskStatus status, int progress) 
                               useOnLoadResource: true,
                               disableVerticalScroll: true,
                               transparentBackground: true,
+
                           //    useOnLoadResource: true,
                             //  useShouldOverrideUrlLoading: true,
                              // javaScriptEnabled: true,
                             ),), onWebViewCreated: (InAppWebViewController controller) {
                         _webViewController = controller;
                       },
-                           // onLoadStart: ,
-                          onDownloadStartRequest: (controller, url) async {
-                            //onLoadStart: (controller, url) async {
-                              //FlutterDownloader.initialize();
-                            //  FlutterDownloader.registerCallback(downloadCallback as DownloadCallback);
-                            //sleep(3000 as Duration);
-                           // final String u=url.toString();
-                           // final newValue = u.replaceAll("&d=.pdf", "");
-                              
-                              var urlParametros=url.toString().split(",");
-                           // print("link:hola2"+url.toString());
-                          //  print(urlParametros);
-                           //=arr[0].split("{url:");
-                             // print(arr2[0]);
-                            var urlModificada= urlParametros[0].replaceAll("{url:", "");
-                                //.replaceAll("-", "");
-                             // print(urlModificada);
-                          //  print("link:hola2"+ url!.host.toString());
-                            var datos=
-                           // var arr = string.split('-');
-                            //final taskId =
-                            await FlutterDownloader.enqueue(
-                              //url: url.data.uri,
 
-                              url: "$urlModificada",
-                              //url: url.path,
-                                 //url:"http://pagos.fastsystems.ec:8090/cliente/ajax/viewdoc?token=WUhQQUlqdEVEc1IvYjdmb2piMkgzUT09&id=9273&action=invoice&d=.pdf" ,
-                                fileName: "DOC_fastsystems4",
+                          //  onLoadStart:   (controller, url) async {
+                            //                               //main();
+                          //onLoadStart: ,
+
+                       onDownloadStartRequest: (controller, url) async {
+
+                             //print (runtimeType.toString());
+                             // main();
+                            //main();
+                            //await  FlutterDownloader.registerCallback(downloadCallback);
+                            /*await  FlutterDownloader.registerCallback((id, status, progress) {
+
+                              //downloadCallback(id,status as DownloadTaskStatus,progress);
+                            });*/
+                            var urlParametros=url.toString().split(",");
+                            var urlModificada= urlParametros[0].replaceAll("{url:", "");
+                            //final status = await Permission.storage.request();
+                            final permission = await storagePermission();
+                            debugPrint('permission : $permission');
+                            //var memoria= await getExternalStorageDirectory();
+                            final taskId;
+
+                            try {
+                            if (permission) {
+
+
+                               taskId= await FlutterDownloader.enqueue(
+
+                             // url:  "$urlModificada",
+                                 url:url.url.toString(),
+                               timeout:1000000,
                                 allowCellular: true,
                                 saveInPublicStorage: true,
                                 savedDir: (await getExternalStorageDirectory())!.path,
-                                timeout:10000,
+                                requiresStorageNotLow: true,
                                 showNotification: true, // show download progress in status bar (for Android)
                                 openFileFromNotification: true, // click on notification to open downloaded file (for Android)
-                            // );
+                                fileName: "Doc_FastSystems8"
+
+                             ).then((value)  {
+
+                             var duration = const Duration(seconds: 2);
+                             print('Start sleeping');
+                             sleep(duration);
+                             print('2 seconds has passed');
+                              //print("value="+value.toString());
+                                         print("completed");
+                                    });
+
+                                    } else {
+                                       setState(() {
+                                    print("failed");
+                                    });
+                                    print('Permission Denied');
+                                    }
 
 
+                                    } on FlutterDownloaderException catch (err) {
+                            print('Failed to enqueue. Reason: ${err.message}');
+                                      }
+                            //await FlutterDownloader.registerCallback(downloadCallback);
 
-                             // print("ondownloadstart $url");
-
-                            //  print("value: $newValue");
-                             /* onDownloadStartRequest: (controller, url)
-                              async {
-                                final String u=url.toString();
-                                final newValue = u.replaceAll("&d=.pdf", "");
-                            Directory? tempDir =
-                              await getExternalStorageDirectory();
-                              setState(() {});
-                              print("onDownload ${url.toString()}\n ${tempDir!.path}");
-                                  //"onDownload ${url}\n ${tempDir!.path}");
-                              await FlutterDownloader.enqueue(
-                                url: newValue,
-                                //timeout: 1000,
-                                fileName: url.suggestedFilename, //================File Name
-                                savedDir: tempDir.path,
-                                showNotification: true,
-                                requiresStorageNotLow: false,
-                                openFileFromNotification: true,
-                                saveInPublicStorage: true,
-                              );*/
-
-                              /*final String url_files = "$url"  ;
-
-                              void _launchurl_files() async =>
-                                  await canLaunchUrlString(newValue)? await launchUrlString(newValue) : throw 'could not launch $url_files';
-                              _launchurl_files();
-                              */
-
-
-
-                            ); }
-
-
+                            //await FlutterDownloader.registerCallback(downloadCallback);
+                                  }//Download
                         ),),),
 
     ),
@@ -257,6 +270,38 @@ static voiddownloadCallback(String id, DownloadTaskStatus status, int progress) 
     IsolateNameServer.lookupPortByName('downloader_send_port')
         ?.send([id, status as int , progress]);
   }*/
+  Future<bool> storagePermission() async {
+    final DeviceInfoPlugin info = DeviceInfoPlugin(); // import 'package:device_info_plus/device_info_plus.dart';
+    final AndroidDeviceInfo androidInfo = await info.androidInfo;
+    debugPrint('releaseVersion : ${androidInfo.version.release}');
+    final int androidVersion = int.parse(androidInfo.version.release);
+    bool havePermission = false;
+
+    if (androidVersion >= 13) {
+      final request = await [
+        Permission.videos,
+        Permission.notification,
+        //Permission.photos,
+        //Permission.manageExternalStorage,
+       // Permission.notification,
+        //Permission.storage,
+        //..... as needed
+      ].request(); //import 'package:permission_handler/permission_handler.dart';
+      havePermission = request.values.every((status) => status == PermissionStatus.granted);
+      print( androidVersion );
+      print( havePermission);
+    } else {
+      final status = await Permission.storage.request();
+      havePermission = status.isGranted;
+    }
+
+    if (!havePermission) {
+      // if no permission then open app-setting
+      await openAppSettings();
+    }
+
+    return havePermission;
+  }
 }
 /* Directory? tempDir =
         await getExternalStorageDirectory();
