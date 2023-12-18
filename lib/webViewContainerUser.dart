@@ -39,6 +39,7 @@ List<String> split(Pattern pattern) {
 
 
 class _webViewContainerState extends State<webViewContainer> {
+
   ReceivePort _port = ReceivePort();
   Future<void> main() async {
     /*await FlutterDownloader.initialize(
@@ -113,7 +114,9 @@ static downloadCallback(String id, int status, int progress) {
       //extendBody: false,
       //extendBodyBehindAppBar: true,
       // extendBody: true,
+
       extendBody: false,
+      backgroundColor: Colors.transparent,
       //  backgroundColor: Colors.blueAccent,
         appBar: AppBar(
           /*shape: RoundedRectangleBorder(
@@ -145,11 +148,13 @@ static downloadCallback(String id, int status, int progress) {
            child:
                Center(
                  child: Container(
+                  // margin: EdgeInsets.fromLTRB(0, 0, 0, 10),
                    color: Colors.transparent,
                           //margin: const EdgeInsets.fromLTRB(0, 10, 0, 0),
                        // decoration: BoxDecoration(border: Border.all(color: Colors.transparent)
 
                         child: InAppWebView(
+
                             gestureRecognizers: Set()..add(Factory<VerticalDragGestureRecognizer>(() => VerticalDragGestureRecognizer())),
                        // initialUrlRequest:URLRequest( url: Uri.parse('https://www.librocristiano.com.ar/amar-es-para-valientes-itiel-arroyo')),
 
@@ -163,7 +168,7 @@ static downloadCallback(String id, int status, int progress) {
                               allowUniversalAccessFromFileURLs: true,
                               useShouldOverrideUrlLoading: true,
                               useOnLoadResource: true,
-                              disableVerticalScroll: true,
+                              disableVerticalScroll: false,
                               transparentBackground: true,
 
                           //    useOnLoadResource: true,
@@ -210,7 +215,7 @@ static downloadCallback(String id, int status, int progress) {
                                 requiresStorageNotLow: true,
                                 showNotification: true, // show download progress in status bar (for Android)
                                 openFileFromNotification: true, // click on notification to open downloaded file (for Android)
-                                fileName: "Doc_FastSystems8"
+                                fileName: "Doc_FastSystems"
 
                              ).then((value)  {
 
@@ -244,7 +249,7 @@ static downloadCallback(String id, int status, int progress) {
     Container(
       alignment: Alignment.bottomCenter,
      // padding: EdgeInsets.all(20),
-      height: 70,
+      height: 65,
       //width: 40,
       color: Colors.blueAccent
 

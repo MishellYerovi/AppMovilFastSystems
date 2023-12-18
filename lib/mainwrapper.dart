@@ -64,7 +64,7 @@ class _MainWrapperState extends State<MainWrapper> {
       CurvedNavigationBar(
        // key: _bottomNavigationKey,
        //
-        height: 75.0,
+        height: 65.0,
         items: <Widget>[
           Icon(Icons.business, size: 30,color: Colors.grey.shade800,),
           Icon(Icons.home, size: 30,color: Colors.grey.shade800,),

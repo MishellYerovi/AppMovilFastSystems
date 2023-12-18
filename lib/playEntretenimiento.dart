@@ -104,8 +104,8 @@ class _playLinkEntretenimientoState extends State<playLinkEntretenimiento> {
         child: YoYoPlayer(
           aspectRatio: 16 / 9,
           url:
-       // "https://vivo.canaloncelive.tv/alivepkgr3/ngrp:cepro_all/playlist.m3u8",//canal 11 Mexico
-          "https://redirector.rudo.video/hls-video/c54ac2799874375c81c1672abb700870537c5223/ecuavisa/ecuavisa.smil/playlist.m3u8?PlaylistM3UCL", //ecuavisa
+        "https://vivo.canaloncelive.tv/alivepkgr3/ngrp:cepro_all/playlist.m3u8",//canal 11 Mexico
+          //"https://redirector.rudo.video/hls-video/c54ac2799874375c81c1672abb700870537c5223/ecuavisa/ecuavisa.smil/playlist.m3u8?PlaylistM3UCL", //ecuavisa
           //"https://playout.cdn.cartoonnetwork.com.br/playout_04/playlist.m3u8", //cartoon
           allowCacheFile: true,
           onCacheFileCompleted: (files) {
@@ -126,15 +126,20 @@ class _playLinkEntretenimientoState extends State<playLinkEntretenimiento> {
               fontWeight: FontWeight.w500,
               color: Colors.white,
             ),
+            fullscreenIcon: Icon(
+              Icons.fullscreen_outlined,
+              size: 40.0,
+              color: Colors.white
+            ),
             forwardAndBackwardBtSize: 30.0,
             playButtonIconSize: 40.0,
             playIcon: Icon(
-              Icons.add_circle_outline_outlined,
+              Icons.play_circle_outline_outlined,
               size: 40.0,
               color: Colors.white,
             ),
             pauseIcon: Icon(
-              Icons.remove_circle_outline_outlined,
+              Icons.pause_circle_outline_outlined,
               size: 40.0,
               color: Colors.white,
             ),

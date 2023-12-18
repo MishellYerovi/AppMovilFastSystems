@@ -302,6 +302,8 @@ class _HomeState extends State<Home> {
                                   onPressed: () {
                                     //Navigator.push( context, MaterialPageRoute(builder: (context) => webViewContainer()),);
                                     context.goNamed("HomeServicios");
+                                   // context.pushNamed("HomeServicios"); //*******************
+                                   // GoRouter.of(context).pushNamed("HomeServicios");
                                     },
                                   style: ElevatedButton.styleFrom(fixedSize: const Size(160, 160), backgroundColor: Colors.greenAccent,
                                     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15))

@@ -73,6 +73,7 @@ class _logInAdminState extends State<logInAdmin> {
 
           child:
           SingleChildScrollView(
+            padding: EdgeInsets.fromLTRB(0, 0, 0, 65),
             child: Column(
               children: <Widget>[
                 Padding(
