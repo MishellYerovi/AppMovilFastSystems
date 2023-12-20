@@ -1,5 +1,6 @@
 import 'package:fastsystems_app2/menuConfiguraciones.dart';
 import 'package:fastsystems_app2/playEntretenimiento.dart';
+import 'package:fastsystems_app2/verifConexionInternet.dart';
 
 import 'package:fastsystems_app2/webViewContainerUser.dart';
 import 'package:fastsystems_app2/webViewContainerRouter.dart';
@@ -10,7 +11,7 @@ import 'package:flutter_downloader/flutter_downloader.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 
 import 'menuNavigationBar.dart';
-
+final internetChecker = CheckInternetConnection();
 
 void main()async{
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
@@ -34,7 +35,7 @@ void main()async{
           //'/informacionEmpresa':(context)=>homePage(),
           '/webViewContainer':(context)=>webViewContainer(),
           '/ipAddress':(context)=>menu_configuraciones(),
-          '/webViewContainerRouter':(context)=>webViewContainerRouter(""),
+          '/webViewContainerRouter':(context)=>webViewContainerRouter(),
 
         },
       ),

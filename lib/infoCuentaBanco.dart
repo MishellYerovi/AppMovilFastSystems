@@ -50,8 +50,9 @@ class _cInfoCuentaBancoState extends State<cInfoCuentaBanco> {
         radius: const Radius.circular(50),
     trackVisibility: true,
     child: SingleChildScrollView(
+      padding:EdgeInsets.fromLTRB(0, 0,0,65),
       clipBehavior: Clip.none,
-    padding: const EdgeInsets.fromLTRB(5, 5,5, 80),
+    //padding: const EdgeInsets.fromLTRB(5, 5,5, 80),
     child:
       Center(
 
@@ -72,6 +73,7 @@ class _cInfoCuentaBancoState extends State<cInfoCuentaBanco> {
             //SizedBox(height: 10.0),
 
             Container(
+              margin: EdgeInsets.fromLTRB(0, 5, 0,0),
               clipBehavior: Clip.none,
                 decoration: BoxDecoration(
 
@@ -246,7 +248,7 @@ class _cInfoCuentaBancoState extends State<cInfoCuentaBanco> {
                       //Text(admin.descripcion),
                        ]),
               //),
-                trailing: Row(
+               /* trailing: Row(
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     //IconButton(onPressed: () {}, icon: Icon(Icons.favorite)),
@@ -258,7 +260,7 @@ class _cInfoCuentaBancoState extends State<cInfoCuentaBanco> {
                       //alertDeseaEliminar(admin.id, admin.nombreAdmin, admin.emailAdmin);
                     }, icon: const Icon(Icons.delete, color: Colors.red,)),*/
                   ],
-                ),
+                ),*/
               ),
 
 
@@ -275,7 +277,7 @@ class _cInfoCuentaBancoState extends State<cInfoCuentaBanco> {
 
               }, icon: Icon(Icons.delete, color: Colors.white)),
               //]),//Text(img.nombreNoticia)*/
-              const Padding(padding:EdgeInsets.all(8.0) ), //ESPACIO
+              const Padding(padding:EdgeInsets.all(2.0) ), //ESPACIO
             ],
           ),
         ),
@@ -288,7 +290,8 @@ class _cInfoCuentaBancoState extends State<cInfoCuentaBanco> {
 
   void enviarComprobante() async{
       final link = WhatsAppUnilink(
-        phoneNumber: '+593-'"$celular",
+       // phoneNumber: '+593-'"$celular",
+        phoneNumber:"$code$celular",
         text: "Envío el comprobante de Pago",
       );
       // Convert the WhatsAppUnilink instance to a Uri.

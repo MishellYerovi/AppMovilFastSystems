@@ -58,7 +58,7 @@ class _menu_configuracionesState extends State<menu_configuraciones> {
     initPlatformState();  //EXAMPLE
 
   }
-  ///example
+  //Objeto WIFI
   Future<void> initPlatformState() async {
     WifiInfoWrapper? wifiObject;
     // Platform messages may fail, so we use a try/catch PlatformException.

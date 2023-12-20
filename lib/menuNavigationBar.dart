@@ -28,6 +28,7 @@ import 'about.dart';
 
 import 'infoCuentaBanco.dart';
 import 'mainwrapper.dart';
+import 'mediosPago.dart';
 import 'menuServicios.dart';
 late final bool focusedMarkerHighlight;
 
@@ -167,7 +168,7 @@ class AppNavigation {
                //Subrutas
                routes: [
                    //Subruta-CONFIGURACIONES-Router
-                  GoRoute(
+                 /* GoRoute(
                     parentNavigatorKey:_shellNavigatorInicio,
                     path: 'homeConfiguraciones',
                     name: 'HomeConfiguraciones',
@@ -193,14 +194,14 @@ class AppNavigation {
                           child: child,
                         );
                       }
-                    ),
+                    ),*/
                     //Subrutas de Cambiar contraseña
-                    routes: [
+                    //routes: [
                       //Cambiar Contraseña
                       GoRoute(
                         parentNavigatorKey:_shellNavigatorInicio,
-                      path: 'homeRouterPage',
-                      name: 'HomeRouterPage',
+                        path: 'homeRouterPage',
+                        name: 'HomeRouterPage',
 
                      /* builder: (BuildContext context, GoRouterState state) {
                           final router= state.extra! as String;
@@ -211,7 +212,8 @@ class AppNavigation {
                         maintainState: false,
                          // return webViewContainerRouter(router)
                       //router= state.extra! as String;
-                        child:  webViewContainerRouter(state.extra.toString()),
+                        child:  webViewContainerRouter(),
+                           // child:  webViewContainerRouter(state.extra.toString()),
                         transitionsBuilder:
                             (context, animation, secondaryAnimation, child) =>
                             FadeTransition(opacity: animation, child: child),
@@ -219,8 +221,8 @@ class AppNavigation {
 
                     ),
 
-                    ],
-                  ),
+                    //],
+                  //),
                  //Subruta Portal Usuarios
                  GoRoute(
                    parentNavigatorKey:_shellNavigatorInicio,
@@ -261,8 +263,9 @@ class AppNavigation {
                          pageBuilder: (context, state) => CustomTransitionPage<void>(
                            // key: state.pageKey,
                            maintainState: false,
-                          child: cInfoCuentaBanco(),
-                          // child:cLeerPdf(),
+                           //child: cInfoCuentaBanco(),
+                              child:cMediosPago(),
+                              // child:cLeerPdf(),
                          //  child: cRecomendaciones(),
                         // child: const MenuOtrosServicios(),
                            transitionsBuilder:

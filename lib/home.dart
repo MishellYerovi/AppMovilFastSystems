@@ -1,6 +1,7 @@
 import 'package:carousel_slider/carousel_slider.dart';
 
 import 'package:fastsystems_app2/playEntretenimiento.dart';
+import 'package:fastsystems_app2/verifConexionInternet.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -100,6 +101,7 @@ class _HomeState extends State<Home> {
        child: Column(
            mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
+              const WarningWidgetValueNotifier(),
               // crossAxisAlignment: CrossAxisAlignment.stretch,
               //mainAxisAlignment: MainAxisAlignment.spaceAround,
               // verticalDirection: VerticalDirection.down,
@@ -137,10 +139,38 @@ class _HomeState extends State<Home> {
                     if (snapshot.connectionState == ConnectionState.done) { //Esto denota la finalización del futuro.
                       if (snapshot.hasError) {
                         return Center(
-                          child: Text(
-                            ' ${snapshot.error} ',
+                         /* child: Text(
+                            "Error en el servidor",
+                            //' ${snapshot.error} ',
                             style: const TextStyle(fontSize: 18, color: Colors.red),
-                          ),
+                          ),*/
+                         /* child: Image(
+                            //image: AssetImage('assets/redesSociales/whatsapp2.png'),
+                            image: AssetImage('assets/NoticiasPortal/noticiaEstatica.png'),
+                            fit: BoxFit.contain,
+                            height: 220,
+                          ),*/
+                          child: Container(
+                            //height: 220,
+                            margin: EdgeInsets.fromLTRB(20, 20, 20, 5),
+                            // margin: const EdgeInsets.fromLTRB(6, 6, 6, 6),
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(8.0),
+                              image: DecorationImage(
+                                fit: BoxFit.fill,
+                                image:AssetImage('assets/NoticiasPortal/noticiaEstatica.png'),
+
+                              ),
+
+                            ),
+                            //child:Image.network(_listImagenes(data!)[itemIndex] as String,fit: BoxFit.cover ),
+
+                            //_listImagenes(data!)[itemIndex],
+
+                            // _listImagenes(data!)[itemIndex],
+
+                          ) ,
+
                         );
                       } else if (snapshot.hasData) {
                         final data = snapshot.data;
@@ -368,7 +398,9 @@ class _HomeState extends State<Home> {
                                 ),
                                 child: ElevatedButton(
                                   onPressed: () {
-                                    context.goNamed("HomeConfiguraciones");
+                                   // context.goNamed("HomeConfiguraciones");
+                                    context.goNamed("HomeRouterPage");
+
                                     //Navigator.push( context, MaterialPageRoute(builder: (context) =>menu_configuraciones()),);
 
                                     },

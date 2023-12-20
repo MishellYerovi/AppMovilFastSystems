@@ -71,6 +71,7 @@ dependencies:
   crypto: ^3.0.3
   flutter_downloader: ^1.11.5
   device_info_plus: ^9.1.1
+  rxdart: ^0.27.7
 
 
 dev_dependencies:
@@ -142,4 +143,5 @@ flutter:
   assets:
     - android/app/src/main/AndroidManifest.xml
     - assets/
+    - assets/NoticiasPortal/
 

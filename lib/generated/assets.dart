@@ -6,6 +6,7 @@ class Assets {
   static const String assetsInstagram = 'assets/instagram.png';
   static const String assetsMANUAL = 'assets/MANUAL.pdf';
   static const String assetsMANUALEQUIPOS = 'assets/MANUALEQUIPOS.pdf';
+  static const String assetsNoticias = 'assets/Noticias';
   static const String assetsObstaculo = 'assets/obstaculo.jpg';
   static const String assetsPaginaWeb = 'assets/paginaWeb.png';
   static const String assetsRedesSocialesWhatsapp = 'assets/redesSociales/whatsapp.png';
@@ -17,6 +18,7 @@ class Assets {
   static const String iconIconNatSplash = 'assets/icon/iconNatSplash.png';
   static const String iconIconVideo = 'assets/icon/iconVideo.mp4';
   static const String mainAndroidManifest = 'android/app/src/main/AndroidManifest.xml';
+  static const String noticiasPortalNoticiaEstatica = 'assets/NoticiasPortal/noticiaEstatica.png';
   static const String redesSocialesWhatsapp = 'assets/redesSociales/whatsapp.ico';
 
 }

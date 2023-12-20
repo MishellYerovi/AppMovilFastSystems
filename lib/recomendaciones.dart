@@ -16,6 +16,8 @@ class _cRecomendacionesState extends State<cRecomendaciones> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      extendBodyBehindAppBar: true,
+      backgroundColor: Colors.transparent,
       appBar: AppBar(
         shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.vertical(
@@ -40,7 +42,7 @@ class _cRecomendacionesState extends State<cRecomendaciones> {
         onRefresh: refreshList,
         child:
         ListView(
-
+            padding: EdgeInsets.fromLTRB(10, 100,10, 80),
             children: <Widget>[
 
               SizedBox(

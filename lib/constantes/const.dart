@@ -32,6 +32,7 @@ const editarAdminFromAdmin="/editAdminFromAdmin.php";
 
 //Información del Banco para pagos
 const obtenerInfoBancos="/obtenerInfoBancoPagos.php";
+const code= "+593-";
 const celular="0992562727";
 //Nombre perfil Admin
 const obtenerNombrePerfilAdmin="/obtenerPerfilAdmin.php";

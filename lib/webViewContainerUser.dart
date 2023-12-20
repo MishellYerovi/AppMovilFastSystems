@@ -5,6 +5,7 @@ import 'dart:isolate';
 import 'dart:ui';
 
 import 'package:device_info_plus/device_info_plus.dart';
+import 'package:fastsystems_app2/verifConexionInternet.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -39,25 +40,13 @@ List<String> split(Pattern pattern) {
 
 
 class _webViewContainerState extends State<webViewContainer> {
-
+//Linea de Cargar
+  late PullToRefreshController pullToRefreshController;
+  late InAppWebViewController _webViewController;
+  //InAppWebViewController? webViewController;
+  double progress = 0;
+//Descarga de archivos
   ReceivePort _port = ReceivePort();
-  Future<void> main() async {
-    /*await FlutterDownloader.initialize(
-        debug: true, // optional: set false to disable printing logs to console
-        ignoreSsl: true
-    );*/
-    //ReceivePort _port = ReceivePort();
-    /*IsolateNameServer.registerPortWithName(_port.sendPort, 'downloader_send_port');
-    _port.listen((dynamic data) {
-      String id = data[0];
-      DownloadTaskStatus status = DownloadTaskStatus.fromInt((data[1]));
-      int progress = data[2];
-      setState((){ });
-    }
-    );
-   // FlutterDownloader.registerCallback(downloadCallback);
-    FlutterDownloader.registerCallback(downloadCallback);*/
-  }
 
 
 @override
@@ -71,9 +60,22 @@ class _webViewContainerState extends State<webViewContainer> {
     setState((){ });
   }
   );
-  // FlutterDownloader.registerCallback(downloadCallback);
+
   FlutterDownloader.registerCallback(downloadCallback);
-   // main();
+  //Linea de Cargar
+  pullToRefreshController = PullToRefreshController(
+    options: PullToRefreshOptions(
+      color: Colors.blue,
+    ),
+    onRefresh: () async {
+      if (Platform.isAndroid) {
+        _webViewController?.reload();
+      } else if (Platform.isIOS) {
+        _webViewController?.loadUrl(
+            urlRequest: URLRequest(url: await _webViewController?.getUrl()));
+      }
+    },
+  );
 
   }
 @override
@@ -90,7 +92,7 @@ static downloadCallback(String id, int status, int progress) {
   //sleep(500000 as Duration);
   send!.send([id, status, progress]);
 }
-  late InAppWebViewController _webViewController;
+
   //final controller=WebViewController()..setJavaScriptMode(JavaScriptMode.unrestricted)
   //..loadRequest(Uri.parse('http://pagos.fastsystems.ec:8090/cliente/login'));
   InAppWebViewGroupOptions options = InAppWebViewGroupOptions(
@@ -124,9 +126,9 @@ static downloadCallback(String id, int status, int progress) {
                 bottom: Radius.circular(2),
               )),*/
           //toolbarHeight: 0,
-          elevation: 5,
-          shadowColor: Colors.blueAccent,
-          backgroundColor: Colors.blueAccent,
+          elevation: 6,
+          shadowColor: Colors.lightBlue,
+          backgroundColor: Colors.lightBlue,
           title: Text(("Portal Usuarios")),
           /*actions: [
           Icon(null),
@@ -143,8 +145,12 @@ static downloadCallback(String id, int status, int progress) {
         Column(
                 //mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
+                  const WarningWidgetValueNotifier(),
+                  progress < 1.0
+                      ? LinearProgressIndicator(value: progress, color: Colors.lightBlueAccent,backgroundColor: Colors.white,)
+                      : Container(),
          Expanded(
-           flex:1,
+           //flex:1,
            child:
                Center(
                  child: Container(
@@ -241,17 +247,65 @@ static downloadCallback(String id, int status, int progress) {
                             //await FlutterDownloader.registerCallback(downloadCallback);
 
                             //await FlutterDownloader.registerCallback(downloadCallback);
-                                  }//Download
-                        ),),),
+                                  },//Download
+                          onLoadStop: (controller, url) async {
+                            pullToRefreshController.endRefreshing();
+                            setState(() {
+                              //this.url = url.toString();
+                              //urlController.text = this.url;
+                            });
+                          },
+                          onLoadError: (controller, url, code, message) {
+                            pullToRefreshController.endRefreshing();
+                          },
+                          onProgressChanged: (controller, progress) {
+                            if (progress == 100) {
+                              pullToRefreshController.endRefreshing();
+                            }
+                            setState(() {
+                              this.progress = progress / 100;
+                              // urlController.text = this.url;
+                            });
+                          },
+
+
+                        ),
+
+                 ),),
 
     ),
 
+                  SizedBox(height: 10,),
+                  ButtonBar(
+                    alignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      ElevatedButton(
+                        child: Icon(Icons.arrow_back),
+                        onPressed: () {
+                          _webViewController?.goBack();
+                        },
+                      ),
+                      ElevatedButton(
+                        child: Icon(Icons.arrow_forward),
+                        onPressed: () {
+                          _webViewController?.goForward();
+                        },
+                      ),
+                      ElevatedButton(
+                        child: Icon(Icons.refresh),
+                        onPressed: () {
+                          _webViewController?.reload();
+                        },
+                      ),
+                    ],
+                  ),
+                  SizedBox(height: 20,),
     Container(
       alignment: Alignment.bottomCenter,
      // padding: EdgeInsets.all(20),
-      height: 65,
+      height: 60,
       //width: 40,
-      color: Colors.blueAccent
+      color: Colors.lightBlue
 
     ),
     ]),

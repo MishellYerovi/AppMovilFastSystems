@@ -18,50 +18,22 @@ class playLinkEntretenimiento extends StatefulWidget {
 }
 
 class _playLinkEntretenimientoState extends State<playLinkEntretenimiento> {
+  List<String> myList =[];
+
 
   bool fullscreen = false;
   //Main verificar=new Main("");
   Future verif() async{
     Main("si");
-    //Navigator.pushReplacement(context, playLinkEntretenimiento() as Route<Object?> );
-    //Navigator.pushAndRemoveUntil(context, newRoute, (route) => false)
-    //context.pushReplacementNamed("HomeAdminMenu");
-    print("verificar asincrono");
   }
 
-  /*Future hide() async{
-    //FullScreen
-    SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: SystemUiOverlay.values);
-  // to hide only bottom bar:
-  SystemChrome.setEnabledSystemUIMode (SystemUiMode.manual, overlays: [SystemUiOverlay.top]);
-
-// to hide only status bar:
-  SystemChrome.setEnabledSystemUIMode (SystemUiMode.manual, overlays: [SystemUiOverlay.bottom]);
-
-// to hide both:
-  SystemChrome.setEnabledSystemUIMode (SystemUiMode.manual, overlays: []);
-
-  }*/
- /* Uri uri = Uri.parse("https://youtu.be/ENHYOYm-kUE");
-  //MediaSource mediaSource = buildMediaSource(uri);
-  DataSource.Factory dataSourceFactory =
-  new DefaultHttpDataSourceFactory(Util.getUserAgent(this, "app-name"));
-  HlsMediaSource hlsMediaSource =
-  new HlsMediaSource.Factory(dataSourceFactory).createMediaSource(uri);
-  player = ExoPlayerFactory.newSimpleInstance(this);
-  player.setPlayWhenReady(playWhenReady);
-  player.seekTo(currentWindow, playbackPosition);*/
-
-  // Create a player instance.
-
-  // Prepare the player with the media source.
-  //player.prepare(mediaSource);
-  //flutter pub add better_player_hls
 @override
   void initState() {
     setState(() {
      // print("verificar set state");
       verif();
+      //myList.add("https://redirector.rudo.video/hls-video/c54ac2799874375c81c1672abb700870537c5223/ecuavisa/ecuavisa.smil/playlist.m3u8?PlaylistM3UCL");
+      //myList.add("2018");
      /* MaterialApp.router (
         routerConfig:AppNavigation.router2 ,
         debugShowCheckedModeBanner: false,
@@ -98,13 +70,25 @@ class _playLinkEntretenimientoState extends State<playLinkEntretenimiento> {
             ),
       )
           : null,
-      body: Padding(
+      body:
+
+      ListView(
+
+         // padding: EdgeInsets.fromLTRB(20, 100,20, 100),
+          children:[
+      SizedBox(
+      child: Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+         // SizedBox(height: 10.0),
+      Padding(
         padding:
         fullscreen ? EdgeInsets.zero : const EdgeInsets.only(top: 32.0),
         child: YoYoPlayer(
           aspectRatio: 16 / 9,
           url:
-        "https://vivo.canaloncelive.tv/alivepkgr3/ngrp:cepro_all/playlist.m3u8",//canal 11 Mexico
+         "https://vivo.canaloncelive.tv/alivepkgr3/ngrp:cepro_all/playlist.m3u8",//canal 11 Mexico
           //"https://redirector.rudo.video/hls-video/c54ac2799874375c81c1672abb700870537c5223/ecuavisa/ecuavisa.smil/playlist.m3u8?PlaylistM3UCL", //ecuavisa
           //"https://playout.cdn.cartoonnetwork.com.br/playout_04/playlist.m3u8", //cartoon
           allowCacheFile: true,
@@ -117,6 +101,7 @@ class _playLinkEntretenimientoState extends State<playLinkEntretenimiento> {
               }
             }
           },
+         // onFastForward: ,
           onCacheFileFailed: (error) {
             print('Cache file error ::: $error');
           },
@@ -127,9 +112,9 @@ class _playLinkEntretenimientoState extends State<playLinkEntretenimiento> {
               color: Colors.white,
             ),
             fullscreenIcon: Icon(
-              Icons.fullscreen_outlined,
+              Icons.fullscreen_rounded,
               size: 40.0,
-              color: Colors.white
+              color: Colors.blueAccent
             ),
             forwardAndBackwardBtSize: 30.0,
             playButtonIconSize: 40.0,
@@ -144,9 +129,20 @@ class _playLinkEntretenimientoState extends State<playLinkEntretenimiento> {
               color: Colors.white,
             ),
             videoQualityPadding: EdgeInsets.all(5.0),
-            // showLiveDirectButton: true,
+            //showLiveDirectButton: true,
             // enableSystemOrientationsOverride: false,
+           // forwardIcon : Icon(Icons.skip_next),
+           // backwardIcon : Icon(Icons.skip_previous),
           ),
+
+         /* onFastForward: (value) {
+          "https://playout.cdn.cartoonnetwork.com.br/playout_04/playlist.m3u8";
+            //onFastForward?.call(value);
+          },
+          onRewind: (value) {
+            "https://vivo.canaloncelive.tv/alivepkgr3/ngrp:cepro_all/playlist.m3u8";
+            //onRewind?.call(value);
+          },*/
           videoLoadingStyle: const VideoLoadingStyle(
             loading: Center(
               child: Column(
@@ -174,6 +170,63 @@ class _playLinkEntretenimientoState extends State<playLinkEntretenimiento> {
           },
         ),
       ),
+           /*Padding(padding: fullscreen ? EdgeInsets.zero : const EdgeInsets.only(top: 32.0),
+             child:Text("hola2"),
+           )*/
+
+           /* FutureBuilder(
+              future:  fetchAdministrador(),
+              builder: (BuildContext context,snapshot) {
+                if (snapshot.connectionState == ConnectionState.waiting) { //Este estado indica que el futuro se está resolviendo actualmente y recibiremos el resultado en breve.
+                  return const Center(
+                    child: CircularProgressIndicator(
+                      color: Colors.white,
+                    ),
+                  );
+                }
+                if (snapshot.connectionState == ConnectionState.done) { //Esto denota la finalización del futuro.
+                  if (snapshot.hasError) {
+                    return Center(
+                      child: Text(
+                        ' ${snapshot.error} ',
+                        style: const TextStyle(fontSize: 18, color: Colors.red),
+                      ),
+                    );
+                  } else if (snapshot.hasData) {
+                    final data = snapshot.data;
+                    //print("longitud future" +data!.length.toString());
+                    //em.id=data!.id.toString();
+                    return
+                      data?.length != 0?
+                      Container(
+                        //height: 240,
+                          child:Scrollbar(
+                              radius: const Radius.circular(50),
+                              //thumbVisibility: true,
+                              trackVisibility: true,
+                              //scrollbarOrientation: ScrollbarOrientation.top,
+                              child:ListView(
+                                padding: const EdgeInsets.all(10),
+                                shrinkWrap: true,
+                                children:
+                                //  Padding(padding:EdgeInsets.all(8.0)), //Espacio
+                                _listAdministradores(data!),
+
+                              )))
+                          : Container( alignment: Alignment.center, child:const Text("No existen administradores"));
+                  }
+                }
+                return const Center(
+                  child: CircularProgressIndicator(
+                    semanticsLabel: "Cargando...",
+                    valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
+
+                  ),
+                );
+              },)*/
+       ]),
+    ),
+     ]),
 
     );
   }
