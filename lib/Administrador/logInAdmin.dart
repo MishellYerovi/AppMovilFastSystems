@@ -6,8 +6,11 @@ import 'package:flutter/services.dart';
 import 'package:go_router/go_router.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:crypto/crypto.dart';
 
 import '../constantes/const.dart';
+
+
 
 
 class logInAdmin extends StatefulWidget {
@@ -19,6 +22,7 @@ class logInAdmin extends StatefulWidget {
 
 class _logInAdminState extends State<logInAdmin> {
   Map userData = {};
+  Hash hasher=sha512;
   //Claves de los Formularios
   final _formkeyEmailAndPassword = GlobalKey<FormState>();
 
@@ -112,7 +116,7 @@ class _logInAdminState extends State<logInAdmin> {
                                       //inputFormatters: [FilteringTextInputFormatter.allow( RegExp("[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*@[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{2,5}?"))],
                                       validator:  (value) {
                                       if (value!.isEmpty || value.trim()=="") {
-                                        //_formkeyEmailAndPassword.currentState?.reset();
+                                        _formkeyEmailAndPassword.currentState?.reset();
                                        // emailUser.clear();
                                       return 'Ingrese el correo electrónico';
                                       }else{
@@ -386,9 +390,22 @@ class _logInAdminState extends State<logInAdmin> {
     int bandera=0;
     if(validarFormEmail()==1){
       var email=emailUser.text.toString().trim();
-      var password=passwordUser.text.toString().trim();
-      print(email);
-      print(password);
+      var passwordA=passwordUser.text.toString().trim();
+
+      //var cript=hasher.startChunkedConversion(password as Sink<Digest>);
+
+     // print("cript1"+ cript.toString());
+     // Hash temporal=hasher.bind(password);
+     // var value = hasher.bind(password as Stream<List<int>>);
+      //print("cript2$value");
+     // hasher=512.
+
+      final bytes = utf8.encode(passwordA); // data being hashed
+      final passwordDigest = sha512.convert(bytes);
+      final hexPasswordDigest=passwordDigest.toString();
+      //print("encriptado:"+hexPasswordDigest.toString());
+      //print(email);
+      //print(password);
       var verificarAdminUrl = Uri.parse('$raizUrl'"$verificarCredencialesAdministrador");
 
       //context.goNamed("HomeAdminMenu");
@@ -397,7 +414,7 @@ class _logInAdminState extends State<logInAdmin> {
         verificarAdminUrl,
         body: {
           'email': email,
-          'password': password
+          'password': hexPasswordDigest
         },
       );
       //print(response.body);
@@ -421,7 +438,7 @@ class _logInAdminState extends State<logInAdmin> {
             prefs.setBool("isloggedin", true);*/
             SharedPreferences prefs = await SharedPreferences.getInstance();
             prefs.setString('email', email);
-            prefs.setString('contrasenia', password);
+            prefs.setString('contrasenia', hexPasswordDigest as String);
             //-----------------
 
             context.pushReplacementNamed("HomeAdminMenu");

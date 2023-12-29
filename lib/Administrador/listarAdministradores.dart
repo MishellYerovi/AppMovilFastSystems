@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:crypto/crypto.dart';
 import 'package:fastsystems_app2/Modelo/administrador.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
@@ -261,7 +262,7 @@ class _cListarAdministradoresState extends State<cListarAdministradores> {
         padding: const EdgeInsets.fromLTRB(25,20,25,5),
         child: TextFormField(
                 keyboardType:TextInputType.text,
-                maxLength: 30,
+                maxLength: 60,
                 //autofocus: true,
                 controller: nombreAdmin,
                 validator:  (value) {
@@ -297,7 +298,7 @@ class _cListarAdministradoresState extends State<cListarAdministradores> {
             padding:const EdgeInsets.fromLTRB(25,5,25,5),
             child: TextFormField(
               keyboardType:TextInputType.emailAddress,
-              maxLength: 30,
+              maxLength: 60,
               //autofocus: true,
               controller: emailAdmin,
               validator:  (value) {
@@ -644,14 +645,17 @@ class _cListarAdministradoresState extends State<cListarAdministradores> {
          var emailAdministrador=emailAdmin.text.toString().trim();
          var passwordAdministrador=passwordAdmin.text.toString().trim();
          var guardarAdmin=Uri.parse("$raizUrl""$agregarAdministradores");
-
+         final bytes = utf8.encode(passwordAdministrador); // data being hashed
+         final passwordDigest = sha512.convert(bytes);
+         final hexPasswordDigest=passwordDigest.toString();
+         print("encriptado:"+hexPasswordDigest.toString());
          try{
            var response = await http.post(
              guardarAdmin,
              body: {
                'emailA': emailAdministrador,
                'nombreA': nombreAdministrador,
-               'passwordA': passwordAdministrador,
+               'passwordA': hexPasswordDigest,
              },
            );
 
@@ -750,7 +754,7 @@ class _cListarAdministradoresState extends State<cListarAdministradores> {
                     child: TextFormField(
                       keyboardType:TextInputType.text,
                       //autofocus: true,
-                      maxLength: 30,
+                      maxLength: 60,
                       controller: editarNombreAdmin,
                       validator:  (value) {
                         if (value!.isEmpty || value.trim()=="") {
@@ -787,7 +791,7 @@ class _cListarAdministradoresState extends State<cListarAdministradores> {
                       padding:const EdgeInsets.fromLTRB(10,5,10,5),
                       child: TextFormField(
                         keyboardType:TextInputType.emailAddress,
-                        maxLength: 30,
+                        maxLength: 60,
                         //autofocus: true,
                         controller: editarEmailAdmin,
                         validator:  (value) {

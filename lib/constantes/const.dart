@@ -42,3 +42,5 @@ const editEmailPerfilAdmin="/editEmailAdminPerfil.php";
 const editContraseniaPerfilAdmin="/editContraseniaAdminPerfil.php";
 //urlPortalCliente
 const portalCliente="http://pagos.fastsystems.ec:8090/cliente";
+//enlaces Tv
+const enlacesTV="/obtenerEnlacesTV.php";

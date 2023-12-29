@@ -72,6 +72,8 @@ dependencies:
   flutter_downloader: ^1.11.5
   device_info_plus: ^9.1.1
   rxdart: ^0.27.7
+  flutter_vlc_player: ^7.4.1
+  appinio_video_player: ^1.2.2
 
 
 dev_dependencies:

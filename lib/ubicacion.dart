@@ -164,7 +164,7 @@ class _UbicacionState extends State<Ubicacion> {
                 ),*/
                      borderRadius: BorderRadius.circular(5.0),
              ),
-                    child: Column(
+                   /* child: Column(
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: <Widget>[
@@ -315,7 +315,7 @@ class _UbicacionState extends State<Ubicacion> {
     ),
 */
                             ],
-                            ),
+                            ),*/
                  ),
     ),
           //ExamplePopup(marker),

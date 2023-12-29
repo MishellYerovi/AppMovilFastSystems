@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:crypto/crypto.dart';
 import 'package:fastsystems_app2/constantes/const.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -39,6 +40,8 @@ class _cModificarPefilState extends State<cModificarPefil> {
       nombreAdmin=pref.getString("nombreA")!;
       id=pref.getString("id")!;
     });
+
+
   }
 
 
@@ -46,6 +49,7 @@ class _cModificarPefilState extends State<cModificarPefil> {
   void initState() {
     getCredenciales();
     //nombreAdmin();
+
     super.initState();
 
 
@@ -163,6 +167,7 @@ class _cModificarPefilState extends State<cModificarPefil> {
                                           //IconButton(onPressed: () {}, icon: Icon(Icons.favorite)),
                                           IconButton(onPressed: () {
 
+
                                             editarFormContraseniaAdmin(contraseniaAdmin);
                                           }, icon: const Icon(Icons.edit, color:Colors.deepPurpleAccent)),
 
@@ -219,7 +224,7 @@ class _cModificarPefilState extends State<cModificarPefil> {
                           child: TextFormField(
                             keyboardType:TextInputType.text,
                             //autofocus: true,
-                            maxLength: 30,
+                            maxLength: 60,
                             controller: nombreUser,
                             validator:  (value) {
                               if (value!.isEmpty || value.trim()=="") {
@@ -333,7 +338,7 @@ class _cModificarPefilState extends State<cModificarPefil> {
                           padding:const EdgeInsets.fromLTRB(10,5,10,5),
                           child: TextFormField(
                             keyboardType:TextInputType.emailAddress,
-                            maxLength: 30,
+                            maxLength: 60,
                             //autofocus: true,
                             controller: emailUser,
                             validator:  (value) {
@@ -386,7 +391,7 @@ class _cModificarPefilState extends State<cModificarPefil> {
 
   }
   void editarFormContraseniaAdmin(contraseniaAdmin) {
-    passwordUser.text=contraseniaAdmin;
+    //passwordUser.text=contraseniaAdmin;
     var contraseniaTemporal=contraseniaAdmin;
     //editarEmailAdmin.text=emailAdmin;
     //var emailTemporal=emailAdmin;
@@ -633,7 +638,11 @@ class _cModificarPefilState extends State<cModificarPefil> {
 
   Future<void> guardarCambioPasswordA( BuildContext context, contraseniaTemporal) async
   {
-    var password=passwordUser.text.trim();
+
+    var passwordA=passwordUser.text.trim();
+    final bytes = utf8.encode(passwordA); // data being hashed
+    final passwordCrypto= sha512.convert(bytes);
+    final password=passwordCrypto.toString();
     //var email= emailUser.text.trim();
     var urlEnviarContraseniaAdmin=Uri.parse("$raizUrl$editContraseniaPerfilAdmin");
 
@@ -642,8 +651,8 @@ class _cModificarPefilState extends State<cModificarPefil> {
       if (contraseniaTemporal != password ) {
         try{
           // print(id);
-          print(password);
-          print(contraseniaTemporal);
+         // print(password);
+         // print(contraseniaTemporal);
           //print(email);
 
 
@@ -700,6 +709,7 @@ class _cModificarPefilState extends State<cModificarPefil> {
             actions: [
               TextButton(
                   onPressed: (){
+                    passwordUser.clear();
                     Navigator.of(context).pop();
                   }, child: const Text("Ok")),
             ],

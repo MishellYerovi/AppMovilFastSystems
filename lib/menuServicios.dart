@@ -21,7 +21,9 @@ class _menuServiciosState extends State<menuServicios> {
       appBar: AppBar(
         title: Text(" Servicios"),
       ),
-      body: Center(
+      body:
+
+      Center(
 
         //child: Text('Services Page',style: TextStyle(fontWeight: FontWeight.bold),),
           child:

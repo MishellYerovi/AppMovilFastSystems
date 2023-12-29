@@ -1,4 +1,5 @@
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:fastsystems_app2/Otros/playE.dart';
 
 import 'package:fastsystems_app2/playEntretenimiento.dart';
 import 'package:fastsystems_app2/verifConexionInternet.dart';
@@ -411,15 +412,15 @@ class _HomeState extends State<Home> {
                                     alignment: WrapAlignment.center,
                                     children: <Widget>[
                                       Icon(
-                                        Icons.wifi,
+                                        Icons.router_outlined,
                                         color: Colors.white,
-                                        size: 80.0,
+                                        size: 90.0,
                                       ),
                                       SizedBox(
                                         width:10,
                                         // height: 50,
                                       ),
-                                      Text("Configuraciones", style:TextStyle(fontSize:15, color:Colors.white), textAlign: TextAlign.center, ),
+                                      Text("Router", style:TextStyle(fontSize:20, color:Colors.white), textAlign: TextAlign.center, ),
                                     ],
                                   ),
                                 )
@@ -464,7 +465,8 @@ class _HomeState extends State<Home> {
                                    //context.goNamed("HomeOtrosServicios");
                                    // Navigator.push( context, MaterialPageRoute(builder: (context) => playLinkEntretenimiento()),);
                                     Navigator.of(context, rootNavigator: true).push(MaterialPageRoute(
-                                      builder: (context) =>  playLinkEntretenimiento(),));
+                                      //builder: (context) =>  playLinkEntretenimiento(),));
+                                        builder: (context) =>  VideoPlayerPage(),));
                                     },
                                   style: ElevatedButton.styleFrom(fixedSize: const Size(160, 160), backgroundColor: Colors.lightGreenAccent,
                                       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15))

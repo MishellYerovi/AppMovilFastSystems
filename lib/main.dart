@@ -1,3 +1,4 @@
+import 'package:fastsystems_app2/Otros/playE.dart';
 import 'package:fastsystems_app2/menuConfiguraciones.dart';
 import 'package:fastsystems_app2/playEntretenimiento.dart';
 import 'package:fastsystems_app2/verifConexionInternet.dart';
@@ -131,7 +132,8 @@ class _MainState  extends State <Main>{
         builder: (_) =>  playLinkEntretenimiento(),
       ),
       );*/
-      playLinkEntretenimiento(),
+      VideoPlayerPage()
+      //playLinkEntretenimiento(),
       // Navigator.push( context, MaterialPageRoute(builder: (context) =>"/webViewContainerRouter" ),);
     );
   }
