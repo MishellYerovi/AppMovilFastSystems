@@ -76,7 +76,7 @@ class _VideoPlayerPageState extends State<VideoPlayerPage> {
               height: 50,
             ),
             SizedBox(height: 16.0),
-            Text("Cargando el video..."),
+            Text("Cargando..."),
           ],
         ),
         /*CircularProgressIndicator(

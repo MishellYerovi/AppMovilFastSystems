@@ -40,12 +40,17 @@ class _UbicacionState extends State<Ubicacion> {
     _markers = _latLngList
         .map((point) => Marker(
       point: point,
-      width: 30,
-      height: 30, child: Icon(
+      width: 40,
+      height: 40, child: Icon(
       Icons.location_pin,
-      size: 30,
-      color: Colors.deepPurpleAccent,
+      size: 40,
+      color: Colors.indigoAccent,
     ),
+      //builder: (_) => const Icon(Icons.location_on, size: 40),
+      //anchorPos: const AnchorPos.align(AnchorAlign.top),
+      alignment: Alignment.topCenter,
+      rotate: true,
+      //rotateAlignment: AnchorAlign.top.rotationAlignment,
       //builder: (context) =>
     ),)
         .toList();
@@ -58,7 +63,9 @@ class _UbicacionState extends State<Ubicacion> {
     return Scaffold(
       extendBody: false,
       appBar: AppBar(
-        title: Text('Map'),
+        title: Text('Ubicación'),
+        centerTitle: true,
+        backgroundColor: Colors.lightBlueAccent,
       ),
       body:
          // Container(
@@ -70,7 +77,8 @@ class _UbicacionState extends State<Ubicacion> {
           initialZoom: _zoom,
           initialCameraFit: CameraFit.coordinates(coordinates: _latLngList),
           interactionOptions: InteractionOptions(enableMultiFingerGestureRace: true),
-          maxZoom: 17,
+          //maxZoom: 17,
+          maxZoom: 19,
           //swPanBoundary: LatLng(-1.7279,-78.7613) ,
           //nePanBoundary: LatLng(-1.7213,-78.4026) ,
           //maxBounds: LatLngBounds(LatLng(-2.0020,-78.5797), LatLng(-1.6142,-78.6175)),
@@ -123,9 +131,10 @@ class _UbicacionState extends State<Ubicacion> {
         MarkerClusterLayerWidget( options: MarkerClusterLayerOptions(builder: (context, markers) {
            return Container( alignment: Alignment.center, decoration: BoxDecoration(color: Colors.orange, shape: BoxShape.circle),
              child: Text('${markers.length}'),);
-         },maxClusterRadius: 190,
+         },//maxClusterRadius: 190,
            disableClusteringAtZoom: 16,
-          size:Size(50,50), markers: _markers,
+          size:Size(50,50),
+          markers: _markers,
           // size:Size(50,50),fitBoundsOptions: FitBoundsOptions( padding: EdgeInsets.all(50),), markers: _markers,
            /*polygonOptions: PolygonOptions(
                borderColor: Colors.orange,
@@ -147,8 +156,10 @@ class _UbicacionState extends State<Ubicacion> {
          Stack(
            children: [
          PopupMarkerLayer(options: PopupMarkerLayerOptions(
+           popupController:_popupController ,
            markers: _markers,
            popupDisplayOptions: PopupDisplayOptions(
+             //snap: PopupSnap.mapBottom,
              builder: (BuildContext context, Marker marker) =>
 
               SizedBox(
@@ -164,6 +175,125 @@ class _UbicacionState extends State<Ubicacion> {
                 ),*/
                      borderRadius: BorderRadius.circular(5.0),
              ),
+                   child: Column(
+                     mainAxisSize: MainAxisSize.min,
+                     children: [
+                    // mainAxisSize: MainAxisSize.min,
+                   ListTile(
+                        contentPadding: EdgeInsets.fromLTRB(15, 10, 15, 0),
+                        title: Text("FastSystems",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 17)),
+                        subtitle: Text("Proveedor de Internet",style: TextStyle(fontWeight: FontWeight.normal,fontSize: 15)),
+
+                       /* Column(
+                            mainAxisSize: MainAxisSize.min,
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              //Text("",style: TextStyle(fontStyle: FontStyle.italic,fontSize: 15),),
+                              SelectableText.rich(  TextSpan (
+                                style: DefaultTextStyle.of(context).style,
+                                children: <TextSpan>[
+                                  const TextSpan(text: "Empresa Proveedora de Internet",style: TextStyle(fontWeight: FontWeight.normal,fontSize: 16), ),
+                                  //TextSpan(text:"2203462289", style: TextStyle(fontStyle: FontStyle.italic,fontSize: 16),),
+                                ],),
+
+                              ),
+
+
+*/
+                             /* Row( children:[
+                                Image(
+                                  //image: AssetImage('assets/redesSociales/whatsapp2.png'),
+                                  image: AssetImage('assets/whatsapp2.png'),
+                                  fit: BoxFit.fitHeight,
+                                  height: 30,
+                                ),
+                                InkWell(child: Text("$celular", style: TextStyle(decoration: TextDecoration.underline,decorationColor: Colors.green,color: Colors.black)),
+                                  onTap:() {
+                                    enviarComprobante();
+                                  }, ),
+                              ]
+
+                              ),*/
+
+                              //Text(admin.descripcion),
+
+                        trailing:  CloseButton(
+                          style: ButtonStyle(
+
+                            //shadowColor: MaterialStateProperty.all(Colors.blueAccent),
+                          ),
+                        onPressed: (){
+                          _popupController.hidePopupsOnlyFor(_markers);
+                        },),
+                   ),
+
+
+                       ListTile(
+
+                         subtitle:
+                         Column(
+                             mainAxisSize: MainAxisSize.min,
+                             mainAxisAlignment: MainAxisAlignment.start,
+                             crossAxisAlignment: CrossAxisAlignment.start,
+                             children: [
+                               //Text("Proveedor de Internet",style: TextStyle(fontStyle: FontStyle.italic,fontSize: 15),),
+                              /* SelectableText.rich(  TextSpan (
+                                 style: DefaultTextStyle.of(context).style,
+                                 children: <TextSpan>[
+                                   const TextSpan(text: "Proveedor de Internet",style: TextStyle(fontWeight: FontWeight.normal,fontSize: 15), ),
+                                   //TextSpan(text:"2203462289", style: TextStyle(fontStyle: FontStyle.italic,fontSize: 16),),
+                                 ],),
+
+                               ),*/
+                               Row(children: [
+                                 Icon(Icons.location_pin, size: 20,color: Colors.lightBlue,),
+                                 SelectableText.rich(  TextSpan (
+                                   style: DefaultTextStyle.of(context).style,
+                                   children: <TextSpan>[
+                                     const TextSpan(text: " Chambo",style: TextStyle(fontWeight: FontWeight.normal,fontSize: 15), ),
+
+                                   ],),
+
+                                 ),
+                               ],),
+                               Text("Av.18 de Marzo y Joaquín Gavilanes"),
+
+                               Row(children: [
+                                 Icon(Icons.local_phone, size: 20,color: Colors.lightBlue,),
+                                    SelectableText.rich(  TextSpan (
+                                    style: DefaultTextStyle.of(context).style,
+                                    children: <TextSpan>[
+                                    const TextSpan(text: " 0992562727",style: TextStyle(fontWeight: FontWeight.normal,fontSize: 15), ),
+
+                                    ],), ),
+                               ],)
+
+
+
+                              // Text("Cel:0992562727", style: TextStyle(fontSize: 16,fontWeight: FontWeight.normal),),
+                               /* Row( children:[
+                                Image(
+                                  //image: AssetImage('assets/redesSociales/whatsapp2.png'),
+                                  image: AssetImage('assets/whatsapp2.png'),
+                                  fit: BoxFit.fitHeight,
+                                  height: 30,
+                                ),
+                                InkWell(child: Text("$celular", style: TextStyle(decoration: TextDecoration.underline,decorationColor: Colors.green,color: Colors.black)),
+                                  onTap:() {
+                                    enviarComprobante();
+                                  }, ),
+                              ]
+
+                              ),*/
+
+                               //Text(admin.descripcion),
+                             ]),
+                       )
+
+                     ],),
+
+
                    /* child: Column(
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -319,7 +449,11 @@ class _UbicacionState extends State<Ubicacion> {
                  ),
     ),
           //ExamplePopup(marker),
-           ),),),
+           ),
+         //popupController:
+         ),
+
+         ),
        ],
      ),
       //tileProvider: NetworkTileProvider(),

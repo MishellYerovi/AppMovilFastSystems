@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 
 import 'Modelo/empresa.dart';
+import 'constantes/const.dart';
 
 
 
@@ -32,7 +33,7 @@ class _AboutInfoState extends State<AboutInfo> {
   Widget build(BuildContext context) {
     return Scaffold(
         extendBody: true,
-        backgroundColor:Colors.transparent,
+        backgroundColor:Colors.white,
       appBar: AppBar(
         title: Text('Sobre nosotros',style: TextStyle(fontWeight: FontWeight.bold),),
         centerTitle: true,
@@ -57,13 +58,27 @@ class _AboutInfoState extends State<AboutInfo> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
                     Container(
-                      height: 160,
-                      width: 160,
+                      child: Column(
+
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          SizedBox(height: 30.0),
+                          Image(
+                            image: AssetImage('assets/icon.png'),
+                            fit: BoxFit.fitHeight,
+                            height:100,
+                          ),
+                          SizedBox(height: 3.0),
+                          Text("FastSystems",style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18,
+                              color: Colors.blue),),
+                        ],
+                      ),
                     ),
                   Card(
                     color: Colors.white,
-                    elevation: 15,
-                    shadowColor: Colors.black45,
+                    elevation: 10,
+                    shadowColor: Colors.lightBlueAccent,
                     shape:RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(20.0),),
 
@@ -72,7 +87,64 @@ class _AboutInfoState extends State<AboutInfo> {
                       color: Colors.transparent,
                       padding: EdgeInsets.all(20),
                     child:
-                    FutureBuilder(
+
+                    Column(
+                        mainAxisSize: MainAxisSize.min,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Image(
+                            image: AssetImage('assets/icon.png'),
+                            fit: BoxFit.fitHeight,
+                            height:100,
+                          ),
+                          Text("Misión",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 16,),textAlign: TextAlign.center,),
+                         /* SelectableText.rich(  TextSpan (
+                            style: DefaultTextStyle.of(context).style,
+                            children: <TextSpan>[
+                              const TextSpan(text: "text ",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 16), ),
+                              TextSpan(text:"text", style: TextStyle(fontStyle: FontStyle.italic,fontSize: 16),),
+                            ],),
+
+                          ),*/
+
+
+
+                          SelectableText.rich( TextSpan (
+
+                            style: DefaultTextStyle.of(context).style,
+                            children: <TextSpan>[
+                            //  const TextSpan(text: "Nota: ",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 16)),
+                              TextSpan(text: "Ser una empresa líder que se desarrolle en "
+                                  "forma armónica y sustentable, teniendo como eje principal "
+                                  "una actividad de servicio de Internet a domicilio de alto impacto "
+                                  "en el desarrollo económico y cultural de nuestra sociedad y fomentar "
+                                  "el desarrollo de las telecomunicaciones del país. Brindar excelencia en "
+                                  "la comunicación de datos a través de tecnología de punta, con talento humano "
+                                  "comprometido y servicio de calidad que superen las expectativas de valor de "
+                                  "nuestros clientes.", style: TextStyle(fontSize: 16),),
+                            ],),
+                            textAlign: TextAlign.justify,
+                          ),
+                          /*Row( children:[
+                            Image(
+                              //image: AssetImage('assets/redesSociales/whatsapp2.png'),
+                              image: AssetImage('assets/whatsapp2.png'),
+                              fit: BoxFit.fitHeight,
+                              height: 30,
+                            ),
+                            InkWell(child: Text("$celular", style: TextStyle(decoration: TextDecoration.underline,decorationColor: Colors.green,color: Colors.black)),
+                              onTap:() {
+                               // enviarComprobante();
+                              }, ),
+                          ]
+
+                          ),*/
+
+                          //Text(admin.descripcion),
+                        ]),
+                        //Inicio de llamada de datos al servidor
+                    /*FutureBuilder(
 
                         future:  fetchEmpresa(),
                         builder: (BuildContext context,snapshot) {
@@ -108,12 +180,52 @@ class _AboutInfoState extends State<AboutInfo> {
                         return const Center(
                           child: CircularProgressIndicator(),
                         );
-          },),
+          },),*/
+                        //Fin de llamada de datos all servidor
 
                     ),),
+                    Card(
+                      color: Colors.white,
+                      elevation: 10,
+                      shadowColor: Colors.lightBlueAccent,
+                      shape:RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20.0),),
+
+                      margin: EdgeInsets.all(20),
+                      child :Container(
+                        color: Colors.transparent,
+                        padding: EdgeInsets.all(20),
+                        child:
+
+                        Column(
+                            mainAxisSize: MainAxisSize.min,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Text("Visión",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 16,),textAlign: TextAlign.center,),
+
+                              SelectableText.rich( TextSpan (
+                                style: DefaultTextStyle.of(context).style,
+                                children: <TextSpan>[
+                                  //  const TextSpan(text: "Nota: ",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 16)),
+                                  TextSpan(text: "Ser la mejor alternativa de proveedores de servicios a "
+                                      "nivel regional con la mejor infraestructura y ser reconocidos "
+                                      "como una de las mejores empresas que brinda servicios de excelencia "
+                                      "con calidad, innovación y responsabilidad. Ofrecer servicios de Internet a "
+                                      "domicilio con gente altamente capacitada y calificada para brindar un mejor "
+                                      "servicio, satisfacción y seguridad comprometidos con el mejoramiento continuo "
+                                      "para maximizar la satisfacción de cada cliente.", style: TextStyle(fontSize: 16),),
+                                ],),
+                                textAlign: TextAlign.justify,
+                              ),
+
+                            ]),
+
+
+                      ),),
                     Container(
-                      height: 500,
-                      width: 160,
+                      height: 60,
+                      //width: 160,
                     ),
                   ]
               )
