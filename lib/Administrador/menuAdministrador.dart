@@ -183,7 +183,7 @@ late String contrasenia="";
           ),
         ),
       ),
-      Card(
+      /*Card(
         child: ListTile(
           contentPadding: const EdgeInsets.fromLTRB(20, 20, 20,20 ),
           leading: const Icon(Icons.people_outline_rounded, color:Colors.black45),
@@ -205,7 +205,7 @@ late String contrasenia="";
 
           ),
         ),
-      ),
+      ),*/
       ]), ),
         ),
     );

@@ -24,13 +24,13 @@ class _cMediosPagoState extends State<cMediosPago> {
         //color
         //foregroundColor: Colors.red,
         //surfaceTintColor: Colors.red,
-        shape: RoundedRectangleBorder(
+        shape: const RoundedRectangleBorder(
 
             borderRadius: BorderRadius.vertical(
               bottom: Radius.circular(30),
             )),
         centerTitle: true,
-        title: Text("Medios de Pago",
+        title: const Text("Medios de Pago",
           style: TextStyle(
             fontWeight: FontWeight.bold,
           ),  textAlign: TextAlign.center,),
@@ -42,14 +42,14 @@ class _cMediosPagoState extends State<cMediosPago> {
       ),
       body:
       ListView(
-        padding: EdgeInsets.fromLTRB(20, 100,20, 100),
+        padding: const EdgeInsets.fromLTRB(20, 100,20, 100),
        children:[
       SizedBox(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                SizedBox(height: 10.0),
+                const SizedBox(height: 10.0),
 
                 Card(
                   clipBehavior: Clip.none,
@@ -68,7 +68,7 @@ class _cMediosPagoState extends State<cMediosPago> {
                       const Padding(padding:EdgeInsets.all(8.0)), //Espacio
                       ListTile(
 
-                        title: Text("Banco Pichincha",style: TextStyle(fontWeight: FontWeight.bold, color: Colors.blueAccent),),
+                        title: const Text("Banco Pichincha",style: TextStyle(fontWeight: FontWeight.bold, color: Colors.blueAccent),),
                         subtitle:
                         /*Align(
                   alignment: Alignment.topLeft,
@@ -78,11 +78,11 @@ class _cMediosPagoState extends State<cMediosPago> {
                             mainAxisAlignment: MainAxisAlignment.start,
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text("Cuenta de Ahorros",style: TextStyle(fontStyle: FontStyle.italic,fontSize: 15),),
+                              const Text("Cuenta de Ahorros",style: TextStyle(fontStyle: FontStyle.italic,fontSize: 15),),
                                 SelectableText.rich(  TextSpan (
                                 style: DefaultTextStyle.of(context).style,
-                                children: <TextSpan>[
-                                  const TextSpan(text: "Num. de cuenta: ",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 16), ),
+                                children: const <TextSpan>[
+                               TextSpan(text: "Num. de cuenta: ",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 16), ),
                                   TextSpan(text:"2203462289", style: TextStyle(fontStyle: FontStyle.italic,fontSize: 16),),
                                 ],),
 
@@ -90,24 +90,24 @@ class _cMediosPagoState extends State<cMediosPago> {
 
                               SelectableText.rich(  TextSpan (
                                 style: DefaultTextStyle.of(context).style,
-                                children: <TextSpan>[
-                                  const TextSpan(text: "Nombre: ",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 16), ),
+                                children: const <TextSpan>[
+                                  TextSpan(text: "Nombre: ",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 16), ),
                                   TextSpan(text:"Juan Carlos Ricachi", style: TextStyle(fontSize: 16),),
                                 ],),
 
                               ),
                               SelectableText.rich(  TextSpan (
                                 style: DefaultTextStyle.of(context).style,
-                                children: <TextSpan>[
-                                  const TextSpan(text: "C.I.: ",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 16), ),
+                                children: const <TextSpan>[
+                                  TextSpan(text: "C.I.: ",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 16), ),
                                   TextSpan(text: "170773307-8", style: TextStyle(fontSize: 16),),
                                 ],),
 
                               ),
                               SelectableText.rich( TextSpan (
                                 style: DefaultTextStyle.of(context).style,
-                                children: <TextSpan>[
-                                  const TextSpan(text: "Correo electrónico: ",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 16), ),
+                                children: const <TextSpan>[
+                                  TextSpan(text: "Correo electrónico: ",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 16), ),
                                   TextSpan(text: "juank_1820@hotmail.com", style: TextStyle(fontSize: 16),),
                                 ],),
                               ),
@@ -115,21 +115,21 @@ class _cMediosPagoState extends State<cMediosPago> {
                               SelectableText.rich( TextSpan (
 
                                 style: DefaultTextStyle.of(context).style,
-                                children: <TextSpan>[
-                                  const TextSpan(text: "Nota: ",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 16)),
+                                children: const <TextSpan>[
+                                  TextSpan(text: "Nota: ",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 16)),
                                   TextSpan(text: "Una vez realizado el depósito o transferencia, "
                                       "enviar el comprobante para registrar el pago al WhatsApp.", style: TextStyle(fontSize: 16),),
                                 ],),
                                 textAlign: TextAlign.justify,
                               ),
                               Row( children:[
-                                Image(
+                                const Image(
                                   //image: AssetImage('assets/redesSociales/whatsapp2.png'),
                                   image: AssetImage('assets/whatsapp2.png'),
                                   fit: BoxFit.fitHeight,
                                   height: 30,
                                 ),
-                                InkWell(child: Text("$celular", style: TextStyle(decoration: TextDecoration.underline,decorationColor: Colors.green,color: Colors.black)),
+                                InkWell(child: const Text("$celular", style: TextStyle(decoration: TextDecoration.underline,decorationColor: Colors.green,color: Colors.black)),
                                   onTap:() {
                                     enviarComprobante();
                                   }, ),
@@ -166,7 +166,7 @@ class _cMediosPagoState extends State<cMediosPago> {
                       const Padding(padding:EdgeInsets.all(8.0)), //Espacio
                       ListTile(
 
-                        title: Text("Banco Pichincha",style: TextStyle(fontWeight: FontWeight.bold, color: Colors.blueAccent),),
+                        title: const Text("Banco Pichincha",style: TextStyle(fontWeight: FontWeight.bold, color: Colors.blueAccent),),
                         subtitle:
                         /*Align(
                   alignment: Alignment.topLeft,
@@ -176,36 +176,36 @@ class _cMediosPagoState extends State<cMediosPago> {
                             mainAxisAlignment: MainAxisAlignment.start,
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text("Cuenta de Ahorros",style: TextStyle(fontStyle: FontStyle.italic,fontSize: 15),),
+                              const Text("Cuenta de Ahorros",style: TextStyle(fontStyle: FontStyle.italic,fontSize: 15),),
                               SelectableText.rich(  TextSpan (
                                 style: DefaultTextStyle.of(context).style,
-                                children: <TextSpan>[
-                                  const TextSpan(text: "Num. de cuenta: ",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 16), ),
-                                  TextSpan(text:"2203462289", style: TextStyle(fontStyle: FontStyle.italic,fontSize: 16),),
+                                children: const <TextSpan>[
+                                   TextSpan(text: "Num. de cuenta: ",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 16), ),
+                                   TextSpan(text:"2203462289", style: TextStyle(fontStyle: FontStyle.italic,fontSize: 16),),
                                 ],),
 
                               ),
 
                               SelectableText.rich(  TextSpan (
                                 style: DefaultTextStyle.of(context).style,
-                                children: <TextSpan>[
-                                  const TextSpan(text: "Nombre: ",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 16), ),
+                                children: const <TextSpan>[
+                                  TextSpan(text: "Nombre: ",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 16), ),
                                   TextSpan(text:"Juan Carlos Ricachi", style: TextStyle(fontSize: 16),),
                                 ],),
 
                               ),
                               SelectableText.rich(  TextSpan (
                                 style: DefaultTextStyle.of(context).style,
-                                children: <TextSpan>[
-                                  const TextSpan(text: "C.I.: ",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 16), ),
+                                children:const <TextSpan>[
+                                  TextSpan(text: "C.I.: ",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 16), ),
                                   TextSpan(text: "170773307-8", style: TextStyle(fontSize: 16),),
                                 ],),
 
                               ),
                               SelectableText.rich( TextSpan (
                                 style: DefaultTextStyle.of(context).style,
-                                children: <TextSpan>[
-                                  const TextSpan(text: "Correo electrónico: ",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 16), ),
+                                children: const <TextSpan>[
+                                  TextSpan(text: "Correo electrónico: ",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 16), ),
                                   TextSpan(text: "juank_1820@hotmail.com", style: TextStyle(fontSize: 16),),
                                 ],),
                               ),
@@ -213,21 +213,21 @@ class _cMediosPagoState extends State<cMediosPago> {
                               SelectableText.rich( TextSpan (
 
                                 style: DefaultTextStyle.of(context).style,
-                                children: <TextSpan>[
-                                  const TextSpan(text: "Nota: ",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 16)),
+                                children: const <TextSpan>[
+                                  TextSpan(text: "Nota: ",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 16)),
                                   TextSpan(text: "Una vez realizado el depósito o transferencia, "
                                       "enviar el comprobante para registrar el pago al WhatsApp.", style: TextStyle(fontSize: 16),),
                                 ],),
                                 textAlign: TextAlign.justify,
                               ),
                               Row( children:[
-                                Image(
+                                const Image(
                                   //image: AssetImage('assets/redesSociales/whatsapp2.png'),
                                   image: AssetImage('assets/whatsapp2.png'),
                                   fit: BoxFit.fitHeight,
                                   height: 30,
                                 ),
-                                InkWell(child: Text("$celular", style: TextStyle(decoration: TextDecoration.underline,decorationColor: Colors.green,color: Colors.black)),
+                                InkWell(child: const Text("$celular", style: TextStyle(decoration: TextDecoration.underline,decorationColor: Colors.green,color: Colors.black)),
                                   onTap:() {
                                     enviarComprobante();
                                   }, ),
@@ -263,7 +263,7 @@ class _cMediosPagoState extends State<cMediosPago> {
                       const Padding(padding:EdgeInsets.all(8.0)), //Espacio
                       ListTile(
 
-                        title: Text("Banco Pichincha",style: TextStyle(fontWeight: FontWeight.bold, color: Colors.blueAccent),),
+                        title: const Text("Banco Pichincha",style: TextStyle(fontWeight: FontWeight.bold, color: Colors.blueAccent),),
                         subtitle:
                         /*Align(
                   alignment: Alignment.topLeft,
@@ -273,11 +273,11 @@ class _cMediosPagoState extends State<cMediosPago> {
                             mainAxisAlignment: MainAxisAlignment.start,
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text("Cuenta de Ahorros",style: TextStyle(fontStyle: FontStyle.italic,fontSize: 15),),
+                              const Text("Cuenta de Ahorros",style: TextStyle(fontStyle: FontStyle.italic,fontSize: 15),),
                               SelectableText.rich(  TextSpan (
                                 style: DefaultTextStyle.of(context).style,
-                                children: <TextSpan>[
-                                  const TextSpan(text: "Num. de cuenta: ",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 16), ),
+                                children: const <TextSpan>[
+                                  TextSpan(text: "Num. de cuenta: ",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 16), ),
                                   TextSpan(text:"2203462289", style: TextStyle(fontStyle: FontStyle.italic,fontSize: 16),),
                                 ],),
 
@@ -285,24 +285,24 @@ class _cMediosPagoState extends State<cMediosPago> {
 
                               SelectableText.rich(  TextSpan (
                                 style: DefaultTextStyle.of(context).style,
-                                children: <TextSpan>[
-                                  const TextSpan(text: "Nombre: ",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 16), ),
+                                children: const <TextSpan>[
+                                  TextSpan(text: "Nombre: ",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 16), ),
                                   TextSpan(text:"Juan Carlos Ricachi", style: TextStyle(fontSize: 16),),
                                 ],),
 
                               ),
                               SelectableText.rich(  TextSpan (
                                 style: DefaultTextStyle.of(context).style,
-                                children: <TextSpan>[
-                                  const TextSpan(text: "C.I.: ",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 16), ),
+                                children: const <TextSpan>[
+                                  TextSpan(text: "C.I.: ",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 16), ),
                                   TextSpan(text: "170773307-8", style: TextStyle(fontSize: 16),),
                                 ],),
 
                               ),
                               SelectableText.rich( TextSpan (
                                 style: DefaultTextStyle.of(context).style,
-                                children: <TextSpan>[
-                                  const TextSpan(text: "Correo electrónico: ",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 16), ),
+                                children: const <TextSpan>[
+                                  TextSpan(text: "Correo electrónico: ",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 16), ),
                                   TextSpan(text: "juank_1820@hotmail.com", style: TextStyle(fontSize: 16),),
                                 ],),
                               ),
@@ -310,21 +310,21 @@ class _cMediosPagoState extends State<cMediosPago> {
                               SelectableText.rich( TextSpan (
 
                                 style: DefaultTextStyle.of(context).style,
-                                children: <TextSpan>[
-                                  const TextSpan(text: "Nota: ",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 16)),
+                                children: const <TextSpan>[
+                                  TextSpan(text: "Nota: ",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 16)),
                                   TextSpan(text: "Una vez realizado el depósito o transferencia, "
                                       "enviar el comprobante para registrar el pago al WhatsApp.", style: TextStyle(fontSize: 16),),
                                 ],),
                                 textAlign: TextAlign.justify,
                               ),
                               Row( children:[
-                                Image(
+                                const Image(
                                   //image: AssetImage('assets/redesSociales/whatsapp2.png'),
-                                  image: AssetImage('assets/whatsapp2.png'),
+                                  image:  AssetImage('assets/whatsapp2.png'),
                                   fit: BoxFit.fitHeight,
                                   height: 30,
                                 ),
-                                InkWell(child: Text("$celular", style: TextStyle(decoration: TextDecoration.underline,decorationColor: Colors.green,color: Colors.black)),
+                                InkWell(child: const Text("$celular", style: TextStyle(decoration: TextDecoration.underline,decorationColor: Colors.green,color: Colors.black)),
                                   onTap:() {
                                     enviarComprobante();
                                   }, ),
@@ -345,7 +345,7 @@ class _cMediosPagoState extends State<cMediosPago> {
                 ),
 
 
-                SizedBox(height: 10.0),
+                const SizedBox(height: 10.0),
                 ElevatedButton.icon(
                   clipBehavior: Clip.none,
                   onPressed: (){

@@ -3,15 +3,11 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_vlc_player/flutter_vlc_player.dart';
-import 'package:go_router/go_router.dart';
 import 'package:lecle_yoyo_player/lecle_yoyo_player.dart';
 import 'package:flutter/material.dart' hide Router;
-import 'package:video_player/video_player.dart';
 import 'Modelo/enlacesTV.dart';
-import 'home.dart';
 import 'main.dart';
-import 'menuNavigationBar.dart';
+
 
 
 class playLinkEntretenimiento extends StatefulWidget {
@@ -27,7 +23,7 @@ class _playLinkEntretenimientoState extends State<playLinkEntretenimiento> {
   GlobalKey videoQualityKey = GlobalKey();
 
   String urlEntretenimiento="https://playout.cdn.cartoonnetwork.com.br/playout_04/playlist.m3u8";
-  final _Reproductor = GlobalKey();
+
   bool fullscreen = false;
   //Main verificar=new Main("");
   Future verif() async{
@@ -121,17 +117,17 @@ class _playLinkEntretenimientoState extends State<playLinkEntretenimiento> {
                         //allowCacheFile: true,
 
                         onCacheFileCompleted: (files) {
-                          print('Cached file length ::: ${files?.length}');
+                          //print('Cached file length ::: ${files?.length}');
 
                           if (files != null && files.isNotEmpty) {
                             for (var file in files) {
-                              print('File path ::: ${file.path}');
+                              //print('File path ::: ${file.path}');
                             }
                           }
                         },
                         // onFastForward: ,
                         onCacheFileFailed: (error) {
-                          print('Cache file error ::: $error');
+                          //print('Cache file error ::: $error');
                         },
                         videoStyle: const VideoStyle(
                           qualityStyle: TextStyle(

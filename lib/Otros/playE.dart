@@ -30,8 +30,8 @@ class _VideoPlayerPageState extends State<VideoPlayerPage> {
     initializeVideoPlayer(currentSource);
     fullscreen=_customVideoPlayerController.customVideoPlayerSettings.enterFullscreenOnStart;
     //fullscreen2=;
-    print("fullscreen controller"+fullscreen.toString());
-    print("fullscreen2 controller"+fullscreen2.toString());
+    //print("fullscreen controller"+fullscreen.toString());
+    //print("fullscreen2 controller"+fullscreen2.toString());
     futureLinks=fetchEnlacesTV();
   }
 
@@ -45,8 +45,8 @@ class _VideoPlayerPageState extends State<VideoPlayerPage> {
   Widget build(BuildContext context) {
     fullscreen=_customVideoPlayerController.customVideoPlayerSettings.enterFullscreenOnStart;
     fullscreen2=_VideoPlayerPageState().fullscreen;
-    print("fullscreen controller w"+fullscreen.toString());
-    print("fullscreen2 controller w "+fullscreen2.toString());
+    //print("fullscreen controller w"+fullscreen.toString());
+    //print("fullscreen2 controller w "+fullscreen2.toString());
     return Scaffold(
       backgroundColor: Colors.white,
       appBar:AppBar(
@@ -268,7 +268,7 @@ class _VideoPlayerPageState extends State<VideoPlayerPage> {
               //Image.network(admin.imagen),
               const Padding(padding:EdgeInsets.all(8.0)), //Espacio
               ListTile(
-                title: Text(enlaces.nombreEnlace, style: TextStyle(fontWeight: FontWeight.bold),),
+                title: Text(enlaces.nombreEnlace, style: const TextStyle(fontWeight: FontWeight.bold),),
                 // subtitle: Text(enlaces.enlace),
                 trailing:
                 IconButton(onPressed: () {
