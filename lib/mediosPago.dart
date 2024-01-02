@@ -100,7 +100,7 @@ class _cMediosPagoState extends State<cMediosPago> {
                                 style: DefaultTextStyle.of(context).style,
                                 children: const <TextSpan>[
                                   TextSpan(text: "C.I.: ",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 16), ),
-                                  TextSpan(text: "170773307-8", style: TextStyle(fontSize: 16),),
+                                  TextSpan(text: "060382017-6", style: TextStyle(fontSize: 16),),
                                 ],),
 
                               ),
@@ -166,7 +166,7 @@ class _cMediosPagoState extends State<cMediosPago> {
                       const Padding(padding:EdgeInsets.all(8.0)), //Espacio
                       ListTile(
 
-                        title: const Text("Banco Pichincha",style: TextStyle(fontWeight: FontWeight.bold, color: Colors.blueAccent),),
+                        title: const Text("Cooperativa Cacpeco",style: TextStyle(fontWeight: FontWeight.bold, color: Colors.blueAccent),),
                         subtitle:
                         /*Align(
                   alignment: Alignment.topLeft,
@@ -181,7 +181,7 @@ class _cMediosPagoState extends State<cMediosPago> {
                                 style: DefaultTextStyle.of(context).style,
                                 children: const <TextSpan>[
                                    TextSpan(text: "Num. de cuenta: ",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 16), ),
-                                   TextSpan(text:"2203462289", style: TextStyle(fontStyle: FontStyle.italic,fontSize: 16),),
+                                   TextSpan(text:"0601001248541", style: TextStyle(fontStyle: FontStyle.italic,fontSize: 16),),
                                 ],),
 
                               ),
@@ -198,7 +198,7 @@ class _cMediosPagoState extends State<cMediosPago> {
                                 style: DefaultTextStyle.of(context).style,
                                 children:const <TextSpan>[
                                   TextSpan(text: "C.I.: ",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 16), ),
-                                  TextSpan(text: "170773307-8", style: TextStyle(fontSize: 16),),
+                                  TextSpan(text: "060382017-6", style: TextStyle(fontSize: 16),),
                                 ],),
 
                               ),
@@ -263,7 +263,7 @@ class _cMediosPagoState extends State<cMediosPago> {
                       const Padding(padding:EdgeInsets.all(8.0)), //Espacio
                       ListTile(
 
-                        title: const Text("Banco Pichincha",style: TextStyle(fontWeight: FontWeight.bold, color: Colors.blueAccent),),
+                        title: const Text("Banco Guayaquil",style: TextStyle(fontWeight: FontWeight.bold, color: Colors.blueAccent),),
                         subtitle:
                         /*Align(
                   alignment: Alignment.topLeft,
@@ -278,7 +278,7 @@ class _cMediosPagoState extends State<cMediosPago> {
                                 style: DefaultTextStyle.of(context).style,
                                 children: const <TextSpan>[
                                   TextSpan(text: "Num. de cuenta: ",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 16), ),
-                                  TextSpan(text:"2203462289", style: TextStyle(fontStyle: FontStyle.italic,fontSize: 16),),
+                                  TextSpan(text:"31060082", style: TextStyle(fontStyle: FontStyle.italic,fontSize: 16),),
                                 ],),
 
                               ),
@@ -295,7 +295,7 @@ class _cMediosPagoState extends State<cMediosPago> {
                                 style: DefaultTextStyle.of(context).style,
                                 children: const <TextSpan>[
                                   TextSpan(text: "C.I.: ",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 16), ),
-                                  TextSpan(text: "170773307-8", style: TextStyle(fontSize: 16),),
+                                  TextSpan(text: "060382017-6", style: TextStyle(fontSize: 16),),
                                 ],),
 
                               ),

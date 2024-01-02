@@ -2,6 +2,7 @@ import 'package:appinio_video_player/appinio_video_player.dart';
 import 'package:flutter/material.dart';
 
 import '../Modelo/enlacesTV.dart';
+import '../verifConexionInternet.dart';
 
 enum Source { Network }
 
@@ -70,6 +71,7 @@ class _VideoPlayerPageState extends State<VideoPlayerPage> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
+            WarningWidgetValueNotifier(),
             Image(
               image: AssetImage('assets/icon.png'),
               fit: BoxFit.fitHeight,
