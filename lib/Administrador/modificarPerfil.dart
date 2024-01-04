@@ -3,11 +3,14 @@ import 'dart:convert';
 import 'package:crypto/crypto.dart';
 import 'package:fastsystems_app2/constantes/const.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:go_router/go_router.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../Modelo/administrador.dart';
 import 'package:http/http.dart' as http;
+
+import '../verifConexionInternet.dart';
 
 class cModificarPefil extends StatefulWidget {
   const cModificarPefil({super.key});
@@ -79,6 +82,7 @@ class _cModificarPefilState extends State<cModificarPefil> {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
+              const WarningWidgetValueNotifier(),
         Padding(
         padding: const EdgeInsets.only(top: 40.0),
         child: Center(
@@ -531,8 +535,8 @@ class _cModificarPefilState extends State<cModificarPefil> {
       if (nombreTemporal != nombre ) {
         try{
          // print(id);
-          print(nombre);
-          print(nombreTemporal);
+         // print(nombre);
+         // print(nombreTemporal);
           //print(email);
 
 
@@ -551,7 +555,6 @@ class _cModificarPefilState extends State<cModificarPefil> {
                 //print("hola"+jsondata["Correcto"].toString());
                 Navigator.of(context).pop();
                 alertCambioNombre();
-
                 setState(() {
                   nombreAdmin=nombre;
                 });
@@ -560,14 +563,30 @@ class _cModificarPefilState extends State<cModificarPefil> {
                 //reload();
 
               }else{
-                print("Error al editar el Nombre");
+                Fluttertoast.showToast(
+                    msg: "¡Error al editar el nombre!",
+                    toastLength: Toast.LENGTH_LONG,
+                    gravity: ToastGravity.CENTER,
+                    timeInSecForIosWeb: 1,
+                    textColor: Colors.white,
+                    fontSize: 16.0
+                );
+                //print("Error al editar el Nombre");
               }
             }
 
 
 
         }catch(e){
-          print("Error en el Servidor nombre"+e.toString());
+          Fluttertoast.showToast(
+              msg: "¡Error con el servidor!",
+              toastLength: Toast.LENGTH_LONG,
+              gravity: ToastGravity.CENTER,
+              timeInSecForIosWeb: 1,
+              textColor: Colors.white,
+              fontSize: 16.0
+          );
+          //print("Error en el Servidor nombre"+e.toString());
         }
 
       }else{
@@ -575,7 +594,8 @@ class _cModificarPefilState extends State<cModificarPefil> {
         alertNingunCambio();
       }
     }else{
-      print("ERROR");
+
+      //print("ERROR");
     }
   }
 
@@ -590,8 +610,8 @@ class _cModificarPefilState extends State<cModificarPefil> {
       if (emailTemporal != email ) {
         try{
           // print(id);
-          print(email);
-          print(emailTemporal);
+          //print(email);
+          //print(emailTemporal);
           //print(email);
 
 
@@ -617,14 +637,30 @@ class _cModificarPefilState extends State<cModificarPefil> {
               //reload();
               alertCambioEmail();
             }else{
-              print("Error al editar el Correo Electrónico");
+              Fluttertoast.showToast(
+                  msg: "¡Error al editar el correo!",
+                  toastLength: Toast.LENGTH_LONG,
+                  gravity: ToastGravity.CENTER,
+                  timeInSecForIosWeb: 1,
+                  textColor: Colors.white,
+                  fontSize: 16.0
+              );
+             // print("Error al editar el Correo Electrónico");
             }
           }
 
 
 
         }catch(e){
-          print("Error en el Servidor nombre"+e.toString());
+          Fluttertoast.showToast(
+              msg: "¡Error con el servidor!",
+              toastLength: Toast.LENGTH_LONG,
+              gravity: ToastGravity.CENTER,
+              timeInSecForIosWeb: 1,
+              textColor: Colors.white,
+              fontSize: 16.0
+          );
+         // print("Error en el Servidor nombre"+e.toString());
         }
 
       }else{
@@ -632,7 +668,7 @@ class _cModificarPefilState extends State<cModificarPefil> {
         alertNingunCambio();
       }
     }else{
-      print("ERROR");
+      //print("ERROR");
     }
   }
 
@@ -681,14 +717,30 @@ class _cModificarPefilState extends State<cModificarPefil> {
               //reload();
 
             }else{
-              print("Error al editar el Correo Electrónico");
+              Fluttertoast.showToast(
+                  msg: "¡Error al editar la contraseña!",
+                  toastLength: Toast.LENGTH_LONG,
+                  gravity: ToastGravity.CENTER,
+                  timeInSecForIosWeb: 1,
+                  textColor: Colors.white,
+                  fontSize: 16.0
+              );
+
             }
           }
 
 
 
         }catch(e){
-          print("Error en el Servidor nombre"+e.toString());
+          Fluttertoast.showToast(
+              msg: "¡Error con el servidor!",
+              toastLength: Toast.LENGTH_LONG,
+              gravity: ToastGravity.CENTER,
+              timeInSecForIosWeb: 1,
+              textColor: Colors.white,
+              fontSize: 16.0
+          );
+          //print("Error en el Servidor nombre"+e.toString());
         }
 
       }else{
@@ -696,7 +748,7 @@ class _cModificarPefilState extends State<cModificarPefil> {
         alertNingunCambio();
       }
     }else{
-      print("ERROR");
+      //print("ERROR");
     }
   }
   alertNingunCambio()

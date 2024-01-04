@@ -67,13 +67,13 @@ class _MainWrapperState extends State<MainWrapper> {
         height: 65.0,
         items: <Widget>[
           Icon(Icons.business, size: 30,color: Colors.grey.shade800,),
-          Icon(Icons.home, size: 30,color: Colors.grey.shade800,),
+          Icon(Icons.home, size: 30,color: Colors.blueAccent,),//grey.shade800
           Icon(Icons.location_on, size: 30,color: Colors.grey.shade800,),
         ],
-
+        color: Colors.grey.shade100,
         //Color de fondo detrás de la barra
         backgroundColor: Colors.transparent,
-        buttonBackgroundColor: Colors.white,
+        buttonBackgroundColor: Colors.blue.shade50,
         //animationCurve: Curves.easeInOut,
         animationCurve: Curves.easeInOutCirc,
         //curva de animación

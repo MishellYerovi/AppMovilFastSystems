@@ -61,12 +61,18 @@ class _UbicacionState extends State<Ubicacion> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      extendBody: false,
+      extendBodyBehindAppBar: true,
+      //extendBody: false,
       appBar: AppBar(
         title: Text('Ubicación'),
         centerTitle: true,
         backgroundColor: Colors.lightBlueAccent,
+        shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.vertical(
+              bottom: Radius.circular(30),
+            )) ,
       ),
+
       body:
          // Container(
      //child:

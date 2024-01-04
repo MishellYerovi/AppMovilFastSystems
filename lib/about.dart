@@ -32,12 +32,19 @@ class _AboutInfoState extends State<AboutInfo> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        extendBody: true,
-        backgroundColor:Colors.white,
+        //extendBody: true,
+        //backgroundColor:Colors.grey.shade200,
+      extendBodyBehindAppBar: true,
       appBar: AppBar(
-        title: Text('Sobre nosotros',style: TextStyle(fontWeight: FontWeight.bold),),
+        title:
+        Text('Sobre nosotros',style: TextStyle(fontWeight: FontWeight.bold),),
         centerTitle: true,
-        elevation: 2,
+        elevation: 3,
+        shape: const RoundedRectangleBorder(
+
+            borderRadius: BorderRadius.vertical(
+              bottom: Radius.circular(30),
+            )),
         backgroundColor: Colors.lightBlueAccent,
       ),
       body:
@@ -57,24 +64,36 @@ class _AboutInfoState extends State<AboutInfo> {
               child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
-                    Container(
-                      child: Column(
+                    SizedBox(height: 20.0),
+              Card(
+                  color: Colors.white,
+                  elevation: 2,
+                  shadowColor: Colors.lightBlueAccent,
+                //margin: EdgeInsets.all(20),
+                  shape:RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(20.0),),
 
+                  child:Container(
+                    padding: EdgeInsets.all(20),
+                      child: Row(
+                        mainAxisSize: MainAxisSize.min,
                         mainAxisAlignment: MainAxisAlignment.center,
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                          SizedBox(height: 30.0),
+                          //SizedBox(height: 30.0),
                           Image(
-                            image: AssetImage('assets/icon.png'),
+                            image: AssetImage('assets/logos/logo2.png'),
                             fit: BoxFit.fitHeight,
-                            height:100,
+                            height:40,
+                            width: 250,
                           ),
-                          SizedBox(height: 3.0),
-                          Text("FastSystems",style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18,
-                              color: Colors.blue),),
+                         // SizedBox(height: 3.0),
+                         /* Text("FastSystems",style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18,
+                              color: Colors.blue),),*/
+
                         ],
                       ),
-                    ),
+                    ), ),
                   Card(
                     color: Colors.white,
                     elevation: 10,
@@ -94,9 +113,9 @@ class _AboutInfoState extends State<AboutInfo> {
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           Image(
-                            image: AssetImage('assets/icon.png'),
+                            image: AssetImage('assets/misionandvision/mision.jpg'),
                             fit: BoxFit.fitHeight,
-                            height:100,
+                            height:200,
                           ),
                           Text("Misión",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 16,),textAlign: TextAlign.center,),
                          /* SelectableText.rich(  TextSpan (
@@ -202,6 +221,11 @@ class _AboutInfoState extends State<AboutInfo> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
+                              Image(
+                                image: AssetImage('assets/misionandvision/vision.jpg'),
+                                fit: BoxFit.fitHeight,
+                                height:200,
+                              ),
                               Text("Visión",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 16,),textAlign: TextAlign.center,),
 
                               SelectableText.rich( TextSpan (
@@ -224,7 +248,7 @@ class _AboutInfoState extends State<AboutInfo> {
 
                       ),),
                     Container(
-                      height: 60,
+                      height: 30,
                       //width: 160,
                     ),
                   ]

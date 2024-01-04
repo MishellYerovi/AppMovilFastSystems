@@ -33,7 +33,7 @@ dependencies:
     sdk: flutter
   swipe_refresh: ^1.0.2
   connectivity_plus: ^5.0.2
-  flutter_inappwebview: ^5.8.0
+
 
   permission_handler: ^11.0.1
   path_provider: ^2.1.1
@@ -49,7 +49,7 @@ dependencies:
   curved_navigation_bar: ^1.0.3
   wifi_ip_details: ^1.0.0
   network_info_plus: ^4.1.0
-  go_router: ^12.1.3
+  go_router: ^13.0.1
   sliding_clipped_nav_bar: ^3.1.0+4
   http: ^1.0.0
   latlng: any
@@ -74,6 +74,11 @@ dependencies:
   rxdart: ^0.27.7
   flutter_vlc_player: ^7.4.1
   appinio_video_player: ^1.2.2
+  fluttertoast: ^8.2.4
+  keep_screen_on: ^3.0.0
+  flutter_inappwebview: ^5.8.0
+
+
 
 
 dev_dependencies:
@@ -146,4 +151,6 @@ flutter:
     - android/app/src/main/AndroidManifest.xml
     - assets/
     - assets/NoticiasPortal/
+    - assets/misionandvision/
+    - assets/logos/
 

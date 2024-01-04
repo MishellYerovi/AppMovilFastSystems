@@ -2,8 +2,10 @@ import 'dart:convert';
 import 'package:crypto/crypto.dart';
 import 'package:fastsystems_app2/Modelo/administrador.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:http/http.dart' as http;
 import '../constantes/const.dart';
+import '../verifConexionInternet.dart';
 
 class cListarAdministradores extends StatefulWidget {
   const cListarAdministradores({super.key});
@@ -37,9 +39,11 @@ class _cListarAdministradoresState extends State<cListarAdministradores> {
 
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
+      //extendBodyBehindAppBar: true,
       extendBody: true,
-        backgroundColor: Colors.white,
+        backgroundColor: Colors.white10,
         appBar: AppBar(
           title: const Text("Administradores"),
           shape: const RoundedRectangleBorder(
@@ -54,11 +58,12 @@ class _cListarAdministradoresState extends State<cListarAdministradores> {
       radius: const Radius.circular(50),
       trackVisibility: true,
     child: SingleChildScrollView(
-    padding: const EdgeInsets.fromLTRB(5, 5,5, 80),
+    padding: const EdgeInsets.fromLTRB(5, 0,5, 80),
     child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-
+          //SizedBox(height: 100,),
+          const WarningWidgetValueNotifier(),
               Align(
                 alignment: Alignment.center,
                 child: Container(
@@ -105,10 +110,27 @@ class _cListarAdministradoresState extends State<cListarAdministradores> {
                     if (snapshot.connectionState == ConnectionState.done) { //Esto denota la finalización del futuro.
                       if (snapshot.hasError) {
                         return Center(
-                          child: Text(
+                          child: Container(
+                            padding: const EdgeInsets.all(16),
+                            //height: 60,
+                            //color: Colors.white,
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                const Icon(Icons.signal_wifi_bad_rounded, size: 80,color: Colors.white,),
+                                const SizedBox(width: 8),
+                                const Text('¡Error al conectarse con el servidor!', style: TextStyle(color: Colors.white),),
+                                // const Text('Sin información'),
+                              ],
+                            ),
+
+                          ),
+                         /* child: Text(
                             ' ${snapshot.error} ',
                             style: const TextStyle(fontSize: 18, color: Colors.red),
-                          ),
+                          ),*/
                         );
                       } else if (snapshot.hasData) {
                         final data = snapshot.data;
@@ -648,7 +670,7 @@ class _cListarAdministradoresState extends State<cListarAdministradores> {
          final bytes = utf8.encode(passwordAdministrador); // data being hashed
          final passwordDigest = sha512.convert(bytes);
          final hexPasswordDigest=passwordDigest.toString();
-         print("encriptado:"+hexPasswordDigest.toString());
+        // print("encriptado:"+hexPasswordDigest.toString());
          try{
            var response = await http.post(
              guardarAdmin,
@@ -686,7 +708,15 @@ class _cListarAdministradoresState extends State<cListarAdministradores> {
 
 
          }catch(e){
-           print("Error con el servidor");
+           return Fluttertoast.showToast(
+               msg: "Error con el servidor",
+               toastLength: Toast.LENGTH_SHORT,
+               gravity: ToastGravity.CENTER,
+                timeInSecForIosWeb: 1,
+                textColor: Colors.white,
+               fontSize: 16.0
+           );
+           //rint("Error con el servidor");
          }
        }
   }
@@ -727,7 +757,15 @@ class _cListarAdministradoresState extends State<cListarAdministradores> {
 
 
     }catch(e){
-      print("Error con el servidor");
+      return Fluttertoast.showToast(
+          msg: "Error con el servidor",
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.CENTER,
+          timeInSecForIosWeb: 1,
+          textColor: Colors.white,
+          fontSize: 16.0
+      );
+      //print("Error con el servidor");
     }
 
   }
@@ -862,9 +900,9 @@ class _cListarAdministradoresState extends State<cListarAdministradores> {
 
         //nombreTemporal != nombre && emailTemporal == email
         try{
-          print(id);
-           print(nombre);
-            print(email);
+         // print(id);
+          // print(nombre);
+           // print(email);
           var response = await http.post(urlEnviarEditarDatosAdmin,
             body: {
               'id':id,
@@ -884,11 +922,27 @@ class _cListarAdministradoresState extends State<cListarAdministradores> {
               editarEmailAdmin.clear();
               setState(() {});
             }else{
-              print("Error al editar el Nombre del administrador");
+               Fluttertoast.showToast(
+                  msg: "Error al editar el Nombre del administrador",
+                  toastLength: Toast.LENGTH_LONG,
+                  gravity: ToastGravity.CENTER,
+                  timeInSecForIosWeb: 1,
+                  textColor: Colors.white,
+                  fontSize: 16.0
+              );
+              //print("Error al editar el Nombre del administrador");
             }
           }
         }catch(e){
-          print("Error en el Servidor nombre"+e.toString());
+          Fluttertoast.showToast(
+              msg: "Error con el servidor",
+              toastLength: Toast.LENGTH_LONG,
+              gravity: ToastGravity.CENTER,
+              timeInSecForIosWeb: 1,
+              textColor: Colors.white,
+              fontSize: 16.0
+          );
+          //print("Error en el Servidor nombre"+e.toString());
         }
         //se envía el nombre
       }else{
@@ -914,11 +968,29 @@ class _cListarAdministradoresState extends State<cListarAdministradores> {
                 editarEmailAdmin.clear();
                 setState(() {});
               }else{
-                print("Error al editar la información");
+                Fluttertoast.showToast(
+                    msg: "Error al editar la información",
+                    toastLength: Toast.LENGTH_LONG,
+                    gravity: ToastGravity.CENTER,
+                    timeInSecForIosWeb: 1,
+                    textColor: Colors.white,
+                    fontSize: 16.0
+                );
+               // print("Error al editar la información");
               }
             }
           }catch(e){
-            print("Error en el Servidor" +e.toString());
+
+           // print("Error en el Servidor" +e.toString());
+            Fluttertoast.showToast(
+                msg: "Error con el servidor",
+                toastLength: Toast.LENGTH_LONG,
+                gravity: ToastGravity.CENTER,
+                timeInSecForIosWeb: 1,
+                textColor: Colors.white,
+                fontSize: 16.0
+            );
+
           }
         }
         else{
@@ -946,12 +1018,28 @@ class _cListarAdministradoresState extends State<cListarAdministradores> {
               editarEmailAdmin.clear();
               setState(() {});
             }else{
-              print("Error al editar el Email del administrador");
+              Fluttertoast.showToast(
+                  msg: "Error al editar el email",
+                  toastLength: Toast.LENGTH_LONG,
+                  gravity: ToastGravity.CENTER,
+                  timeInSecForIosWeb: 1,
+                  textColor: Colors.white,
+                  fontSize: 16.0
+              );
+              //print("Error al editar el Email del administrador");
             }
 
           }
         }catch(e){
-          print("Error en el Servidor email"+e.toString());
+          Fluttertoast.showToast(
+              msg: "Error con el servidor",
+              toastLength: Toast.LENGTH_LONG,
+              gravity: ToastGravity.CENTER,
+              timeInSecForIosWeb: 1,
+              textColor: Colors.white,
+              fontSize: 16.0
+          );
+         // print("Error en el Servidor email"+e.toString());
         }
       }
          else
@@ -967,7 +1055,15 @@ class _cListarAdministradoresState extends State<cListarAdministradores> {
           }
         }
       }else{
-      print("ERROR");
+      Fluttertoast.showToast(
+          msg: "¡Error!",
+          toastLength: Toast.LENGTH_LONG,
+          gravity: ToastGravity.CENTER,
+          timeInSecForIosWeb: 1,
+          textColor: Colors.white,
+          fontSize: 16.0
+      );
+      //print("ERROR");
     }
   }
 

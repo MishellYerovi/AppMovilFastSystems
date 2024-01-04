@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import '../Modelo/imagenesNoticias.dart';
 import '../constantes/const.dart';
 import 'package:http/http.dart' as http;
@@ -24,6 +25,7 @@ class _listarNoticiasState extends State<listarNoticias> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      extendBodyBehindAppBar: true,
       backgroundColor: Colors.transparent,
       appBar: AppBar(
         title: const Text("Imágenes/Carousel"),
@@ -49,10 +51,29 @@ class _listarNoticiasState extends State<listarNoticias> {
               if (snapshot.connectionState == ConnectionState.done) { //Esto denota la finalización del futuro.
                 if (snapshot.hasError) {
                   return Center(
-                    child: Text(
+
+                    child: Container(
+                    padding: const EdgeInsets.all(16),
+                    //height: 60,
+                    //color: Colors.white,
+                    child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            mainAxisSize: MainAxisSize.min,
+                        children: [
+                            const Icon(Icons.signal_wifi_bad_rounded, size: 80,),
+                            const SizedBox(width: 8),
+                            const Text('¡Error al conectarse con el servidor!'),
+                            // const Text('Sin información'),
+                  ],
+              ),
+
+              ),
+
+                    /*Text(
                       ' ${snapshot.error} ',
                       style: const TextStyle(fontSize: 18, color: Colors.red),
-                    ),
+                    ),*/
                   );
                 } else if (snapshot.hasData) {
                   final data = snapshot.data;
@@ -61,6 +82,7 @@ class _listarNoticiasState extends State<listarNoticias> {
                   return
                       data?.length != 0?
                           ListView(
+                            padding: EdgeInsets.fromLTRB(0, 100, 0, 100),
                             children:
                             //  Padding(padding:EdgeInsets.all(8.0)), //Espacio
                               _listImagenes(data!),
@@ -112,8 +134,8 @@ class _listarNoticiasState extends State<listarNoticias> {
                   }, icon: Icon(Icons.edit, color: Colors.indigoAccent)),*/
                   IconButton(onPressed: () { //Botón Eliminar
                     //print (img.id.toString()+img.nombreNoticia.toString()+img.imagen.toString());
-
-                    eliminarImagenNoticia(img.id.toString(), img.nombreNoticia.toString(), img.imagen.toString());
+                    alertDeseaEliminar(img.id.toString(), img.nombreNoticia.toString(), img.imagen.toString());
+                    //eliminarImagenNoticia(img.id.toString(), img.nombreNoticia.toString(), img.imagen.toString());
                     //Navigator.of(context).pop();
 
 
@@ -148,20 +170,96 @@ class _listarNoticiasState extends State<listarNoticias> {
 
         var jsondata = json.decode(response.body);
         if(jsondata["error"]){
-          print(jsondata["msg"]);
+         // print(jsondata["msg"]);
         }else{
-          print("Se ha eliminado la imagen exitosamente");
+         Fluttertoast.showToast(
+              msg: "Se ha eliminado la imagen exitosamente",
+              toastLength: Toast.LENGTH_SHORT,
+              gravity: ToastGravity.CENTER,
+              timeInSecForIosWeb: 1,
+              textColor: Colors.white,
+              fontSize: 16.0
+          );
+          //print("Se ha eliminado la imagen exitosamente");
 
         }
 
       }else{
-        print("Error durante la conexión al servidor");
+        Fluttertoast.showToast(
+            msg: "Error con el servidor",
+            toastLength: Toast.LENGTH_SHORT,
+            gravity: ToastGravity.CENTER,
+            timeInSecForIosWeb: 1,
+            textColor: Colors.white,
+            fontSize: 16.0
+        );
+        //print("Error durante la conexión al servidor");
       }
     }catch(e){
-      print("");
+      /*Fluttertoast.showToast(
+          msg: "Error",
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.CENTER,
+          timeInSecForIosWeb: 1,
+          textColor: Colors.white,
+          fontSize: 16.0
+      );*/
+      //print("");
     }
+    alertEliminadoExitosamente();
     setState(() {
     }
     );
+  }
+
+  alertEliminadoExitosamente()
+  {
+    showDialog(context: context,
+        builder: (context){
+          return  AlertDialog(
+            title:const Text("Eliminado exitosamente") ,
+            icon: const Icon(Icons.check_circle,color: Colors.green,size:50,),
+            actions: [
+
+              TextButton(
+                  onPressed: (){
+                    //deleteAdmin(id, nombre, email, context);
+                    Navigator.of(context).pop();
+                  }, child: const Text("Ok")),
+
+
+            ],
+
+          );
+        }
+    );
+
+  }
+
+  alertDeseaEliminar(id,nombre,imagen)
+  {
+    showDialog(context: context,
+        builder: (context){
+          return  AlertDialog(
+            title:const Text("¿Desea eliminar esta imagen?") ,
+            icon: const Icon(Icons.info_sharp,color: Colors.orange,size:50,),
+            actions: [
+              TextButton(
+                  onPressed: (){
+                    Navigator.of(context).pop();
+                  }, child: const Text("No")),
+              TextButton(
+                  onPressed: (){
+                    Navigator.of(context).pop();
+                    eliminarImagenNoticia(id.toString(), nombre.toString(), imagen.toString());
+                  }, child: const Text("Si")),
+
+
+            ],
+
+          );
+        }
+    );
+
   }
 }

@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:fastsystems_app2/constantes/const.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:http/http.dart' as http;
 import '../Modelo/empresa.dart';
 
@@ -50,6 +51,7 @@ class _editarInformacionEmpresaState extends State<editarInformacionEmpresa> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      extendBodyBehindAppBar: true,
       backgroundColor: Colors.white,
       appBar: AppBar(
         title: const Text("Datos de la Empresa"),
@@ -80,10 +82,28 @@ class _editarInformacionEmpresaState extends State<editarInformacionEmpresa> {
                         if (snapshot.connectionState == ConnectionState.done) { //Esto denota la finalización del futuro.
                           if (snapshot.hasError) {
                             return Center(
-                              child: Text(
+                              child: Container(
+                                padding: const EdgeInsets.all(16),
+                                //height: 60,
+                                color: Colors.white,
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    const Icon(Icons.signal_wifi_bad_sharp, size: 80,),
+                                    const SizedBox(width: 8),
+                                    const Text('¡Error al conectarse con el servidor!'),
+                                   // const Text('Sin información'),
+                                  ],
+                                ),
+
+                              ),
+
+                              /*Text(
                                 ' ${snapshot.error} ',
                                 style: const TextStyle(fontSize: 18, color: Colors.red),
-                              ),
+                              ),*/
                             );
                           } else if (snapshot.hasData) {
                             final data = snapshot.data;
@@ -94,6 +114,7 @@ class _editarInformacionEmpresaState extends State<editarInformacionEmpresa> {
 
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children:  [
+                                    SizedBox(height:80,),
                                   ListTile(
 
                                     contentPadding: const EdgeInsets.fromLTRB(15, 10, 25, 0),
@@ -1030,7 +1051,7 @@ int? validarFormNombre(){
 
       var data=json.encode(em.toJsonName());//Parsear a JSON desde el atributo de la clase empresa
       const String url = "$raizUrl""$modificarNombreEmpresa"; //Solicitud POST
-      print(data+"cuerpo json");
+      //print(data+"cuerpo json");
       final res= await http.post(Uri.parse(url), body:data,
         headers: <String, String>{'Content-Type': 'application/json; charset=UTF-8',},);//Envío de datos y cabecera
 
@@ -1039,10 +1060,26 @@ int? validarFormNombre(){
         //  print(res.body);
         //  final Map<String, dynamic> responseData = jsonDecode(res.body);
         // final data = jsonDecode(res.body)[0] ;
-        print('Se ha cambiado exitosamente');
+       // print('Se ha cambiado exitosamente');
+        Fluttertoast.showToast(
+            msg: "Se ha cambiado exitosamente",
+            toastLength: Toast.LENGTH_LONG,
+            gravity: ToastGravity.CENTER,
+            timeInSecForIosWeb: 1,
+            textColor: Colors.white,
+            fontSize: 16.0
+        );
 
       } else {
-        throw Exception('Falló al cargar');
+        Fluttertoast.showToast(
+            msg: "Error con el servidor",
+            toastLength: Toast.LENGTH_LONG,
+            gravity: ToastGravity.CENTER,
+            timeInSecForIosWeb: 1,
+            textColor: Colors.white,
+            fontSize: 16.0
+        );
+        //throw Exception('Falló al cargar');
         //mostrarFormError();
         //print('Ha ocurrido un error inesperado');
       }
@@ -1066,9 +1103,25 @@ int? validarFormNombre(){
         //print(res.body);
         if (res.statusCode == 200) {
           setState(() {});
-          print('Se ha cambiado exitosamente');
+          Fluttertoast.showToast(
+              msg: "Se ha cambiado exitosamente",
+              toastLength: Toast.LENGTH_LONG,
+              gravity: ToastGravity.CENTER,
+              timeInSecForIosWeb: 1,
+              textColor: Colors.white,
+              fontSize: 16.0
+          );
+          //print('Se ha cambiado exitosamente');
         } else {
-          throw Exception('Falló al cargar');
+          //throw Exception('Falló al cargar');
+          Fluttertoast.showToast(
+              msg: "Error con el servidor",
+              toastLength: Toast.LENGTH_LONG,
+              gravity: ToastGravity.CENTER,
+              timeInSecForIosWeb: 1,
+              textColor: Colors.white,
+              fontSize: 16.0
+          );
           //mostrarFormError();
           //print('Ha ocurrido un error inesperado');
         }
@@ -1088,9 +1141,25 @@ int? validarFormNombre(){
         //print(res.body);
         if (res.statusCode == 200) {
           setState(() {});
-          print('Se ha cambiado exitosamente');
+          //print('Se ha cambiado exitosamente');
+          Fluttertoast.showToast(
+              msg: "Se ha cambiado exitosamente",
+              toastLength: Toast.LENGTH_LONG,
+              gravity: ToastGravity.CENTER,
+              timeInSecForIosWeb: 1,
+              textColor: Colors.white,
+              fontSize: 16.0
+          );
         } else {
-          throw Exception('Falló al cargar');
+          Fluttertoast.showToast(
+              msg: "Error con el servidor",
+              toastLength: Toast.LENGTH_LONG,
+              gravity: ToastGravity.CENTER,
+              timeInSecForIosWeb: 1,
+              textColor: Colors.white,
+              fontSize: 16.0
+          );
+          //throw Exception('Falló al cargar');
           //mostrarFormError();
           //print('Ha ocurrido un error inesperado');
         }
@@ -1110,9 +1179,25 @@ int? validarFormNombre(){
        // print(res.body);
         if (res.statusCode == 200) {
           setState(() {});
-          print('Se ha cambiado exitosamente');
+          Fluttertoast.showToast(
+              msg: "Se ha cambiado exitosamente",
+              toastLength: Toast.LENGTH_LONG,
+              gravity: ToastGravity.CENTER,
+              timeInSecForIosWeb: 1,
+              textColor: Colors.white,
+              fontSize: 16.0
+          );
+         // print('Se ha cambiado exitosamente');
         } else {
-          throw Exception('Falló al cargar');
+          Fluttertoast.showToast(
+              msg: "Error con el servidor",
+              toastLength: Toast.LENGTH_LONG,
+              gravity: ToastGravity.CENTER,
+              timeInSecForIosWeb: 1,
+              textColor: Colors.white,
+              fontSize: 16.0
+          );
+          //throw Exception('Falló al cargar');
           //mostrarFormError();
           //print('Ha ocurrido un error inesperado');
         }
@@ -1131,9 +1216,25 @@ int? validarFormNombre(){
           //print(res.body);
           if (res.statusCode == 200) {
             setState(() {});
-            print('Se ha cambiado exitosamente');
+            Fluttertoast.showToast(
+                msg: "Se ha cambiado exitosamente",
+                toastLength: Toast.LENGTH_LONG,
+                gravity: ToastGravity.CENTER,
+                timeInSecForIosWeb: 1,
+                textColor: Colors.white,
+                fontSize: 16.0
+            );
+            //print('Se ha cambiado exitosamente');
           } else {
-            throw Exception('Falló al cargar');
+            Fluttertoast.showToast(
+                msg: "Error con el servidor",
+                toastLength: Toast.LENGTH_LONG,
+                gravity: ToastGravity.CENTER,
+                timeInSecForIosWeb: 1,
+                textColor: Colors.white,
+                fontSize: 16.0
+            );
+           // throw Exception('Falló al cargar');
             //mostrarFormError();
             //print('Ha ocurrido un error inesperado');
           }
@@ -1153,9 +1254,25 @@ int? validarFormNombre(){
     //print(res.body);
     if (res.statusCode == 200) {
       setState(() {});
-      print('Se ha cambiado exitosamente');
+      Fluttertoast.showToast(
+          msg: "Se ha cambiado exitosamente",
+          toastLength: Toast.LENGTH_LONG,
+          gravity: ToastGravity.CENTER,
+          timeInSecForIosWeb: 1,
+          textColor: Colors.white,
+          fontSize: 16.0
+      );
+      //print('Se ha cambiado exitosamente');
     } else {
-      throw Exception('Falló al cargar');
+      Fluttertoast.showToast(
+          msg: "Error con el servidor",
+          toastLength: Toast.LENGTH_LONG,
+          gravity: ToastGravity.CENTER,
+          timeInSecForIosWeb: 1,
+          textColor: Colors.white,
+          fontSize: 16.0
+      );
+      //throw Exception('Falló al cargar');
       //mostrarFormError();
      // print('Ha ocurrido un error inesperado');
     }
@@ -1175,11 +1292,27 @@ int? validarFormNombre(){
           if (res.statusCode == 200) {
             setState(() {});
 
-            print('Se ha cambiado exitosamente');
+            //print('Se ha cambiado exitosamente');
+            Fluttertoast.showToast(
+                msg: "Se ha cambiado exitosamente",
+                toastLength: Toast.LENGTH_LONG,
+                gravity: ToastGravity.CENTER,
+                timeInSecForIosWeb: 1,
+                textColor: Colors.white,
+                fontSize: 16.0
+            );
           } else {
             //mostrarFormError();
             //print('Ha ocurrido un error inesperado');
-            throw Exception('Falló al cargar');
+            //throw Exception('Falló al cargar');
+            Fluttertoast.showToast(
+                msg: "Error con el servidor",
+                toastLength: Toast.LENGTH_LONG,
+                gravity: ToastGravity.CENTER,
+                timeInSecForIosWeb: 1,
+                textColor: Colors.white,
+                fontSize: 16.0
+            );
           }
     }
   }
@@ -1198,11 +1331,27 @@ int? validarFormNombre(){
         if (res.statusCode == 200) {
           setState(() {});
 
-          print('Se ha cambiado exitosamente');
+          //print('Se ha cambiado exitosamente');
+          Fluttertoast.showToast(
+              msg: "Se ha cambiado exitosamente",
+              toastLength: Toast.LENGTH_LONG,
+              gravity: ToastGravity.CENTER,
+              timeInSecForIosWeb: 1,
+              textColor: Colors.white,
+              fontSize: 16.0
+          );
         } else {
           //mostrarFormError();
          // print('Ha ocurrido un error inesperado');
-          throw Exception('Falló al cargar');
+          //throw Exception('Falló al cargar');
+          Fluttertoast.showToast(
+              msg: "Error con el servidor",
+              toastLength: Toast.LENGTH_LONG,
+              gravity: ToastGravity.CENTER,
+              timeInSecForIosWeb: 1,
+              textColor: Colors.white,
+              fontSize: 16.0
+          );
         }
     }
   }
@@ -1219,10 +1368,26 @@ int? validarFormNombre(){
           //print(res.body);
           if (res.statusCode == 200) {
             setState(() {});
-            print('Se ha cambiado exitosamente');
+            Fluttertoast.showToast(
+                msg: "Se ha cambiado exitosamente",
+                toastLength: Toast.LENGTH_LONG,
+                gravity: ToastGravity.CENTER,
+                timeInSecForIosWeb: 1,
+                textColor: Colors.white,
+                fontSize: 16.0
+            );
+            //print('Se ha cambiado exitosamente');
           } else {
+            Fluttertoast.showToast(
+                msg: "Error con el servidor",
+                toastLength: Toast.LENGTH_LONG,
+                gravity: ToastGravity.CENTER,
+                timeInSecForIosWeb: 1,
+                textColor: Colors.white,
+                fontSize: 16.0
+            );
             //mostrarFormError();
-            throw Exception('Falló al cargar');
+            //throw Exception('Falló al cargar');
             //print('Ha ocurrido un error inesperado');
           }
     }
@@ -1240,11 +1405,26 @@ int? validarFormNombre(){
         //print(res.body);
         if (res.statusCode == 200) {
           setState(() {});
-
-          print('Se ha cambiado exitosamente');
+          Fluttertoast.showToast(
+              msg: "Se ha cambiado exitosamente",
+              toastLength: Toast.LENGTH_LONG,
+              gravity: ToastGravity.CENTER,
+              timeInSecForIosWeb: 1,
+              textColor: Colors.white,
+              fontSize: 16.0
+          );
+          //print('Se ha cambiado exitosamente');
         } else {
+          Fluttertoast.showToast(
+              msg: "Error con el servidor",
+              toastLength: Toast.LENGTH_LONG,
+              gravity: ToastGravity.CENTER,
+              timeInSecForIosWeb: 1,
+              textColor: Colors.white,
+              fontSize: 16.0
+          );
           //mostrarFormError();
-          throw Exception('Falló al cargar');
+         // throw Exception('Falló al cargar');
          // print('Ha ocurrido un error inesperado');
         }
     }
@@ -1262,9 +1442,25 @@ int? validarFormNombre(){
           //print(res.body);
           if (res.statusCode == 200) {
             setState(() {});
-            print('Se ha cambiado exitosamente');
+            //print('Se ha cambiado exitosamente');
+            Fluttertoast.showToast(
+                msg: "Se ha cambiado exitosamente",
+                toastLength: Toast.LENGTH_LONG,
+                gravity: ToastGravity.CENTER,
+                timeInSecForIosWeb: 1,
+                textColor: Colors.white,
+                fontSize: 16.0
+            );
           } else {
-            throw Exception('Falló al cargar');
+            Fluttertoast.showToast(
+                msg: "Error con el servidor",
+                toastLength: Toast.LENGTH_LONG,
+                gravity: ToastGravity.CENTER,
+                timeInSecForIosWeb: 1,
+                textColor: Colors.white,
+                fontSize: 16.0
+            );
+            //throw Exception('Falló al cargar');
             //mostrarFormError();
             //print('Ha ocurrido un error');
           }

@@ -17,7 +17,11 @@ class Assets {
   static const String iconIconLauncher = 'assets/icon/iconLauncher.png';
   static const String iconIconNatSplash = 'assets/icon/iconNatSplash.png';
   static const String iconIconVideo = 'assets/icon/iconVideo.mp4';
+  static const String logosLogo2 = 'assets/logos/logo2.png';
+  static const String logosLogoLetras = 'assets/logos/logo_letras.png';
   static const String mainAndroidManifest = 'android/app/src/main/AndroidManifest.xml';
+  static const String misionandvisionMision = 'assets/misionandvision/mision.jpg';
+  static const String misionandvisionVision = 'assets/misionandvision/vision.jpg';
   static const String noticiasPortalNoticiaEstatica = 'assets/NoticiasPortal/noticiaEstatica.png';
   static const String redesSocialesWhatsapp = 'assets/redesSociales/whatsapp.ico';
 

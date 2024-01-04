@@ -3,6 +3,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:go_router/go_router.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
@@ -419,10 +420,10 @@ class _logInAdminState extends State<logInAdmin> {
       );
       //print(response.body);
       if(response.statusCode == 200){
-        print("hola2"+response.body);
+        //print("hola2"+response.body);
         var jsondata = json.decode(response.body);
         if(jsondata["noAdmin"]){
-          print(jsondata["msg"]);
+          //print(jsondata["msg"]);
           bandera=0;
           mostrarUsuarioContraseniaIncorrectos ();
           emailUser.clear();
@@ -430,7 +431,8 @@ class _logInAdminState extends State<logInAdmin> {
           //_formkeyEmailAndPassword.currentState?.reset();
         }else{
           if(jsondata["Admin"]){
-            print(jsondata["msg"].toString());
+
+            //print(jsondata["msg"].toString());
             bandera=1;
             //prueba-----------
             /*SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -440,8 +442,24 @@ class _logInAdminState extends State<logInAdmin> {
             prefs.setString('email', email);
             prefs.setString('contrasenia', hexPasswordDigest as String);
             //-----------------
+            Fluttertoast.showToast(
+                msg: "Acceso correcto",
+                toastLength: Toast.LENGTH_SHORT,
+                gravity: ToastGravity.CENTER,
+                timeInSecForIosWeb: 1,
+                textColor: Colors.white,
+                fontSize: 16.0
+            );
 
             context.pushReplacementNamed("HomeAdminMenu");
+            Fluttertoast.showToast(
+                msg: "Bienvenid@",
+                toastLength: Toast.LENGTH_LONG,
+                gravity: ToastGravity.CENTER,
+                timeInSecForIosWeb: 1,
+                textColor: Colors.white,
+                fontSize: 16.0
+            );
             //context.goNamed("HomeAdminMenu");
            // AppNavigation(bandera);
 
@@ -455,7 +473,15 @@ class _logInAdminState extends State<logInAdmin> {
       }
 
     } catch(e){
-    print("Error en el servidor"+e.toString());
+        Fluttertoast.showToast(
+            msg: "Error con el servidor",
+            toastLength: Toast.LENGTH_LONG,
+            gravity: ToastGravity.CENTER,
+            timeInSecForIosWeb: 1,
+            textColor: Colors.white,
+            fontSize: 16.0
+        );
+    //print("Error en el servidor"+e.toString());
     }
     }
    // return bandera;

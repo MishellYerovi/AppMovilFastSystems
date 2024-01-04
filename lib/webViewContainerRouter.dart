@@ -272,7 +272,7 @@ class _webViewContainerRouterState extends State<webViewContainerRouter> {
                                     const Icon(Icons.router_rounded, size: 80,),
                                     const SizedBox(width: 8),
                                     const Text('Sin información del router'),
-                                    const Text('Verifique que no esté activado los datos móvilles'),
+                                    const Text('Verifique que no esté activado los datos móviles'),
                                   ],
                                 ),
 

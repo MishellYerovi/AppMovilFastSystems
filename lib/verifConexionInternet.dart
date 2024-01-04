@@ -99,7 +99,13 @@ class WarningWidgetValueNotifier extends StatelessWidget {
           child: Container(
             padding: const EdgeInsets.all(16),
             height: 60,
-            color: Colors.red,
+
+            //color: Colors.red,
+            decoration: BoxDecoration(
+              color: Colors.red,
+              borderRadius: BorderRadius.circular(20),
+            ),
+
             child: Row(
               children: [
                 const Icon(Icons.wifi_off),

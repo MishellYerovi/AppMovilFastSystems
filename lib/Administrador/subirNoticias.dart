@@ -1,9 +1,12 @@
 import 'dart:convert';
 import 'dart:io';
 import 'package:fastsystems_app2/constantes/const.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+
+import '../verifConexionInternet.dart';
 
 class guardarNoticias extends StatefulWidget {
   const guardarNoticias({super.key});
@@ -36,12 +39,13 @@ class _guardarNoticiasState extends State<guardarNoticias> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.transparent,
+     // extendBodyBehindAppBar: true,
       appBar: AppBar(
         title: const Text("Noticias"),
-        shape: RoundedRectangleBorder(
+       /* shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.vertical(
               bottom: Radius.circular(30),
-            )),
+            )),*/
         elevation: 3,
         shadowColor: Colors.lightBlue,
         backgroundColor: Colors.lightBlueAccent,
@@ -58,6 +62,8 @@ class _guardarNoticiasState extends State<guardarNoticias> {
      // mainAxisAlignment: MainAxisAlignment.center,
 
       children: <Widget>[
+      //  SizedBox(height: 100,),
+        const WarningWidgetValueNotifier(),
  Expanded(
  child:
 Card(
@@ -148,7 +154,7 @@ Card(
 
         ]),),
     ),),
-        Container(
+      /*  Container(
          // padding: EdgeInsets.fromLTRB(0, 50, 0, 0),
             alignment: Alignment.bottomCenter,
             // padding: EdgeInsets.all(20),
@@ -156,7 +162,7 @@ Card(
             //width: 40,
             color: Colors.indigoAccent,
 
-        )
+        )*/
       ]),
     ),
 
@@ -203,6 +209,7 @@ Card(
         builder: (context){
           return  AlertDialog(
             title:const Text("Guardado exitosamente") ,
+            icon: const Icon(Icons.check_circle,color: Colors.green,size:50,),
             actions: [
               TextButton(
                   onPressed: (){
@@ -219,7 +226,7 @@ Card(
   Future<void> uploadImage() async {
 
     if(validarFormNombre()==1){
-      mostrarGuardando();
+
       var nombreN=nombreNoticia.text.toString().trim();
       var uploadurl = Uri.parse('$raizUrl'"$subirImagenNoticia");
       //return estado=1;
@@ -244,19 +251,52 @@ Card(
 
         var jsondata = json.decode(response.body);
         if(jsondata["error"]){
-          print(jsondata["msg"]);
+          Fluttertoast.showToast(
+              msg: "Error al guardar",
+              toastLength: Toast.LENGTH_LONG,
+              gravity: ToastGravity.CENTER,
+              timeInSecForIosWeb: 1,
+              textColor: Colors.white,
+              fontSize: 16.0
+          );
+          //print(jsondata["msg"]);
         }else{
-          print("Se ha subido la imagen exitosamente");
+          mostrarGuardando();
+          Fluttertoast.showToast(
+              msg: "Se ha agregado la noticia exitosamente",
+              toastLength: Toast.LENGTH_LONG,
+              gravity: ToastGravity.CENTER,
+              timeInSecForIosWeb: 1,
+              textColor: Colors.white,
+              fontSize: 16.0
+          );
+         // print("Se ha subido la imagen exitosamente");
         }
          /* nombreNoticia.clear();
         setState(() {
           uploadimage = null;
         });*/
       }else{
-        print("Error durante la conexión al servidor");
+        Fluttertoast.showToast(
+            msg: "¡Error con el servidor!",
+            toastLength: Toast.LENGTH_LONG,
+            gravity: ToastGravity.CENTER,
+            timeInSecForIosWeb: 1,
+            textColor: Colors.white,
+            fontSize: 16.0
+        );
+        //print("Error durante la conexión al servidor");
       }
     }catch(e){
-      print("Error durante la conversión del archivo");
+      Fluttertoast.showToast(
+          msg: "¡Error con el servidor!",
+          toastLength: Toast.LENGTH_LONG,
+          gravity: ToastGravity.CENTER,
+          timeInSecForIosWeb: 1,
+          textColor: Colors.white,
+          fontSize: 16.0
+      );
+      //print("Error durante la conversión del archivo");
     }
     }
     setState(() {

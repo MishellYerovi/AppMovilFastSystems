@@ -57,11 +57,17 @@ class _HomeState extends State<Home> {
       borderRadius: BorderRadius.vertical(
       bottom: Radius.circular(30),
     )) ,
-       title: Text("FastSystems",style: TextStyle(
+       title:const Image(
+         image: AssetImage('assets/logos/logo_letras.png'),
+         fit: BoxFit.fitWidth,
+         height: 30,
+         width: 160,
+       ),
+       /* Text("FastSystems",style: TextStyle(
              fontWeight: FontWeight.bold,
             color: Colors.blue,
            // fontStyle: FontStyle.italic
-      ),  textAlign: TextAlign.left,),
+      ),  textAlign: TextAlign.left,),*/
       //toolbarHeight: 2,
         elevation: 5,
         shadowColor: Colors.black45,
@@ -235,6 +241,17 @@ class _HomeState extends State<Home> {
 
 
               ),
+              Card(
+                margin: EdgeInsets.all(20),
+                elevation: 5,
+                shape:RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(20.0),),
+                color: Colors.white,
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
 
               Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -250,8 +267,8 @@ class _HomeState extends State<Home> {
                         child: Center(
                             child: Container(
 
-                                height: 160,
-                                width: 160,
+                                height: 140,
+                                width: 140,
                                 decoration:BoxDecoration(
                                  // color:Colors.transparent,
                                   //color:Colors.white,
@@ -278,13 +295,14 @@ class _HomeState extends State<Home> {
                                     context.goNamed("HomeUsuarios");
                                     //Navigator.push( context, MaterialPageRoute(builder: (context) => webViewContainer()),);
                                     },
-                                  style: ElevatedButton.styleFrom(fixedSize: const Size(160, 160), backgroundColor:Colors.indigo,
+                                  style: ElevatedButton.styleFrom(fixedSize: const Size(140, 140), backgroundColor:Colors.indigo,
                                     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15))
 
                                   ),
                                   child: Wrap(
 
                                     alignment: WrapAlignment.center,
+                                    spacing: -10,
                                     children: <Widget>[
                                       Icon(
                                         Icons.person,
@@ -307,8 +325,8 @@ class _HomeState extends State<Home> {
                         child: Center(
                             child: Container(
 
-                                height: 160,
-                                width: 160,
+                                height: 140,
+                                width: 140,
 
                                 decoration:BoxDecoration(
                                   color:Colors.grey,
@@ -336,15 +354,22 @@ class _HomeState extends State<Home> {
                                    // context.pushNamed("HomeServicios"); //*******************
                                    // GoRouter.of(context).pushNamed("HomeServicios");
                                     },
-                                  style: ElevatedButton.styleFrom(fixedSize: const Size(160, 160), backgroundColor: Colors.greenAccent,
+                                  style: ElevatedButton.styleFrom(alignment:Alignment.center,fixedSize: const Size(140, 140), backgroundColor: Colors.greenAccent,
                                     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15))
                                   ),
-                                  child: Wrap(
+                                  child:
+
+                                  Center(child:Wrap(
+                                    spacing: -10,
                                     alignment: WrapAlignment.center,
+                                    crossAxisAlignment: WrapCrossAlignment.center,
+                                    runAlignment:WrapAlignment.center,
                                     children: <Widget>[
                                       Icon(
+
                                         Icons.home_repair_service_rounded,
                                         color: Colors.white,
+                                        grade:0.25,
                                         size: 80.0,
                                       ),
                                       SizedBox(
@@ -353,13 +378,17 @@ class _HomeState extends State<Home> {
                                       ),
                                       Text("Servicios", style:TextStyle(fontSize:20, color:Colors.white), textAlign: TextAlign.center, ),
                                     ],
-                                  ),
+                                  ),),
                                 )
                             )
                         )
                     ),
                   ]
               ),
+
+
+
+
               Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   crossAxisAlignment: CrossAxisAlignment.center,
@@ -374,8 +403,8 @@ class _HomeState extends State<Home> {
                         child: Center(
                             child: Container(
 
-                                height: 160,
-                                width: 160,
+                                height: 140,
+                                width: 140,
 
                                 decoration:BoxDecoration(
                                   //color:Colors.grey.shade300,
@@ -405,10 +434,11 @@ class _HomeState extends State<Home> {
                                     //Navigator.push( context, MaterialPageRoute(builder: (context) =>menu_configuraciones()),);
 
                                     },
-                                  style: ElevatedButton.styleFrom(fixedSize: const Size(160, 160), backgroundColor:Colors.lightBlueAccent,
+                                  style: ElevatedButton.styleFrom(fixedSize: const Size(140, 140), backgroundColor:Colors.lightBlueAccent,
                                       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15))
                                   ),
                                   child: Wrap(
+                                    spacing: -10,
                                     alignment: WrapAlignment.center,
                                     children: <Widget>[
                                       Icon(
@@ -437,8 +467,8 @@ class _HomeState extends State<Home> {
                         child: Center(
                             child: Container(
 
-                                height: 160,
-                                width: 160,
+                                height: 140,
+                                width: 140,
 
                                 decoration:BoxDecoration(
                                   //color:Colors.grey.shade300,
@@ -468,11 +498,12 @@ class _HomeState extends State<Home> {
                                       //builder: (context) =>  playLinkEntretenimiento(),));
                                         builder: (context) =>  VideoPlayerPage(),));
                                     },
-                                  style: ElevatedButton.styleFrom(fixedSize: const Size(160, 160), backgroundColor: Colors.lightGreenAccent,
+                                  style: ElevatedButton.styleFrom(fixedSize: const Size(140, 140), backgroundColor: Colors.lightGreenAccent,
                                       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15))
                                   ),
                                   child: Wrap(
                                     alignment: WrapAlignment.center,
+                                    spacing: -10,
                                     children: <Widget>[
                                       Icon(
                                         Icons.live_tv,
@@ -492,6 +523,10 @@ class _HomeState extends State<Home> {
                     ),
                   ]
               ),
+                  SizedBox(height: 20,),
+                ],
+
+              ),),
               //  ),
 
             ]

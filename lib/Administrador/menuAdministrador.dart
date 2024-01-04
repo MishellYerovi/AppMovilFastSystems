@@ -5,6 +5,7 @@ import 'package:go_router/go_router.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
 import '../constantes/const.dart';
+import '../verifConexionInternet.dart';
 
 class menuAdministrador extends StatefulWidget {
   const menuAdministrador({super.key});
@@ -85,11 +86,13 @@ late String contrasenia="";
           width: double.infinity,
           height: double.infinity,
     child: SingleChildScrollView(
-    padding: const EdgeInsets.fromLTRB(5, 10, 5, 80),
-    child: Column(
 
+    padding: const EdgeInsets.fromLTRB(5, 0, 5, 80),
+    child: Column(
     mainAxisAlignment: MainAxisAlignment.center,
     children:  [
+      const WarningWidgetValueNotifier(),
+      SizedBox(height: 5,),
       Text("Bienvenid@ $email"),
       Card(
         child: ListTile(

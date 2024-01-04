@@ -1,8 +1,10 @@
 import 'package:appinio_video_player/appinio_video_player.dart';
+import 'package:fastsystems_app2/verifConexionInternet.dart';
 import 'package:flutter/material.dart';
+import 'package:keep_screen_on/keep_screen_on.dart';
 
 import '../Modelo/enlacesTV.dart';
-import '../verifConexionInternet.dart';
+
 
 enum Source { Network }
 
@@ -21,15 +23,18 @@ class _VideoPlayerPageState extends State<VideoPlayerPage> {
   Uri videoUri = Uri.parse(
       "https://redirector.rudo.video/hls-video/c54ac2799874375c81c1672abb700870537c5223/ecuavisa/ecuavisa.smil/playlist.m3u8?PlaylistM3UCL");
   //String assetVideoPath = "assets/videos/whale.mp4";
+  var list;
+  var refreshKey = GlobalKey<RefreshIndicatorState>();
+
 
   late bool isLoading = true;
-  bool fullscreen = false;
-  bool fullscreen2 = false;
+  //bool fullscreen = false;
+  //bool fullscreen2 = false;
   @override
   void initState() {
     super.initState();
     initializeVideoPlayer(currentSource);
-    fullscreen=_customVideoPlayerController.customVideoPlayerSettings.enterFullscreenOnStart;
+    //fullscreen=_customVideoPlayerController.customVideoPlayerSettings.enterFullscreenOnStart;
     //fullscreen2=;
     //print("fullscreen controller"+fullscreen.toString());
     //print("fullscreen2 controller"+fullscreen2.toString());
@@ -39,24 +44,41 @@ class _VideoPlayerPageState extends State<VideoPlayerPage> {
   @override
   void dispose() {
     _customVideoPlayerController.dispose();
+    //print("se apaga la pantalla");
+    KeepScreenOn.turnOff(); //Turn off automatic Screen
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    fullscreen=_customVideoPlayerController.customVideoPlayerSettings.enterFullscreenOnStart;
-    fullscreen2=_VideoPlayerPageState().fullscreen;
+
+    //fullscreen=_customVideoPlayerController.customVideoPlayerSettings.enterFullscreenOnStart;
+    //fullscreen2=_VideoPlayerPageState().fullscreen;
     //print("fullscreen controller w"+fullscreen.toString());
     //print("fullscreen2 controller w "+fullscreen2.toString());
     return Scaffold(
       backgroundColor: Colors.white,
+      extendBodyBehindAppBar: true,
       appBar:AppBar(
         backgroundColor: Colors.white,
-        title: const Image(
-          image: AssetImage('assets/icon.png'),
-          fit: BoxFit.fitHeight,
-          height: 50,
-        ),
+        title:// Row(
+          //mainAxisAlignment: MainAxisAlignment.center,
+          //children: [
+           // Text("Tv", style: TextStyle(color: Colors.blue),),
+            const Image(
+              image: AssetImage('assets/icon.png'),
+              fit: BoxFit.fill,
+              height: 50,
+            ),
+
+         // ],
+       // ),
+
+        shape: const RoundedRectangleBorder(
+
+            borderRadius: BorderRadius.vertical(
+              bottom: Radius.circular(30),
+            )),
         centerTitle: true,
         leading: IconButton(
           icon: const Icon(Icons.arrow_back, color:Colors.blue),
@@ -65,62 +87,78 @@ class _VideoPlayerPageState extends State<VideoPlayerPage> {
           },
         ),
       ),
-      body: isLoading
-          ? const Center(
+      body:
+      list == null
+          ?
+      RefreshIndicator(
+        key: refreshKey,
+        onRefresh: refreshList,
+
+      child: isLoading
+          ? const Center(child: SingleChildScrollView(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            WarningWidgetValueNotifier(),
-            Image(
-              image: AssetImage('assets/icon.png'),
-              fit: BoxFit.fitHeight,
-              height: 50,
-            ),
-            SizedBox(height: 16.0),
-            Text("Cargando..."),
-          ],
-        ),
+            children: [
+              WarningWidgetValueNotifier(),
+              Image(
+                image: AssetImage('assets/icon.png'),
+                fit: BoxFit.fitHeight,
+                height: 80,
+                alignment: Alignment.center,
+              ),
+              SizedBox(height: 16.0),
+              Text("Cargando..."),
+
+            ],
+               ),
+
+
+
         /*CircularProgressIndicator(
           color: Colors.red,
         ),*/
-      )
+      ),)
           :
       ListView(
           //padding: EdgeInsets.fromLTRB(20, 100,20, 100),
           children:[
       SizedBox(
-    child: Padding(
-    padding:
-
-   fullscreen ? EdgeInsets.zero : const EdgeInsets.only(top: 32.0),
-    child:
+        child: Padding(
+        padding:const EdgeInsets.fromLTRB(10, 0, 10, 0),
+       //fullscreen ? EdgeInsets.zero : const EdgeInsets.only(top: 32.0),
+        child:
            Column(
-        mainAxisSize: MainAxisSize.min,
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          SizedBox(height: 20),
-            CustomVideoPlayer(
-              customVideoPlayerController: _customVideoPlayerController,
+            //mainAxisSize: MainAxisSize.min,
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
 
-            ),
-
-            _sourceButtons(),
-        ],
+                  const WarningWidgetValueNotifier(),
+                  const SizedBox(height: 20),
+               // _customVideoPlayerController.videoPlayerController.videoPlayerOptions?.allowBackgroundPlayback,
+                  CustomVideoPlayer(
+                  customVideoPlayerController: _customVideoPlayerController,
+                ),
+                  const SizedBox(height: 30),
+                  const Text("Canales de televisión", style: TextStyle(fontSize:18,fontWeight: FontWeight.bold, color: Colors.blue)),
+                  const SizedBox(height: 5),
+                  _listaDeCanales(),
+            ],
       ),
 
     ),
     ),
      ]),
+         ):const Center(child: CircularProgressIndicator()),
     );
   }
 
-  Widget _sourceButtons() {
-    fullscreen=_customVideoPlayerController.customVideoPlayerSettings.enterFullscreenOnStart;
+  Widget _listaDeCanales() {
+    //fullscreen=_customVideoPlayerController.customVideoPlayerSettings.enterFullscreenOnStart;
     return Column(
-      //mainAxisSize: MainAxisSize.max,
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      mainAxisSize: MainAxisSize.min,
+      mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
 
@@ -133,17 +171,26 @@ class _VideoPlayerPageState extends State<VideoPlayerPage> {
                 if (snapshot.connectionState == ConnectionState.waiting) { //Este estado indica que el futuro se está resolviendo actualmente y recibiremos el resultado en breve.
                   return const Center(
                     child: CircularProgressIndicator(
-                      color: Colors.white,
+                      color: Colors.indigoAccent,
                     ),
                   );
                 }
                 if (snapshot.connectionState == ConnectionState.done) { //Esto denota la finalización del futuro.
                   if (snapshot.hasError) {
                     return Center(
-                      child: Text(
+                      child:
+
+                      /*Text(
                         ' ${snapshot.error} ',
                         style: const TextStyle(fontSize: 18, color: Colors.red),
-                      ),
+                      ),*/
+
+                          Text(
+                           // ' ${snapshot.error} ',
+                            "Sin información",
+                            style: const TextStyle(fontSize: 18, color: Colors.blue),
+                          ),
+
                     );
                   } else if (snapshot.hasData) {
                     final data = snapshot.data;
@@ -151,28 +198,36 @@ class _VideoPlayerPageState extends State<VideoPlayerPage> {
                     //em.id=data!.id.toString();
                     return
                       data?.length != 0?
-                      Container(
+                      Card(
+                          //margin: EdgeInsets.fromLTRB(0, 0, 0, 0),
+                          elevation: 5,
+                          shape:RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(20.0),),
+                          color: Colors.lightBlueAccent,
                         //height: 240,
-                          child:Scrollbar(
-                              radius: const Radius.circular(50),
+                         // child:Scrollbar(
+                             // radius: const Radius.circular(50),
                               //thumbVisibility: true,
-                              trackVisibility: true,
+                              //trackVisibility: true,
                               //scrollbarOrientation: ScrollbarOrientation.top,
                               child:ListView(
-                                padding: const EdgeInsets.all(10),
+                                padding: const EdgeInsets.all(30),
                                 shrinkWrap: true,
                                 children:
+
                                 //  Padding(padding:EdgeInsets.all(8.0)), //Espacio
                                 _listEnlcesTV(data!),
 
-                              )))
+                              )
+                          //)
+                      )
                           : Container( alignment: Alignment.center, child:const Text("No existe información"));
                   }
                 }
                 return const Center(
                   child: CircularProgressIndicator(
                     semanticsLabel: "Cargando...",
-                    valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
+                    valueColor: AlwaysStoppedAnimation<Color>(Colors.blue),
 
                   ),
                 );
@@ -180,50 +235,24 @@ class _VideoPlayerPageState extends State<VideoPlayerPage> {
           ],
         ),
 
-
-       /* MaterialButton( ---- ListView para canales
-          color: Colors.red,
-          child: const Text(
-            "Otro canal",
-            style: TextStyle(
-              color: Colors.white,
-            ),
-          ),
-          onPressed: () {
-
-            setState(() {
-              _customVideoPlayerController.dispose();
-              videoUri=Uri.parse("https://playout.cdn.cartoonnetwork.com.br/playout_04/playlist.m3u8" ) ;
-              currentSource = Source.Network;
-              initializeVideoPlayer(currentSource);
-            });
-          },
-        ),*/
-
-
-
-       /* MaterialButton(
-          color: Colors.red,
-          child: const Text(
-            "Asset",
-            style: TextStyle(
-              color: Colors.white,
-            ),
-          ),
-          onPressed: () {
-            setState(() {
-              currentSource = Source.Network;
-              initializeVideoPlayer(currentSource);
-            });
-          },
-        ),*/
       ],
     );
   }
-
+  Future<Null> refreshList() async {
+    refreshKey.currentState?.show();
+    await Future.delayed(Duration(milliseconds: 20));
+    setState(() {
+    });
+    return null;
+  }
   void initializeVideoPlayer(Source source) {
     setState(() {
+
       isLoading = true;
+      // Keep the screen on.
+      KeepScreenOn.turnOn();
+      //print("Se activa para mantener activa la pantalla");
+      //
      //fullscreen=_customVideoPlayerController.customVideoPlayerSettings.enterFullscreenOnStart;
     });
     VideoPlayerController _videoPlayerController;
@@ -257,9 +286,11 @@ class _VideoPlayerPageState extends State<VideoPlayerPage> {
     {
       listTV.add(
         Card(
-          margin: const EdgeInsets.fromLTRB(5, 5, 5, 5),
-          elevation: 15,
+          //margin: const EdgeInsets.fromLTRB(5, 5, 5, 5),
+          elevation: 3,
           color: Colors.white,
+          shadowColor: Colors.lightBlue,
+          surfaceTintColor: Colors.lightBlueAccent,
           child:
           Column(
             //crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -280,12 +311,15 @@ class _VideoPlayerPageState extends State<VideoPlayerPage> {
                     videoUri=Uri.parse(enlaces.enlace) ;
                     currentSource = Source.Network;
                     initializeVideoPlayer(currentSource);
+                    _customVideoPlayerController.videoPlayerController.play();
+                    //_customVideoPlayerController.playedOnceNotifier;
+                    //_customVideoPlayerController.customVideoPlayerSettings.playOnlyOnce;
                   });
                  // print("reproductor");
                   //print("enlace:"+enlaces.enlace);
                   //reproducirCanal(enlaces.enlace);
                   //editarFormAdmi;n(admin.id, admin.nombreAdmin, admin.emailAdmin);
-                }, icon: const Icon(Icons.play_circle_outline_outlined, color:Colors.deepPurpleAccent, size:40)),
+                }, icon: const Icon(Icons.play_circle_outline_outlined, color:Colors.blue, size:40)),
 
               ),
 
