@@ -24,7 +24,7 @@ class _cRecomendacionesState extends State<cRecomendaciones> {
               bottom: Radius.circular(30),
             )),
         centerTitle: true,
-        title: Text("Recomendaciones",
+        title: Text("Tips",
           style: TextStyle(
             fontWeight: FontWeight.bold,
           ),  textAlign: TextAlign.center,),

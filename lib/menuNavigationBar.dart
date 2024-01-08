@@ -288,7 +288,7 @@ class AppNavigation {
                            // key: state.pageKey,
                            maintainState: false,
                            //child: cInfoCuentaBanco(),
-                              child:cMediosPago(),
+                              child:const cMediosPago(),
                               // child:cLeerPdf(),
                          //  child: cRecomendaciones(),
                         // child: const MenuOtrosServicios(),

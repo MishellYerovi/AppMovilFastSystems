@@ -62,7 +62,9 @@ Center (
                             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15))
                         ),
                         child: Wrap(
+                          direction: Axis.vertical,
                           alignment: WrapAlignment.center,
+                          crossAxisAlignment: WrapCrossAlignment.center,
                           children: <Widget>[
                             Icon(
                               Icons.credit_score_outlined,
@@ -90,7 +92,9 @@ Center (
                             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
                         ),
                         child: Wrap(
+                          direction: Axis.vertical,
                           alignment: WrapAlignment.center,
+                          crossAxisAlignment: WrapCrossAlignment.center,
                           children: <Widget>[
                             Icon(
                               Icons.tips_and_updates_outlined,
@@ -101,7 +105,7 @@ Center (
                               width:10,
                               // height: 50,
                             ),
-                            Text("Recomendaciones", style:TextStyle(fontSize:13, color:Colors.white,), textAlign: TextAlign.center, ),
+                            Text("Tips", style:TextStyle(fontSize:20, color:Colors.white,), textAlign: TextAlign.center, ),
                           ],
                         ),
                       ),

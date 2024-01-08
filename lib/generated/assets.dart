@@ -9,7 +9,7 @@ class Assets {
   static const String assetsNoticias = 'assets/Noticias';
   static const String assetsObstaculo = 'assets/obstaculo.jpg';
   static const String assetsPaginaWeb = 'assets/paginaWeb.png';
-  static const String assetsRedesSocialesWhatsapp = 'assets/redesSociales/whatsapp.png';
+  static const String assetsRedesSocialesWhatsapp = 'assets/redesSociales/whatsapp_.png';
   static const String assetsRouter1 = 'assets/router1.png';
   static const String assetsUbicacionRouter1 = 'assets/ubicacionRouter1.jpg';
   static const String assetsUbicacionRouter2 = 'assets/ubicacionRouter2.jpg';
@@ -23,6 +23,8 @@ class Assets {
   static const String misionandvisionMision = 'assets/misionandvision/mision.jpg';
   static const String misionandvisionVision = 'assets/misionandvision/vision.jpg';
   static const String noticiasPortalNoticiaEstatica = 'assets/NoticiasPortal/noticiaEstatica.png';
+  static const String redesSocialesFacebook = 'assets/redesSociales/facebook_.png';
+  static const String redesSocialesInstagram = 'assets/redesSociales/instagram_.png';
   static const String redesSocialesWhatsapp = 'assets/redesSociales/whatsapp.ico';
 
 }

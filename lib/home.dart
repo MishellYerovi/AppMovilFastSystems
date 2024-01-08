@@ -1,15 +1,11 @@
+
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:fastsystems_app2/Otros/playE.dart';
-
-import 'package:fastsystems_app2/playEntretenimiento.dart';
 import 'package:fastsystems_app2/verifConexionInternet.dart';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:go_router/go_router.dart';
-
-
-
+import 'package:url_launcher/url_launcher.dart';
 import 'Modelo/imagenesNoticias.dart';
 
 class Home extends StatefulWidget {
@@ -50,6 +46,7 @@ class _HomeState extends State<Home> {
       extendBodyBehindAppBar: true,
       //backgroundColor: Colors.lightBlueAccent,
       //backgroundColor: Colors.white60,
+      backgroundColor: Colors.white,
       appBar: AppBar(
 
         //flexibleSpace: Container(height: 10),
@@ -125,7 +122,9 @@ class _HomeState extends State<Home> {
               color: Colors.deepPurpleAccent),),
                 style: OutlinedButton.styleFrom(
                   //fixedSize: const Size(130, 10),
-                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10),
+                shape:RoundedRectangleBorder(borderRadius: BorderRadius.circular(10),
+                //BorderRadiusTween(begin:borderRadius: BorderRadius.circular(10), end:50),
+                //RoundedRectangleBorder(borderRadius: BorderRadius.circular(10),
     ),
       ),
           ),
@@ -241,8 +240,72 @@ class _HomeState extends State<Home> {
 
 
               ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  IconButton(onPressed: () {
+                    _launchSocialMediaAppIfInstalled(
+                        url: 'https://www.facebook.com/fastsystems.ec/',//Facebook
+                    );
+                  }, icon: const Image(
+                    //color: Colors.white,
+                    //                     //colorBlendMode: Colors.white,
+                    image: AssetImage('assets/redesSociales/facebook_.png'),
+                    fit: BoxFit.cover,
+                    //height: 40,
+                  ),
+                    iconSize: 40,
+                    splashRadius: 20,
+                    splashColor:Colors.deepPurple,
+                    hoverColor: Colors.transparent,
+                    highlightColor:Colors.transparent ,
+                    focusColor:Colors.transparent ,
+                    //const Icon(Icons.facebook, color:Colors.blue, size:40)
+                  ),
+
+                  IconButton(onPressed: () {
+                    _launchSocialMediaAppIfInstalled(
+                      url: 'https://www.instagram.com/fastsystems_internet/', // Facebook
+                    );
+                  }, icon:
+                  const Image(
+                    image: AssetImage('assets/redesSociales/instagram_.png'),
+                    fit: BoxFit.fitHeight,
+                    //height: 60,
+                  ),
+                    //const Icon(Icons.insta, color:Colors.blue, size:40)
+                    iconSize: 40,
+                    splashRadius: 20,
+                    splashColor:Colors.deepPurple,
+                    hoverColor: Colors.transparent,
+                    highlightColor:Colors.transparent ,
+                    focusColor:Colors.transparent ,
+
+                  ),
+                  IconButton(onPressed: () {
+                    _launchSocialMediaAppIfInstalled(
+                      url: 'https://wa.link/1f0hbc/', // Facebook
+                    );
+                  }, icon:
+                  const Image(
+                    image: AssetImage('assets/redesSociales/whatsapp_.png'),
+                    fit: BoxFit.contain,
+                    //height: 60,
+                  ),
+                    iconSize: 40,
+                    splashRadius: 20,
+                    //splashColor:Colors.deepPurple,
+                    hoverColor: Colors.transparent,
+                    highlightColor:Colors.deepPurple,
+                    focusColor:Colors.transparent ,
+                    //const Icon(Icons.insta, color:Colors.blue, size:40)
+                  ),
+                ],
+              ),
               Card(
-                margin: EdgeInsets.all(20),
+                margin: const EdgeInsets.fromLTRB(20, 0, 20, 10),
                 elevation: 5,
                 shape:RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(20.0),),
@@ -263,7 +326,7 @@ class _HomeState extends State<Home> {
 
                         // margin: EdgeInsets.symmetric(horizontal: 21.0),
                         //margin: const EdgeInsets.all(10),
-                        margin: const EdgeInsets.fromLTRB(10, 30, 0, 10),
+                        margin: const EdgeInsets.fromLTRB(10, 20, 0, 10),
                         child: Center(
                             child: Container(
 
@@ -300,9 +363,10 @@ class _HomeState extends State<Home> {
 
                                   ),
                                   child: Wrap(
-
                                     alignment: WrapAlignment.center,
-                                    spacing: -10,
+                                    crossAxisAlignment: WrapCrossAlignment.center,
+                                    runAlignment:WrapAlignment.center,
+                                    direction: Axis.vertical,
                                     children: <Widget>[
                                       Icon(
                                         Icons.person,
@@ -319,7 +383,7 @@ class _HomeState extends State<Home> {
                     Container(
                         color:Colors.transparent,
 
-                        margin: const EdgeInsets.fromLTRB(0, 30, 10, 10),
+                        margin: const EdgeInsets.fromLTRB(0, 20, 10, 10),
                         // margin: EdgeInsets.symmetric(horizontal: 15.0),
                         // margin: const EdgeInsets.fromLTRB(20, 30, 10, 10),
                         child: Center(
@@ -360,13 +424,13 @@ class _HomeState extends State<Home> {
                                   child:
 
                                   Center(child:Wrap(
-                                    spacing: -10,
+                                    //spacing: -10,
                                     alignment: WrapAlignment.center,
                                     crossAxisAlignment: WrapCrossAlignment.center,
                                     runAlignment:WrapAlignment.center,
+                                    direction: Axis.vertical,
                                     children: <Widget>[
                                       Icon(
-
                                         Icons.home_repair_service_rounded,
                                         color: Colors.white,
                                         grade:0.25,
@@ -438,8 +502,10 @@ class _HomeState extends State<Home> {
                                       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15))
                                   ),
                                   child: Wrap(
-                                    spacing: -10,
                                     alignment: WrapAlignment.center,
+                                    crossAxisAlignment: WrapCrossAlignment.center,
+                                    runAlignment:WrapAlignment.center,
+                                    direction: Axis.vertical,
                                     children: <Widget>[
                                       Icon(
                                         Icons.router_outlined,
@@ -503,7 +569,9 @@ class _HomeState extends State<Home> {
                                   ),
                                   child: Wrap(
                                     alignment: WrapAlignment.center,
-                                    spacing: -10,
+                                    crossAxisAlignment: WrapCrossAlignment.center,
+                                    runAlignment:WrapAlignment.center,
+                                    direction: Axis.vertical,
                                     children: <Widget>[
                                       Icon(
                                         Icons.live_tv,
@@ -597,6 +665,20 @@ class _HomeState extends State<Home> {
       );
     }
     return imagenes;
+  }
+
+  Future<void> _launchSocialMediaAppIfInstalled({
+  required String url,
+  }) async {
+    try {
+      bool launched = await launchUrl(Uri.parse(url) ); // Launch the app if installed!
+
+      if (!launched) {
+        launchUrl(Uri.parse(url)); // Launch web view if app is not installed!
+      }
+    } catch (e) {
+      launchUrl(Uri.parse(url)); // Launch web view if app is not installed!
+    }
   }
 }
 /*      CarouselSlider(
